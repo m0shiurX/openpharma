@@ -23,7 +23,7 @@ import { Head } from '@inertiajs/inertia-vue3';
             <div class="rounded-lg bg-white py-4 px-4 md:py-7 md:px-8 xl:px-10">
                 <div class="items-center justify-between py-3 sm:flex">
                     <div class="flex items-center">
-                        <a class="rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800" href=" javascript:void(0)">
+                        <a class="rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800" href="javascript:void(0)">
                             <div class="rounded-full bg-indigo-100 py-2 px-8 text-indigo-700">
                                 <p>All</p>
                             </div>
