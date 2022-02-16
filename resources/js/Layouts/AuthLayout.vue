@@ -2,15 +2,15 @@
     <!-- Whitespace & wrapper around the app -->
     <div class="w-full md:grid gap-5 md:grid-cols-12 p-2 min-h-screen">
         <!-- Side navigation menu -->
-        <aside
-            class="w-full md:col-span-3 lg:col-span-2 rounded-md bg-slate-800"
-        >
+        <aside class="w-full md:col-span-3 lg:col-span-2 rounded-md bg-white">
             <div
-                class="flex items-center justify-between md:justify-center p-4 bg-slate-700 rounded-md md:rounded-b-none"
+                class="flex items-center justify-between md:justify-center rounded-md md:rounded-b-none"
             >
                 <!-- Logo -->
-                <Link class="">
-                    <h1 class="text-2xl font-medium text-white">OpenPharma</h1>
+                <Link class="p-4">
+                    <h1 class="text-2xl font-medium text-slate-900">
+                        OpenPharma
+                    </h1>
                 </Link>
                 <button
                     class="md:hidden"
@@ -24,6 +24,7 @@
                         <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
                     </svg>
                 </button>
+                <!-- Mobile Menu -->
                 <teleport to="body">
                     <div
                         class="fixed top-0 left-0 w-full bg-slate-500/30 md:hidden"
@@ -39,9 +40,7 @@
             </div>
 
             <!-- Desktop Menu -->
-            <MainMenu
-                class="hidden pt-6 px-8 bg-slate-800 md:block md:rounded-b-md"
-            />
+            <MainMenu class="hidden pt-6 md:block md:rounded-b-md" />
         </aside>
         <main class="w-full md:col-span-9 lg:col-span-10">
             <!-- Header navigation -->
