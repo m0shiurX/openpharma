@@ -11,7 +11,7 @@ import { Head } from '@inertiajs/inertia-vue3';
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Dashboard</h2>
         </template>
 
-        <div class="container">
+        <div class="">
             <div class="px-4 md:px-8">
                 <div class="mb-8 flex items-center justify-between">
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-xl lg:text-2xl">Invoices</p>
@@ -48,7 +48,7 @@ import { Head } from '@inertiajs/inertia-vue3';
                         </select>
                     </div>
                 </div>
-                <div class="mt-7 overflow-x-auto">
+                <div class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full mt-7 overflow-auto overflow-y-scroll scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700">
                     <table class="w-full whitespace-nowrap">
                         <tbody>
                             <tr tabindex="0" class="h-16 rounded border border-gray-100 focus:outline-none">
