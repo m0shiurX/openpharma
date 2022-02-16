@@ -1,6 +1,6 @@
 <template>
     <Head :title="form.name" />
-    <BreezeAuthenticatedLayout>
+    <AuthLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Edit Profile : {{ form.name }}
@@ -57,12 +57,13 @@
                 </div>
             </div>
         </div>
-    </BreezeAuthenticatedLayout>
+    </AuthLayout>
 </template>
 
 <script setup>
 import { Head, useForm } from "@inertiajs/inertia-vue3";
-import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
+
 import TextInput from "@/Shared/TextInput";
 import FileInput from "@/Shared/FileInput";
 import LoadingButton from "@/Shared/LoadingButton";

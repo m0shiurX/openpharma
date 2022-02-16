@@ -1,16 +1,7 @@
-<script setup>
-import { Head, Link } from "@inertiajs/inertia-vue3";
-import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
-
-defineProps({
-    user: Object,
-});
-</script>
-
 <template>
     <Head title="My Profile" />
 
-    <BreezeAuthenticatedLayout>
+    <AuthLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 My Profile
@@ -23,7 +14,7 @@ defineProps({
                     <div class="p-6 bg-white border-b border-gray-200">
                         <img
                             v-if="user.photo"
-                            class="block ml-4 w-24 h-24 rounded-full"
+                            class="block ml-4 w-24 h-24 rounded-full object-cover"
                             :src="user.photo"
                         />
                         <div>{{ user.name }}</div>
@@ -36,5 +27,14 @@ defineProps({
                 </div>
             </div>
         </div>
-    </BreezeAuthenticatedLayout>
+    </AuthLayout>
 </template>
+
+<script setup>
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
+
+defineProps({
+    user: Object,
+});
+</script>
