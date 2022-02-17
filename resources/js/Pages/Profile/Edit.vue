@@ -9,7 +9,7 @@
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="border-b border-gray-200 bg-white p-6">
-                        <form @submit.prevent="update">
+                        <!-- <form @submit.prevent="update">
                             <div class="-mb-8 -mr-6 flex flex-wrap p-8">
                                 <text-input v-model="form.name" :error="form.errors.name" class="w-full pb-8 pr-6 lg:w-1/2" label="First name" />
                                 <text-input v-model="form.email" :error="form.errors.email" class="w-full pb-8 pr-6 lg:w-1/2" label="Email" />
@@ -35,7 +35,7 @@
                                     >Update User</loading-button
                                 >
                             </div>
-                        </form>
+                        </form> -->
 
                         <form @submit.prevent="update">
                             <div class="group relative z-0 mb-6 w-full">
@@ -43,7 +43,7 @@
                                     type="text"
                                     name="name"
                                     id="floating_name"
-                                    class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                    class="peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                                     placeholder=" "
                                     required=""
                                     v-model="form.name"
@@ -59,7 +59,7 @@
                                     type="email"
                                     name="email"
                                     id="floating_email"
-                                    class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                    class="peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                                     placeholder=" "
                                     required=""
                                     v-model="form.email"
@@ -74,10 +74,10 @@
                                 <div class="group relative z-0 mb-6 w-full">
                                     <input
                                         type="password"
-                                        name="password"
+                                        name="floating_password"
                                         id="floating_password"
-                                        class="peer password-sm block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
-                                        placeholder=""
+                                        class="peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                        placeholder=" "
                                         required=""
                                         v-model="form.password"
                                     />
@@ -92,9 +92,10 @@
                                         type="password"
                                         name="floating_confirm_password"
                                         id="floating_confirm_password"
-                                        class="peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                        class="peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                                         placeholder=" "
                                         required=""
+                                        v-model="form.confirm_password"
                                     />
                                     <label
                                         for="floating_confirm_password"
