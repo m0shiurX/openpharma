@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\ManufacturerController;
 
 // Auth Routes
 require __DIR__ . '/auth.php';
@@ -35,3 +36,10 @@ Route::put('profile/update', [ProfileController::class, 'update'])
 Route::get('/img/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
+
+
+
+// Manufacturers
+Route::get('manufacturers', [ManufacturerController::class, 'index'])
+    ->name('manufacturers')
+    ->middleware('auth');
