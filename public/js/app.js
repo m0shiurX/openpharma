@@ -25665,7 +25665,7 @@ var _hoisted_1 = {
   key: 0
 };
 var _hoisted_2 = {
-  "class": "flex flex-wrap -mb-1"
+  "class": "-mb-1 flex flex-wrap"
 };
 var _hoisted_3 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -25674,13 +25674,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return $props.links.length > 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.links, function (link, key) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [link.url === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: key,
-      "class": "mb-1 mr-1 px-4 py-3 text-gray-400 text-sm leading-4 border rounded",
+      "class": "mb-1 mr-1 rounded border px-4 py-3 text-sm leading-4 text-gray-400",
       innerHTML: link.label
     }, null, 8
     /* PROPS */
     , _hoisted_3)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Link, {
+      "preserve-scroll": "",
       key: "link-".concat(key),
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mb-1 mr-1 px-4 py-3 focus:text-indigo-500 text-sm leading-4 hover:bg-white border focus:border-indigo-500 rounded", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["mb-1 mr-1 rounded border px-4 py-3 text-sm leading-4 hover:bg-white focus:border-indigo-500 focus:text-indigo-500", {
         'bg-white': link.active
       }]),
       href: link.url,
