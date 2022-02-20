@@ -41,5 +41,5 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
 
 // Manufacturers
 Route::get('manufacturers', [ManufacturerController::class, 'index'])
-    ->name('manufacturers')
+    ->name('manufacturers.index')
     ->middleware('auth');

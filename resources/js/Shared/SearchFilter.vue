@@ -2,16 +2,22 @@
     <div class="flex items-center">
         <div class="flex w-full rounded bg-white shadow">
             <input
-                class="focus:shadow-outline relative w-full rounded-r px-6 py-3"
+                class="focus:shadow-outline relative w-full rounded-md px-3 py-1.5 focus-within:ring-orange-400"
                 autocomplete="off"
                 type="text"
                 name="search"
-                placeholder="Search…"
+                placeholder="Type to filter..."
                 :value="modelValue"
                 @input="$emit('update:modelValue', $event.target.value)"
             />
         </div>
-        <button class="ml-3 text-sm text-gray-500 hover:text-gray-700 focus:text-indigo-500" type="button" @click="$emit('reset')">Reset</button>
+        <button
+            class="ml-3 rounded-md bg-orange-500 py-2 px-4 text-sm text-gray-100 hover:text-gray-200 focus:text-orange-300"
+            type="button"
+            @click="$emit('reset')"
+        >
+            Reset
+        </button>
     </div>
 </template>
 

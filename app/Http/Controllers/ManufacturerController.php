@@ -15,10 +15,10 @@ class ManufacturerController extends Controller
     public function index()
     {
         return Inertia::render('Manufacturers/Index', [
-            'filters' => Request::all('search'),
+            'filters' => Request::only('search'),
             'manufacturers' => Manufacturer::orderBy('name')
                 ->filter(Request::only('search'))
-                ->paginate(8)
+                ->paginate(10)
                 ->withQueryString()
                 ->through(fn ($manufacturer) => [
                     'id' => $manufacturer->id,
