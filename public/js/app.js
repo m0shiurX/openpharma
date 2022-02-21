@@ -4484,7 +4484,7 @@ var _hoisted_2 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["group flex items-center overflow-clip py-3 pl-4 uppercase group-hover:border-r-4 group-hover:border-orange-600 group-hover:from-orange-50 group-hover:to-orange-100", $props.active && 'border-r-4 border-orange-600 bg-gradient-to-r from-orange-50 to-orange-100']),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["group flex items-center py-3 pl-4 uppercase group-hover:border-r-4 group-hover:border-orange-600 group-hover:from-orange-50 group-hover:to-orange-100", $props.active && 'border-r-4 border-orange-600 bg-gradient-to-r from-orange-50 to-orange-100']),
     href: $props.href
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -4494,7 +4494,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, null, 8
       /* PROPS */
       , ["icon", "class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-4/5 group-hover:text-orange-600", $props.active ? 'text-orange-600' : 'text-slate-400'])
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-4/5 truncate group-hover:text-orange-600", $props.active ? 'text-orange-600' : 'text-slate-400'])
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")], 2
       /* CLASS */
       )];
