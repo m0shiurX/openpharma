@@ -7,8 +7,7 @@
                 type="text"
                 name="search"
                 placeholder="Type to filter..."
-                :value="modelValue"
-                @input="$emit('update:modelValue', $event.target.value)"
+                v-model="search"
             />
         </div>
         <button
@@ -21,15 +20,24 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        modelValue: String,
-        maxWidth: {
-            type: Number,
-            default: 300,
-        },
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+    modelValue: {
+        required: true,
+        type: String,
+        default: '',
     },
-    emits: ['update:modelValue', 'reset'],
-};
+});
+const emit = defineEmits(['update:modelValue', 'reset']);
+
+const search = computed({
+    get() {
+        return props.modelValue;
+    },
+    set(searchString) {
+        emit('update:modelValue', searchString);
+    },
+});
 </script>
