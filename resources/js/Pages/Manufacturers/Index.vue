@@ -78,11 +78,12 @@
                                         </div>
                                     </td>
                                     <td class="pl-5">
-                                        <button
+                                        <Link
+                                            :href="route('manufacturers.show', manufacturer.id)"
                                             class="rounded bg-red-100 py-2 px-5 text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
                                         >
                                             View
-                                        </button>
+                                        </Link>
                                     </td>
                                     <td>
                                         <div class="relative px-5 pt-2">

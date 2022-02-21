@@ -8,16 +8,16 @@ class UpdateManufacturerRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'location' => 'string',
-            'contact_name' => 'string',
-            'contact_tel' => 'string|min:8',
+            'name' => ['required', 'string'],
+            'location' => ['required', 'string'],
+            'contact_name' => ['nullable'],
+            'contact_tel' => ['nullable', 'min:8'],
         ];
     }
 }

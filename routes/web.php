@@ -50,3 +50,19 @@ Route::get('manufacturers/create', [ManufacturerController::class, 'create'])
 Route::post('manufacturers/store', [ManufacturerController::class, 'store'])
     ->name('manufacturers.store')
     ->middleware('auth');
+
+Route::get('manufacturers/{manufacturer}', [ManufacturerController::class, 'show'])
+    ->name('manufacturers.show')
+    ->middleware('auth');
+
+Route::get('manufacturers/{manufacturer}/edit', [ManufacturerController::class, 'edit'])
+    ->name('manufacturers.edit')
+    ->middleware('auth');
+
+Route::put('manufacturers/{manufacturer}', [ManufacturerController::class, 'update'])
+    ->name('manufacturers.update')
+    ->middleware('auth');
+
+Route::delete('manufacturers/{manufacturer}', [ManufacturerController::class, 'destroy'])
+    ->name('manufacturers.destroy')
+    ->middleware('auth');

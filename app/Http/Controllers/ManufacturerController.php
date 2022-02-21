@@ -45,7 +45,15 @@ class ManufacturerController extends Controller
 
     public function show(Manufacturer $manufacturer)
     {
-        //
+        return Inertia::render('Manufacturers/Show', [
+            'manufacturer' => [
+                'id' => $manufacturer->id,
+                'name' => $manufacturer->name,
+                'location' => $manufacturer->location,
+                'contact_name' => $manufacturer->contact_name,
+                'contact_tel' => $manufacturer->contact_tel,
+            ]
+        ]);
     }
 
     public function edit(Manufacturer $manufacturer)
@@ -53,6 +61,7 @@ class ManufacturerController extends Controller
         return Inertia::render('Manufacturers/Edit', [
             'manufacturer' => [
                 'id' => $manufacturer->id,
+                'name' => $manufacturer->name,
                 'location' => $manufacturer->location,
                 'contact_name' => $manufacturer->contact_name,
                 'contact_tel' => $manufacturer->contact_tel,
@@ -64,11 +73,16 @@ class ManufacturerController extends Controller
     {
         $manufacturer->update($request->validated());
 
-        return Redirect::back()->with('success', 'Successfully updated.');
+        return Redirect::route('manufacturers.index')->with('success', 'Successfully updated.');
+
+        // return Redirect::back()->with('success', 'Successfully updated.');
     }
 
     public function destroy(Manufacturer $manufacturer)
     {
-        //
+        $manufacturer->delete();
+
+        // return Redirect::back()->with('success', 'Successfully deleted.');
+        return Redirect::route('manufacturers.index')->with('success', 'Successfully deleted.');
     }
 }
