@@ -8,14 +8,14 @@ class StoreManufacturerRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     public function rules(): array
     {
         return [
             'name' => 'required|string',
-            'location' => 'string',
+            'location' => 'required|string',
             'contact_name' => 'string',
             'contact_tel' => 'string|min:8',
         ];

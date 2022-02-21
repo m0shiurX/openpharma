@@ -10,11 +10,12 @@
             <div class="px-4 md:px-8 xl:px-10">
                 <div class="flex items-center justify-between">
                     <SearchFilter v-model="form.search" class="mr-4 w-80 rounded-lg" @reset="reset"></SearchFilter>
-                    <button
+
+                    <Link
                         class="mt-4 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-3 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 sm:mt-0"
-                    >
-                        <p class="text-sm font-medium leading-none text-white">Add Manufacturer</p>
-                    </button>
+                        :href="route('manufacturers.create')"
+                        ><span class="text-sm font-medium leading-none text-white">Add Manufacturer</span>
+                    </Link>
                 </div>
             </div>
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
@@ -91,7 +92,7 @@
                                     <td class="border-r pl-5">
                                         <div class="flex items-center">
                                             <icon icon="list" class="fill-red-500 stroke-red-500" />
-                                            <p class="ml-2 text-sm leading-none text-gray-600">{{ manufacturer.location }}</p>
+                                            <p class="ml-2 truncate text-sm leading-none text-gray-600">{{ manufacturer.location }}</p>
                                         </div>
                                     </td>
                                     <td class="border-r pl-5">
@@ -147,7 +148,7 @@
 </template>
 <script setup>
 import { watch, ref } from 'vue';
-import { Head, useForm } from '@inertiajs/inertia-vue3';
+import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import Pagination from '@/Shared/Pagination';
 import AuthLayout from '@/Layouts/AuthLayout.vue';

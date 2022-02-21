@@ -33,12 +33,12 @@ class ManufacturerController extends Controller
 
     public function create()
     {
-        //
+        return Inertia::render('Manufacturers/Create');
     }
 
     public function store(StoreManufacturerRequest $request)
     {
-        //
+        $request->dd();
     }
 
     public function show(Manufacturer $manufacturer)

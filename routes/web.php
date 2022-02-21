@@ -43,3 +43,10 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
 Route::get('manufacturers', [ManufacturerController::class, 'index'])
     ->name('manufacturers.index')
     ->middleware('auth');
+// Manufacturers
+Route::get('manufacturers/create', [ManufacturerController::class, 'create'])
+    ->name('manufacturers.create')
+    ->middleware('auth');
+Route::post('manufacturers/store', [ManufacturerController::class, 'store'])
+    ->name('manufacturers.store')
+    ->middleware('auth');

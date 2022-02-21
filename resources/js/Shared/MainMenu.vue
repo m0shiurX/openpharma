@@ -1,9 +1,9 @@
 <template>
     <div class="space-y-4">
-        <MainMenuItem href="/dashboard" :active="isUrl('dashboard')">Dashboard</MainMenuItem>
-        <MainMenuItem href="/manufacturers" :active="isUrl('manufacturers')">Manufacturers</MainMenuItem>
-        <MainMenuItem href="/profile" :active="isUrl('profile')">Profile</MainMenuItem>
-        <MainMenuItem href="/about" :active="isUrl('about')">About</MainMenuItem>
+        <MainMenuItem href="/dashboard" icon="dashboard" :active="isUrl('dashboard')">Dashboard</MainMenuItem>
+        <MainMenuItem href="/manufacturers" icon="attachment" :active="isUrl('manufacturers')">Manufacturers</MainMenuItem>
+        <MainMenuItem href="/profile" icon="dashboard" :active="isUrl('profile')">Profile</MainMenuItem>
+        <MainMenuItem href="/about" icon="dashboard" :active="isUrl('about')">About</MainMenuItem>
     </div>
 </template>
 
