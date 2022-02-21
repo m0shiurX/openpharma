@@ -8,6 +8,9 @@
 
         <div class="mt-8 rounded-lg bg-white/30 py-4">
             <div class="px-4 md:px-8 xl:px-10">
+                <FlashMessages />
+            </div>
+            <div class="px-4 md:px-8 xl:px-10">
                 <div class="flex items-center justify-between">
                     <SearchFilter v-model="form.search" class="mr-4 w-80 rounded-lg" @reset="reset"></SearchFilter>
 
@@ -123,6 +126,7 @@ import SearchFilter from '@/Shared/SearchFilter.vue';
 import pickBy from 'lodash/pickBy';
 import Icon from '@/Shared/Icon.vue';
 import debounce from 'lodash/debounce';
+import FlashMessages from '@/Shared/FlashMessages';
 
 const props = defineProps({
     manufacturers: Object,

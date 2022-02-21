@@ -50,12 +50,21 @@ class ManufacturerController extends Controller
 
     public function edit(Manufacturer $manufacturer)
     {
-        //
+        return Inertia::render('Manufacturers/Edit', [
+            'manufacturer' => [
+                'id' => $manufacturer->id,
+                'location' => $manufacturer->location,
+                'contact_name' => $manufacturer->contact_name,
+                'contact_tel' => $manufacturer->contact_tel,
+            ]
+        ]);
     }
 
     public function update(UpdateManufacturerRequest $request, Manufacturer $manufacturer)
     {
-        //
+        $manufacturer->update($request->validated());
+
+        return Redirect::back()->with('success', 'Successfully updated.');
     }
 
     public function destroy(Manufacturer $manufacturer)
