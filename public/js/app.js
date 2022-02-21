@@ -911,14 +911,10 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var props = __props; // onUpdated(() => {
-    //     console.log(props.manufacturers);
-    // });
-
+    var props = __props;
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       search: props.filters.search
-    }); // const form = ref(props.filters.search);
-
+    });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(form, lodash_debounce__WEBPACK_IMPORTED_MODULE_8___default()(function () {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get(route('manufacturers.index'), lodash_pickBy__WEBPACK_IMPORTED_MODULE_6___default()(form), {
         preserveState: true,
@@ -3647,7 +3643,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"items-center justify-between py-3 sm:flex\">\n                    <div class=\"flex items-center\">\n                        <SearchFilter v-model=\"form.search\" class=\"mr-4 w-full max-w-md\" @reset=\"reset\"></SearchFilter>\n                        <a class=\"rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800\" href=\"javascript:void(0)\">\n                            <div class=\"rounded-full bg-indigo-100 py-2 px-8 text-indigo-700\">\n                                <p>All</p>\n                            </div>\n                        </a>\n                        <a\n                            class=\"ml-4 rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800 sm:ml-8\"\n                            href=\"javascript:void(0)\"\n                        >\n                            <div class=\"rounded-full py-2 px-8 text-gray-600 hover:bg-indigo-100 hover:text-indigo-700\">\n                                <p>Done</p>\n                            </div>\n                        </a>\n                        <a\n                            class=\"ml-4 rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800 sm:ml-8\"\n                            href=\"javascript:void(0)\"\n                        >\n                            <div class=\"rounded-full py-2 px-8 text-gray-600 hover:bg-indigo-100 hover:text-indigo-700\">\n                                <p>Pending</p>\n                            </div>\n                        </a>\n                    </div>\n                    <div class=\"flex cursor-pointer items-center rounded py-3 px-4 text-sm font-medium leading-none text-gray-600\">\n                        <select aria-label=\"select\" class=\"ml-1 bg-transparent focus:text-indigo-600 focus:outline-none\">\n                            <option class=\"text-sm text-indigo-800\">Latest</option>\n                            <option class=\"text-sm text-indigo-800\">Oldest</option>\n                            <option class=\"text-sm text-indigo-800\">Latest</option>\n                        </select>\n                    </div>\n                </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.manufacturers.data, function (manufacturer) {
+      , ["href"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.props.manufacturers.data, function (manufacturer) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
           key: manufacturer.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(manufacturer.name), 1

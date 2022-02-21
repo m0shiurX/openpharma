@@ -19,39 +19,6 @@
                 </div>
             </div>
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
-                <!-- <div class="items-center justify-between py-3 sm:flex">
-                    <div class="flex items-center">
-                        <SearchFilter v-model="form.search" class="mr-4 w-full max-w-md" @reset="reset"></SearchFilter>
-                        <a class="rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800" href="javascript:void(0)">
-                            <div class="rounded-full bg-indigo-100 py-2 px-8 text-indigo-700">
-                                <p>All</p>
-                            </div>
-                        </a>
-                        <a
-                            class="ml-4 rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800 sm:ml-8"
-                            href="javascript:void(0)"
-                        >
-                            <div class="rounded-full py-2 px-8 text-gray-600 hover:bg-indigo-100 hover:text-indigo-700">
-                                <p>Done</p>
-                            </div>
-                        </a>
-                        <a
-                            class="ml-4 rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800 sm:ml-8"
-                            href="javascript:void(0)"
-                        >
-                            <div class="rounded-full py-2 px-8 text-gray-600 hover:bg-indigo-100 hover:text-indigo-700">
-                                <p>Pending</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="flex cursor-pointer items-center rounded py-3 px-4 text-sm font-medium leading-none text-gray-600">
-                        <select aria-label="select" class="ml-1 bg-transparent focus:text-indigo-600 focus:outline-none">
-                            <option class="text-sm text-indigo-800">Latest</option>
-                            <option class="text-sm text-indigo-800">Oldest</option>
-                            <option class="text-sm text-indigo-800">Latest</option>
-                        </select>
-                    </div>
-                </div> -->
                 <div
                     class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full mt-5 overflow-auto overflow-y-scroll scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700"
                 >
@@ -162,15 +129,9 @@ const props = defineProps({
     filters: Object,
 });
 
-// onUpdated(() => {
-//     console.log(props.manufacturers);
-// });
-
 const form = useForm({
     search: props.filters.search,
 });
-
-// const form = ref(props.filters.search);
 
 watch(
     form,
