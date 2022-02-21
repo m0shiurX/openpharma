@@ -14,10 +14,10 @@ class StoreManufacturerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
-            'location' => 'required|string',
-            'contact_name' => 'string',
-            'contact_tel' => 'string|min:8',
+            'name' => ['required', 'string'],
+            'location' => ['required', 'string'],
+            'contact_name' => ['nullable'],
+            'contact_tel' => ['nullable', 'min:8'],
         ];
     }
 }

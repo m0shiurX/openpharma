@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Manufacturer;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreManufacturerRequest;
 use App\Http\Requests\UpdateManufacturerRequest;
 
@@ -16,7 +17,7 @@ class ManufacturerController extends Controller
     {
         return Inertia::render('Manufacturers/Index', [
             'filters' => Request::only('search'),
-            'manufacturers' => Manufacturer::orderBy('name')
+            'manufacturers' => Manufacturer::orderBy('created_at', 'desc')
                 ->filter(Request::only('search'))
                 ->paginate(10)
                 ->withQueryString()
@@ -38,7 +39,8 @@ class ManufacturerController extends Controller
 
     public function store(StoreManufacturerRequest $request)
     {
-        $request->dd();
+        Manufacturer::create($request->validated());
+        return Redirect::route('manufacturers.index')->with('success', 'Manufacturer created.');
     }
 
     public function show(Manufacturer $manufacturer)

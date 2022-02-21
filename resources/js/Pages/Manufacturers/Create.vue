@@ -6,30 +6,27 @@
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Create New Manufacturer</h2>
         </template>
 
-        <div class="mt-8 rounded-lg bg-white/30 py-4">
+        <div class="mt-8 rounded-lg bg-white/30 py-8">
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
-                <form @submit.prevent="store">
-                    <div class="-mb-8 -mr-6 flex flex-wrap p-8">
-                        <text-input v-model="form.name" :error="form.errors.name" class="w-full pb-8 pr-6 lg:w-1/2" label="Name" />
-                        <text-input v-model="form.email" :error="form.errors.email" class="w-full pb-8 pr-6 lg:w-1/2" label="Email" />
-                        <text-input v-model="form.phone" :error="form.errors.phone" class="w-full pb-8 pr-6 lg:w-1/2" label="Phone" />
-                        <text-input v-model="form.location" :error="form.errors.location" class="w-full pb-8 pr-6 lg:w-1/2" label="Address" />
-                        <text-input v-model="form.city" :error="form.errors.city" class="w-full pb-8 pr-6 lg:w-1/2" label="City" />
-                        <text-input v-model="form.region" :error="form.errors.region" class="w-full pb-8 pr-6 lg:w-1/2" label="Province/State" />
-                        <select-input v-model="form.country" :error="form.errors.country" class="w-full pb-8 pr-6 lg:w-1/2" label="Country">
-                            <option :value="null" />
-                            <option value="CA">Canada</option>
-                            <option value="US">United States</option>
-                        </select-input>
-                        <text-input
-                            v-model="form.postal_code"
-                            :error="form.errors.postal_code"
-                            class="w-full pb-8 pr-6 lg:w-1/2"
-                            label="Postal code"
-                        />
-                    </div>
-                    <div class="flex items-center justify-end border-t border-gray-100 bg-gray-50 px-8 py-4">
-                        <loading-button :loading="form.processing" class="btn-indigo" type="submit">Create Organization</loading-button>
+                <form class="" @submit.prevent="saveManufacturers">
+                    <div class="w-2xl mx-auto max-w-lg">
+                        <h2 class="text-2xl font-bold">We cant wait to meet you!</h2>
+                        <p class="mt-2 text-lg">Please fill in the details below so that we can get in contact with you.</p>
+                        <div class="mt-6">
+                            <BaseInput label="Name" v-model="form.name" :error="form.errors.name" class="" />
+                            <BaseInput label="Location" v-model="form.location" :error="form.errors.location" class="" />
+                            <BaseInput label="Contact Name" v-model="form.contact_name" :error="form.errors.contact_name" class="" />
+                            <BaseInput label="Contact Tel" v-model="form.contact_tel" :error="form.errors.contact_tel" class="" />
+
+                            <div class="flex items-center justify-end space-x-5">
+                                <Link @click="reset" :href="route('manufacturers.index')" class="rounded-md bg-slate-400 px-8 py-2 text-white"
+                                    >Cancel</Link
+                                >
+                                <button @click="saveManufacturers" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -40,22 +37,22 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import TextInput from '@/Shared/TextInput';
-import SelectInput from '@/Shared/SelectInput';
-import LoadingButton from '@/Shared/LoadingButton';
+import BaseInput from '@/Shared/BaseInput.vue';
 
 const form = useForm({
-    name: null,
-    email: null,
-    phone: null,
-    location: null,
-    city: null,
-    region: null,
-    country: null,
-    postal_code: null,
+    name: '',
+    location: '',
+    contact_name: '',
+    contact_tel: '',
 });
 
-const store = () => {
-    form.post(route('manufacturers.store'));
+const saveManufacturers = () => {
+    form.post(route('manufacturers.store'), {
+        preserveScroll: true,
+        onSuccess: () => form.reset('password'),
+    });
+};
+const reset = () => {
+    form.reset();
 };
 </script>
