@@ -5,11 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class ManufacturerSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(RolesAndPermissionsSeeder::class);
-        $this->call(ManufacturerSeeder::class);
+        \App\Models\Manufacturer::factory(2000)->create();
     }
 }

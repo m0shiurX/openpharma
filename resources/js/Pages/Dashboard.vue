@@ -11,8 +11,8 @@ import { Head } from '@inertiajs/inertia-vue3';
             <h2 class="text-xl font-semibold leading-tight text-gray-800">Dashboard</h2>
         </template>
 
-        <div class="">
-            <div class="px-4 md:px-8">
+        <div class="mt-8 rounded-lg bg-white/30 py-4">
+            <div class="rounded-lg px-4 md:px-8 xl:px-10">
                 <div class="mb-8 flex items-center justify-between">
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-xl lg:text-2xl">
                         Invoices
@@ -25,7 +25,7 @@ import { Head } from '@inertiajs/inertia-vue3';
                     </button>
                 </div>
             </div>
-            <div class="rounded-lg bg-white py-4 px-4 md:py-7 md:px-8 xl:px-10">
+            <div class="rounded-lg bg-transparent py-4 px-4 md:py-7 md:px-8 xl:px-10">
                 <div class="items-center justify-between py-3 sm:flex">
                     <div class="flex items-center">
                         <a class="rounded-full focus:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-800" href="javascript:void(0)">

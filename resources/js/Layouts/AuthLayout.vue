@@ -1,8 +1,8 @@
 <template>
     <!-- Whitespace & wrapper around the app -->
-    <div class="min-h-screen w-full gap-5 p-2 md:grid md:grid-cols-12">
+    <div class="min-h-screen w-full gap-5 p-2 pr-4 md:grid md:grid-cols-12">
         <!-- Side navigation menu -->
-        <aside class="w-full rounded-xl bg-white shadow-sm md:col-span-3 lg:col-span-2">
+        <aside class="rounded-xls w-full bg-white shadow-sm md:col-span-3 2xl:col-span-2">
             <div class="flex items-center justify-between rounded-md md:justify-center md:rounded-b-none">
                 <!-- Logo -->
                 <Link class="px-4 py-4 md:py-6">
@@ -24,19 +24,30 @@
             <!-- Desktop Menu -->
             <MainMenu class="hidden pt-6 md:block md:rounded-b-md" />
         </aside>
-        <main class="w-full md:col-span-9 lg:col-span-10">
+        <main class="w-full md:col-span-9 2xl:col-span-10">
             <!-- Header navigation -->
             <header class="mb-5 mt-2 flex w-full items-center justify-between rounded-xl bg-white px-5 py-4 shadow-sm md:mt-0">
                 <slot name="header" />
                 <BreezeDropdown align="right" width="48">
                     <template #trigger>
                         <span class="inline-flex items-center rounded-md">
-                            <img v-if="$page.props.auth.user.photo" class="mr-1 inline-flex h-8 w-8 rounded-full object-cover ring-1 ring-orange-100 ring-offset-2" :src="$page.props.auth.user.photo" />
-                            <button type="button" class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none">
+                            <img
+                                v-if="$page.props.auth.user.photo"
+                                class="mr-1 inline-flex h-8 w-8 rounded-full object-cover ring-1 ring-orange-100 ring-offset-2"
+                                :src="$page.props.auth.user.photo"
+                            />
+                            <button
+                                type="button"
+                                class="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                            >
                                 {{ $page.props.auth.user.name }}
 
                                 <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"
+                                    />
                                 </svg>
                             </button>
                         </span>
