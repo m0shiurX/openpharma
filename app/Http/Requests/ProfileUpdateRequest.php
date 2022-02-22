@@ -18,7 +18,7 @@ class ProfileUpdateRequest extends FormRequest
             'name' => ['required', 'max:50'],
             'email' => ['required', 'max:50', 'email', Rule::unique('users')->ignore(auth()->id())],
             'password' => ['nullable'],
-            'photo' => ['nullable', 'image'],
+            'photo' => ['nullable', 'image', 'mimes:jpg,png,jpeg,gif'],
         ];
     }
 }

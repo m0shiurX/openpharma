@@ -4129,33 +4129,31 @@ var _hoisted_16 = {
 var _hoisted_17 = {
   "class": "group relative z-0 mb-6 flex w-full items-center space-x-6"
 };
-
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_18 = {
   "class": "shrink-0"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  "class": "h-16 w-16 rounded-full object-cover",
-  src: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80",
-  alt: "Current profile photo"
-})], -1
-/* HOISTED */
-);
-
-var _hoisted_19 = {
+};
+var _hoisted_19 = ["src"];
+var _hoisted_20 = {
   "class": "block"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "sr-only"
 }, "Choose profile photo", -1
 /* HOISTED */
 );
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_22 = {
+  key: 0,
+  "class": "text-xs text-red-400"
+};
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mb-6 flex w-full items-start justify-end"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
   "class": "w-full rounded-md bg-slate-700 px-8 py-2.5 text-center text-sm font-medium text-white hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 sm:w-auto"
-}, " Update Users ")], -1
+}, " Update User ")], -1
 /* HOISTED */
 );
 
@@ -4167,6 +4165,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [_hoisted_1];
     }),
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      var _$setup$form$errors;
+
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form @submit.prevent=\"update\">\n                            <div class=\"-mb-8 -mr-6 flex flex-wrap p-8\">\n                                <text-input v-model=\"form.name\" :error=\"form.errors.name\" class=\"w-full pb-8 pr-6 lg:w-1/2\" label=\"First name\" />\n                                <text-input v-model=\"form.email\" :error=\"form.errors.email\" class=\"w-full pb-8 pr-6 lg:w-1/2\" label=\"Email\" />\n                                <text-input\n                                    v-model=\"form.password\"\n                                    :error=\"form.errors.password\"\n                                    class=\"w-full pb-8 pr-6 lg:w-1/2\"\n                                    type=\"password\"\n                                    autocomplete=\"new-password\"\n                                    label=\"Password\"\n                                />\n                                <file-input\n                                    v-model=\"form.photo\"\n                                    :error=\"form.errors.photo\"\n                                    class=\"w-full pb-8 pr-6 lg:w-1/2\"\n                                    type=\"file\"\n                                    accept=\"image/*\"\n                                    label=\"Photo\"\n                                />\n                            </div>\n                            <div class=\"flex items-center border-t border-gray-100 bg-gray-50 px-8 py-4\">\n                                <loading-button :loading=\"form.processing\" class=\"ml-auto rounded-sm bg-slate-900 px-4 py-2 text-white\" type=\"submit\"\n                                    >Update User</loading-button\n                                >\n                            </div>\n                        </form> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.update, ["prevent"])
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
@@ -4199,7 +4199,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         id: "floating_password",
         "class": "peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500",
         placeholder: " ",
-        required: "",
         "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
           return $setup.form.password = $event;
         })
@@ -4209,26 +4208,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "password",
         name: "floating_confirm_password",
         id: "floating_confirm_password",
-        "class": "peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500",
+        "class": "peer appe arance-none block w-full border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500",
         placeholder: " ",
-        required: "",
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $setup.form.confirm_password = $event;
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.confirm_password]]), _hoisted_15])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        onChange: _cache[4] || (_cache[4] = function () {
-          var _$setup$form;
-
-          return $setup.form.photo && (_$setup$form = $setup.form).photo.apply(_$setup$form, arguments);
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.confirm_password]]), _hoisted_15])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        "class": "h-16 w-16 rounded-full object-cover",
+        src: $setup.props.user.photo,
+        alt: "Current profile photo"
+      }, null, 8
+      /* PROPS */
+      , _hoisted_19)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        onInput: _cache[4] || (_cache[4] = function ($event) {
+          return $setup.form.photo = $event.target.files[0];
         }),
         type: "file",
-        accept: "image/*",
+        accept: "image/png, image/jpeg",
         "class": "block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
       }, null, 32
       /* HYDRATE_EVENTS */
-      )])]), _hoisted_21])], 40
+      )]), (_$setup$form$errors = $setup.form.errors) !== null && _$setup$form$errors !== void 0 && _$setup$form$errors.photo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.errors.photo), 1
+      /* TEXT */
+      )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_23])], 40
       /* PROPS, HYDRATE_EVENTS */
       , _hoisted_6)])])])])];
     }),
@@ -4756,6 +4760,28 @@ var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_39 = [_hoisted_37, _hoisted_38];
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_41 = [_hoisted_40];
+
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_43 = [_hoisted_42];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return $props.icon === 'cheveron-down' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
     key: 0,
@@ -4869,6 +4895,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     viewBox: "0 0 16 16"
   }, _hoisted_39, 2
   /* CLASS */
+  )) : $props.icon === 'factorys' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
+    key: 14,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fill-transparent", $setup.props["class"]]),
+    fill: "none",
+    stroke: "currentColor",
+    viewBox: "0 0 24 24",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, _hoisted_41, 2
+  /* CLASS */
+  )) : $props.icon === 'manufacturer' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
+    key: 15,
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["fill-transparent", $setup.props["class"]]),
+    stroke: "currentColor",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "none",
+    viewBox: "0 0 24 24"
+  }, _hoisted_43, 2
+  /* CLASS */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
@@ -4963,7 +5007,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["active"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["MainMenuItem"], {
     href: "/manufacturers",
-    icon: "attachment",
+    icon: "manufacturer",
     active: $setup.isUrl('manufacturers')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -4976,7 +5020,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["active"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["MainMenuItem"], {
     href: "/profile",
-    icon: "dashboard",
+    icon: "factorys",
     active: $setup.isUrl('profile')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -4989,7 +5033,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["active"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["MainMenuItem"], {
     href: "/about",
-    icon: "dashboard",
+    icon: "office",
     active: $setup.isUrl('about')
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

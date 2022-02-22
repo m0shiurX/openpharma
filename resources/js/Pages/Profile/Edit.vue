@@ -78,7 +78,6 @@
                                         id="floating_password"
                                         class="peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                                         placeholder=" "
-                                        required=""
                                         v-model="form.password"
                                     />
                                     <label
@@ -92,9 +91,8 @@
                                         type="password"
                                         name="floating_confirm_password"
                                         id="floating_confirm_password"
-                                        class="peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                        class="peer appe arance-none block w-full border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                                         placeholder=" "
-                                        required=""
                                         v-model="form.confirm_password"
                                     />
                                     <label
@@ -107,28 +105,26 @@
                             <div class="grid xl:grid-cols-2 xl:gap-6">
                                 <div class="group relative z-0 mb-6 flex w-full items-center space-x-6">
                                     <div class="shrink-0">
-                                        <img
-                                            class="h-16 w-16 rounded-full object-cover"
-                                            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80"
-                                            alt="Current profile photo"
-                                        />
+                                        <img class="h-16 w-16 rounded-full object-cover" :src="props.user.photo" alt="Current profile photo" />
                                     </div>
                                     <label class="block">
                                         <span class="sr-only">Choose profile photo</span>
                                         <input
-                                            v-on:change="form.photo"
+                                            @input="form.photo = $event.target.files[0]"
                                             type="file"
-                                            accept="image/*"
+                                            accept="image/png, image/jpeg"
                                             class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
                                         />
                                     </label>
+                                    <div v-if="form.errors?.photo" class="text-xs text-red-400">{{ form.errors.photo }}</div>
                                 </div>
+
                                 <div class="mb-6 flex w-full items-start justify-end">
                                     <button
                                         type="submit"
                                         class="w-full rounded-md bg-slate-700 px-8 py-2.5 text-center text-sm font-medium text-white hover:bg-slate-800 focus:ring-4 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800 sm:w-auto"
                                     >
-                                        Update Users
+                                        Update User
                                     </button>
                                 </div>
                             </div>
