@@ -27,7 +27,7 @@
                 >
                     <table class="w-full table-auto whitespace-nowrap">
                         <thead>
-                            <tr tabindex="0" class="h-10 rounded-lg border border-gray-100 bg-white focus:outline-none">
+                            <tr tabindex="0" class="h-16 rounded-lg border border-gray-100 bg-white text-lg text-gray-500 focus:outline-none">
                                 <th>
                                     <div class="ml-5 flex items-center">
                                         <div class="relative flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm bg-gray-200">
@@ -35,17 +35,18 @@
                                         </div>
                                     </div>
                                 </th>
-                                <th class="border-r pl-5 text-left">Name</th>
-                                <th class="border-x pl-6 text-left">Location</th>
-                                <th class="border-x pl-5 text-left">Contact Name</th>
-                                <th class="border-x pl-5 text-left">Contact</th>
-                                <th colspan="2" class="border-l">Action</th>
+                                <th class="border-r border-gray-100 pl-5 text-left">Manufacturer</th>
+                                <th class="border-x border-gray-100 pl-5 text-left">Contact</th>
+                                <th colspan="2" class="border-l border-gray-100">Action</th>
                             </tr>
                             <tr class="h-3"></tr>
                         </thead>
                         <tbody class="">
                             <template v-for="manufacturer in props.manufacturers.data" :key="manufacturer.id">
-                                <tr tabindex="0" class="h-10 rounded border border-gray-100 bg-white focus:outline-none">
+                                <tr
+                                    tabindex="0"
+                                    class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
+                                >
                                     <td>
                                         <div class="ml-5">
                                             <div class="relative flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm bg-gray-200">
@@ -53,28 +54,22 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="border-r">
-                                        <div class="flex items-center pl-5">
-                                            <p class="mr-2 text-base font-medium leading-none text-gray-700">{{ manufacturer.name }}</p>
-                                            <icon icon="link" />
+                                    <td class="border-r border-gray-100">
+                                        <div class="flex items-center pt-3 pl-5">
+                                            <p class="mr-2 text-lg font-medium leading-none text-gray-700">{{ manufacturer.name }}</p>
+                                        </div>
+                                        <div class="flex items-center pt-2 pb-3 pl-5">
+                                            <icon icon="location" class="h-4 w-4 stroke-slate-400" />
+                                            <p class="ml-1 truncate text-base leading-none text-gray-400">{{ manufacturer.location }}</p>
                                         </div>
                                     </td>
-                                    <td class="border-r pl-5">
-                                        <div class="flex items-center">
-                                            <icon icon="list" class="fill-red-500 stroke-red-500" />
-                                            <p class="ml-2 truncate text-sm leading-none text-gray-600">{{ manufacturer.location }}</p>
+                                    <td class="border-r border-gray-100">
+                                        <div class="flex items-center pt-3 pl-5">
+                                            <p class="mr-2 text-lg font-medium leading-none text-gray-600">{{ manufacturer.contact_name }}</p>
                                         </div>
-                                    </td>
-                                    <td class="border-r pl-5">
-                                        <div class="flex items-center">
-                                            <icon icon="message" class="stroke-slate-600" />
-                                            <p class="ml-2 text-sm leading-none text-gray-600">{{ manufacturer.contact_name }}</p>
-                                        </div>
-                                    </td>
-                                    <td class="border-r pl-5">
-                                        <div class="flex items-center">
-                                            <icon icon="attachment" class="stroke-orange-300" />
-                                            <p class="ml-2 text-sm leading-none text-gray-600">{{ manufacturer.contact_tel }}</p>
+                                        <div class="flex items-center pt-2 pb-3 pl-5">
+                                            <icon icon="phone" class="h-4 w-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base leading-none text-gray-400">{{ manufacturer.contact_tel }}</p>
                                         </div>
                                     </td>
                                     <td class="pl-5">
@@ -82,7 +77,7 @@
                                             :href="route('manufacturers.show', manufacturer.id)"
                                             class="rounded bg-red-100 py-2 px-5 text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
                                         >
-                                            View
+                                            See Details
                                         </Link>
                                     </td>
                                     <td>
@@ -107,7 +102,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="h-3"></tr>
+                                <tr class="h-1"></tr>
                             </template>
                         </tbody>
                     </table>
