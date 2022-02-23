@@ -12,7 +12,7 @@
             </div>
             <div class="px-4 md:px-8 xl:px-10">
                 <div class="flex items-center justify-between">
-                    <SearchFilter v-model="form.search" class="mr-4 w-80 rounded-lg" @reset="reset"></SearchFilter>
+                    <SearchFilter v-model="form.search" class="mr-4 w-80 rounded-lg" @reset="resetSearch"></SearchFilter>
 
                     <Link
                         class="mt-4 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-3 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 sm:mt-0"
@@ -42,7 +42,7 @@
                             <tr class="h-3"></tr>
                         </thead>
                         <tbody class="">
-                            <template v-for="manufacturer in props.manufacturers.data" :key="manufacturer.id">
+                            <template v-for="(manufacturer, i) in props.manufacturers.data" :key="manufacturer.id">
                                 <tr
                                     tabindex="0"
                                     class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
@@ -82,21 +82,32 @@
                                     </td>
                                     <td>
                                         <div class="relative px-5 pt-2">
-                                            <button class="rounded-md focus:outline-none focus:ring-2" role="button" aria-label="option">
+                                            <button
+                                                @click="toggleMenu(elements[i])"
+                                                class="rounded-md focus:outline-none focus:ring-2"
+                                                role="button"
+                                                aria-label="option"
+                                            >
                                                 <icon icon="dots" />
                                             </button>
-                                            <div class="dropdown-content absolute right-0 z-30 mr-6 hidden w-24 bg-white shadow">
-                                                <div
-                                                    tabindex="0"
-                                                    class="w-full cursor-pointer py-4 px-4 text-xs hover:bg-indigo-700 hover:text-white focus:text-indigo-600 focus:outline-none"
-                                                >
-                                                    <p>Edit</p>
-                                                </div>
-                                                <div
-                                                    tabindex="0"
-                                                    class="w-full cursor-pointer py-4 px-4 text-xs hover:bg-indigo-700 hover:text-white focus:text-indigo-600 focus:outline-none"
-                                                >
-                                                    <p>Delete</p>
+                                            <div :ref="(el) => (elements[i] = el)" class="absolute right-0 z-30 mr-2 hidden w-24 bg-white shadow">
+                                                <div class="flex flex-col">
+                                                    <Link
+                                                        :href="route('manufacturers.edit', manufacturer.id)"
+                                                        as="button"
+                                                        tabindex="0"
+                                                        class="w-full cursor-pointer py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
+                                                    >
+                                                        <p>Edit</p>
+                                                    </Link>
+                                                    <Link
+                                                        @click="destroyItem(manufacturer.id)"
+                                                        tabindex="0"
+                                                        as="button"
+                                                        class="w-full cursor-pointer py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
+                                                    >
+                                                        <p>Delete</p>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +124,7 @@
     </AuthLayout>
 </template>
 <script setup>
-import { watch, ref } from 'vue';
+import { watch, ref, onMounted } from 'vue';
 import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import Pagination from '@/Shared/Pagination';
@@ -129,6 +140,17 @@ const props = defineProps({
     filters: Object,
 });
 
+const elements = ref([]);
+
+const toggleMenu = (el) => {
+    el.classList.toggle('hidden');
+    elements.value
+        .filter((item) => {
+            return item != el;
+        })
+        .forEach((a) => a.classList.add('hidden'));
+};
+
 const form = useForm({
     search: props.filters.search,
 });
@@ -140,7 +162,12 @@ watch(
     }, 500),
 );
 
-const reset = () => {
+const destroyItem = (item) => {
+    console.log(item);
+    Inertia.delete(route('manufacturers.destroy', item));
+};
+
+const resetSearch = () => {
     form.reset();
 };
 </script>
