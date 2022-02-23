@@ -17,6 +17,10 @@ class Manufacturer extends Model
         'contact_tel'
     ];
 
+    public function medicines()
+    {
+        $this->hasMany(Medicine::class);
+    }
 
     public function scopeFilter($query, array $filters)
     {

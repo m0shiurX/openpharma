@@ -3,8 +3,9 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImagesController;
-use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\ManufacturerController;
 
 // Auth Routes
@@ -70,3 +71,4 @@ Route::delete('manufacturers/{manufacturer}', [ManufacturerController::class, 'd
     ->middleware('auth');
 
 Route::resource('customers', CustomerController::class);
+Route::resource('medicines', MedicineController::class);

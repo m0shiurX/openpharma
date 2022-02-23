@@ -9,6 +9,6 @@ class ManufacturerSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Manufacturer::factory(2000)->create();
+        \App\Models\Manufacturer::factory(20)->create();
     }
 }

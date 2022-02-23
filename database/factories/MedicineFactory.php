@@ -11,7 +11,7 @@ class MedicineFactory extends Factory
         $manufacturers = \App\Models\Manufacturer::all()->pluck('id')->toArray();
         $categories = \App\Models\Medicine::CATEGORY;
         $units = \App\Models\Medicine::UNIT;
-        $retail_price = $this->faker->randomFloat(2, 2, 50);
+        $purchase_price = $this->faker->randomFloat(2, 2, 50);
 
         return [
             'manufacturer_id' => $this->faker->randomElement($manufacturers),
@@ -20,8 +20,8 @@ class MedicineFactory extends Factory
             'strength' => $this->faker->numerify('### mg'),
             'category' => $this->faker->randomElement(array_keys($categories)),
             'unit' => $this->faker->randomElement(array_keys($units)),
-            'retail_price' => $retail_price,
-            'selling_price' => $retail_price + 2,
+            'purchase_price' => $purchase_price,
+            'selling_price' => $purchase_price + 2,
             'discount' => 5.00,
             'is_active' => 1
         ];

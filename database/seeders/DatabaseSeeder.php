@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             RolesAndPermissionsSeeder::class,
             ManufacturerSeeder::class,
             CustomerSeeder::class,
+            MedicineSeeder::class,
         ]);
     }
 }
