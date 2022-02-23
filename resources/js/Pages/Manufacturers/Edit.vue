@@ -10,15 +10,41 @@
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
                 <form class="" @submit.prevent="updateManufacturer">
                     <div class="w-2xl mx-auto max-w-lg">
+                        <!-- Form steps goes here -->
+                        <div class="mb-6 rounded-xl border border-orange-100 py-3 px-5">
+                            <div class="flex items-center justify-start divide-x-2">
+                                <div class="flex items-center pr-2">
+                                    <Icon icon="location" class="h-8 w-8 stroke-orange-300" />
+                                    <div class="ml-2 flex hidden flex-col">
+                                        <span class="text-xs text-slate-400">Step 1/3</span>
+                                        <span class="text-sm text-slate-500"> Updating a manufacturer </span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center px-2">
+                                    <Icon icon="location" class="h-8 w-8 stroke-orange-300" />
+                                    <div class="ml-2 flex flex-col">
+                                        <span class="text-xs text-slate-400">Step 2/3</span>
+                                        <span class="text-sm text-slate-500"> Updating a manufacturer </span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center pl-2">
+                                    <Icon icon="location" class="h-8 w-8 stroke-orange-300" />
+                                    <div class="ml-2 flex hidden flex-col">
+                                        <span class="text-xs text-slate-400">Step 3/</span>
+                                        <span class="text-sm text-slate-500"> Updating a manufacturer </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <h2 class="text-2xl font-bold">We cant wait to meet you!</h2>
-                        <p class="mt-2 text-lg">Please fill in the details below so that we can get in contact with you.</p>
+                        <p class="mt-2 text-base">Please fill in the details below so that we can get in contact with you.</p>
                         <div class="mt-6">
                             <BaseInput label="Name" v-model="form.name" :error="form.errors.name" class="" />
                             <BaseInput label="Location" v-model="form.location" :error="form.errors.location" class="" />
                             <BaseInput label="Contact Name" v-model="form.contact_name" :error="form.errors.contact_name" class="" />
                             <BaseInput label="Contact Tel" v-model="form.contact_tel" :error="form.errors.contact_tel" class="" />
 
-                            <div class="flex items-center justify-end space-x-5">
+                            <div class="mt-8 flex items-center justify-end space-x-5">
                                 <Link @click="reset" :href="route('manufacturers.index')" class="rounded-md bg-slate-400 px-8 py-2 text-white"
                                     >Cancel</Link
                                 >
@@ -45,6 +71,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import BaseInput from '@/Shared/BaseInput.vue';
+import Icon from '@/Shared/Icon.vue';
 
 const props = defineProps({
     manufacturer: Object,
