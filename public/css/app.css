@@ -1038,6 +1038,14 @@ select {
   border-top-right-radius: 0.375rem;
   border-bottom-right-radius: 0.375rem;
 }
+.rounded-t-md {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+}
+.rounded-b-md {
+  border-bottom-right-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
 .border {
   border-width: 1px;
 }
@@ -1196,6 +1204,14 @@ select {
 .bg-slate-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+}
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+.bg-orange-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 88 12 / var(--tw-bg-opacity));
 }
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
@@ -1562,6 +1578,9 @@ select {
 }
 .opacity-25 {
   opacity: 0.25;
+}
+.opacity-75 {
+  opacity: 0.75;
 }
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);

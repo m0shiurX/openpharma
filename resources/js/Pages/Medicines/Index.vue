@@ -37,7 +37,7 @@
                             <tr class="h-3"></tr>
                         </thead>
                         <tbody class="">
-                            <template v-for="(medicine, i) in props.medicines.data" :key="medicine.id">
+                            <template v-for="medicine in props.medicines.data" :key="medicine.id">
                                 <tr
                                     tabindex="0"
                                     class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
@@ -82,34 +82,33 @@
                                     </td>
                                     <td>
                                         <div class="relative px-5 pt-2">
-                                            <button
-                                                @click="toggleMenu(elements[i])"
-                                                class="rounded-md focus:outline-none focus:ring-2"
-                                                role="button"
-                                                aria-label="option"
-                                            >
-                                                <icon icon="dots" />
-                                            </button>
-                                            <div :ref="(el) => (elements[i] = el)" class="absolute right-0 z-30 mr-2 hidden w-24 bg-white shadow">
-                                                <div class="flex flex-col">
-                                                    <Link
-                                                        :href="route('medicines.edit', medicine.id)"
-                                                        as="button"
-                                                        tabindex="0"
-                                                        class="w-full cursor-pointer py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
-                                                    >
-                                                        <p>Edit</p>
-                                                    </Link>
-                                                    <Link
-                                                        @click="destroyItem(medicine.id)"
-                                                        tabindex="0"
-                                                        as="button"
-                                                        class="w-full cursor-pointer py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
-                                                    >
-                                                        <p>Delete</p>
-                                                    </Link>
-                                                </div>
-                                            </div>
+                                            <Menu as="div">
+                                                <MenuButton>
+                                                    <Icon icon="dots" />
+                                                </MenuButton>
+
+                                                <MenuItems class="absolute right-0 z-30 mr-2 flex w-24 flex-col rounded-md bg-white shadow">
+                                                    <MenuItem v-slot="{ active }">
+                                                        <Link
+                                                            class="w-full cursor-pointer rounded-t-md py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
+                                                            :class="{ 'bg-orange-600 text-white': active }"
+                                                            :href="route('medicines.edit', medicine.id)"
+                                                            as="button"
+                                                        >
+                                                            Edit
+                                                        </Link>
+                                                    </MenuItem>
+                                                    <MenuItem v-slot="{ active }">
+                                                        <button
+                                                            class="w-full cursor-pointer rounded-b-md py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
+                                                            :class="{ 'bg-orange-600 text-white': active }"
+                                                            @click="destroyItem(manufacturer.id)"
+                                                        >
+                                                            Delete
+                                                        </button>
+                                                    </MenuItem>
+                                                </MenuItems>
+                                            </Menu>
                                         </div>
                                     </td>
                                 </tr>
@@ -134,22 +133,12 @@ import pickBy from 'lodash/pickBy';
 import Icon from '@/Shared/Icon.vue';
 import debounce from 'lodash/debounce';
 import FlashMessages from '@/Shared/FlashMessages';
+import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
 
 const props = defineProps({
     medicines: Object,
     filters: Object,
 });
-
-const elements = ref([]);
-
-const toggleMenu = (el) => {
-    el.classList.toggle('hidden');
-    elements.value
-        .filter((item) => {
-            return item != el;
-        })
-        .forEach((a) => a.classList.add('hidden'));
-};
 
 const form = useForm({
     search: props.filters.search,
