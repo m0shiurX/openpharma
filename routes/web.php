@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ManufacturerController;
 
 // Auth Routes
@@ -43,6 +44,7 @@ Route::get('/img/{path}', [ImagesController::class, 'show'])
 Route::get('manufacturers', [ManufacturerController::class, 'index'])
     ->name('manufacturers.index')
     ->middleware('auth');
+
 // Manufacturers
 Route::get('manufacturers/create', [ManufacturerController::class, 'create'])
     ->name('manufacturers.create')
@@ -66,3 +68,5 @@ Route::put('manufacturers/{manufacturer}', [ManufacturerController::class, 'upda
 Route::delete('manufacturers/{manufacturer}', [ManufacturerController::class, 'destroy'])
     ->name('manufacturers.destroy')
     ->middleware('auth');
+
+Route::resource('customers', CustomerController::class);
