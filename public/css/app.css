@@ -854,6 +854,9 @@ select {
 .w-16 {
   width: 4rem;
 }
+.w-1\/2 {
+  width: 50%;
+}
 .max-w-xl {
   max-width: 36rem;
 }
@@ -964,6 +967,10 @@ select {
 }
 .gap-5 {
   gap: 1.25rem;
+}
+.gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
 }
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
@@ -1226,6 +1233,9 @@ select {
 }
 .stroke-orange-300 {
   stroke: #fdba74;
+}
+.stroke-slate-300 {
+  stroke: #cbd5e1;
 }
 .object-cover {
   -o-object-fit: cover;

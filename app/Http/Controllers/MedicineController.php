@@ -75,7 +75,7 @@ class MedicineController extends Controller
                 'id' => $medicine->id,
                 'name' => $medicine->name,
                 'generic_name' => $medicine->generic_name,
-                'manufacturer_id' => $medicine->manufacturer->id,
+                'manufacturer_id' => $medicine->manufacturer->name,
                 'strength' => $medicine->strength,
                 'category' => $medicine->category,
                 'unit' => $medicine->unit,

@@ -5611,12 +5611,18 @@ var _hoisted_15 = {
   "class": "mt-6"
 };
 var _hoisted_16 = {
+  "class": "flex gap-x-2"
+};
+var _hoisted_17 = {
+  "class": "flex gap-x-2"
+};
+var _hoisted_18 = {
   "class": "mt-8 flex items-center justify-end space-x-5"
 };
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cancel");
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cancel");
 
-var _hoisted_18 = ["disabled"];
+var _hoisted_20 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Customers"
@@ -5669,44 +5675,44 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": ""
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
+      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
         label: "Strength",
         modelValue: $setup.form.strength,
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $setup.form.strength = $event;
         }),
         error: $setup.form.errors.strength,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
       , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
+        label: "Unit",
+        modelValue: $setup.form.unit,
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return $setup.form.unit = $event;
+        }),
+        error: $setup.form.errors.unit,
+        "class": "flex-1"
+      }, null, 8
+      /* PROPS */
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
         label: "Category",
         modelValue: $setup.form.category,
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
           return $setup.form.category = $event;
         }),
         error: $setup.form.errors.category,
         "class": ""
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
-        label: "Unit",
-        modelValue: $setup.form.unit,
-        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-          return $setup.form.unit = $event;
-        }),
-        error: $setup.form.errors.unit,
-        "class": ""
-      }, null, 8
-      /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
+      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
         label: "Purchase Price",
         modelValue: $setup.form.purchase_price,
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $setup.form.purchase_price = $event;
         }),
         error: $setup.form.errors.purchase_price,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
       , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
@@ -5716,7 +5722,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $setup.form.selling_price = $event;
         }),
         error: $setup.form.errors.selling_price,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
       , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
@@ -5726,16 +5732,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $setup.form.discount = $event;
         }),
         error: $setup.form.errors.discount,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
         onClick: $setup.reset,
         href: _ctx.route('manufacturers.index'),
         "class": "rounded-md bg-slate-400 px-8 py-2 text-white"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_17];
+          return [_hoisted_19];
         }),
         _: 1
         /* STABLE */
@@ -5750,7 +5756,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $setup.form.processing
       }, " Save ", 8
       /* PROPS */
-      , _hoisted_18)])])])], 32
+      , _hoisted_20)])])])], 32
       /* HYDRATE_EVENTS */
       )])])];
     }),
@@ -5843,13 +5849,13 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-2xl font-bold"
+  "class": "hidden text-2xl font-bold"
 }, "We cant wait to meet you!", -1
 /* HOISTED */
 );
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "mt-2 text-base"
+  "class": "mt-2 hidden text-base"
 }, "Please fill in the details below so that we can get in contact with you.", -1
 /* HOISTED */
 );
@@ -5858,12 +5864,18 @@ var _hoisted_16 = {
   "class": "mt-6"
 };
 var _hoisted_17 = {
+  "class": "flex gap-x-2"
+};
+var _hoisted_18 = {
+  "class": "flex gap-x-2"
+};
+var _hoisted_19 = {
   "class": "mt-8 flex items-center justify-end space-x-5"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cancel");
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Cancel");
 
-var _hoisted_19 = ["disabled"];
+var _hoisted_21 = ["disabled"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Manufacturers"
@@ -5877,13 +5889,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.updateItem, ["prevent"])
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Form steps goes here "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Icon"], {
         icon: "location",
-        "class": "h-8 w-8 stroke-orange-300"
+        "class": "h-8 w-8 stroke-slate-300"
       }), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Icon"], {
         icon: "location",
         "class": "h-8 w-8 stroke-orange-300"
       }), _hoisted_11]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Icon"], {
         icon: "location",
-        "class": "h-8 w-8 stroke-orange-300"
+        "class": "h-8 w-8 stroke-slate-300"
       }), _hoisted_13])])]), _hoisted_14, _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
         label: "Name",
         modelValue: $setup.form.name,
@@ -5914,44 +5926,44 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": ""
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
+      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
         label: "Strength",
         modelValue: $setup.form.strength,
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $setup.form.strength = $event;
         }),
         error: $setup.form.errors.strength,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
       , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
+        label: "Unit",
+        modelValue: $setup.form.unit,
+        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+          return $setup.form.unit = $event;
+        }),
+        error: $setup.form.errors.unit,
+        "class": "flex-1"
+      }, null, 8
+      /* PROPS */
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
         label: "Category",
         modelValue: $setup.form.category,
-        "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
           return $setup.form.category = $event;
         }),
         error: $setup.form.errors.category,
         "class": ""
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
-        label: "Unit",
-        modelValue: $setup.form.unit,
-        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-          return $setup.form.unit = $event;
-        }),
-        error: $setup.form.errors.unit,
-        "class": ""
-      }, null, 8
-      /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
+      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
         label: "Purchase Price",
         modelValue: $setup.form.purchase_price,
         "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return $setup.form.purchase_price = $event;
         }),
         error: $setup.form.errors.purchase_price,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
       , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
@@ -5961,7 +5973,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $setup.form.selling_price = $event;
         }),
         error: $setup.form.errors.selling_price,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
       , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["BaseInput"], {
@@ -5971,16 +5983,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return $setup.form.discount = $event;
         }),
         error: $setup.form.errors.discount,
-        "class": ""
+        "class": "flex-1"
       }, null, 8
       /* PROPS */
-      , ["modelValue", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+      , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
         onClick: $setup.reset,
         href: _ctx.route('manufacturers.index'),
         "class": "rounded-md bg-slate-400 px-8 py-2 text-white"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_18];
+          return [_hoisted_20];
         }),
         _: 1
         /* STABLE */
@@ -5993,7 +6005,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         disabled: $setup.form.processing
       }, " Update ", 8
       /* PROPS */
-      , _hoisted_19)])])])], 40
+      , _hoisted_21)])])])], 40
       /* PROPS, HYDRATE_EVENTS */
       , _hoisted_4)])])];
     }),
@@ -6510,7 +6522,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       var _$setup$form$errors;
 
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <form @submit.prevent=\"update\">\r\n                            <div class=\"-mb-8 -mr-6 flex flex-wrap p-8\">\r\n                                <text-input v-model=\"form.name\" :error=\"form.errors.name\" class=\"w-full pb-8 pr-6 lg:w-1/2\" label=\"First name\" />\r\n                                <text-input v-model=\"form.email\" :error=\"form.errors.email\" class=\"w-full pb-8 pr-6 lg:w-1/2\" label=\"Email\" />\r\n                                <text-input\r\n                                    v-model=\"form.password\"\r\n                                    :error=\"form.errors.password\"\r\n                                    class=\"w-full pb-8 pr-6 lg:w-1/2\"\r\n                                    type=\"password\"\r\n                                    autocomplete=\"new-password\"\r\n                                    label=\"Password\"\r\n                                />\r\n                                <file-input\r\n                                    v-model=\"form.photo\"\r\n                                    :error=\"form.errors.photo\"\r\n                                    class=\"w-full pb-8 pr-6 lg:w-1/2\"\r\n                                    type=\"file\"\r\n                                    accept=\"image/*\"\r\n                                    label=\"Photo\"\r\n                                />\r\n                            </div>\r\n                            <div class=\"flex items-center border-t border-gray-100 bg-gray-50 px-8 py-4\">\r\n                                <loading-button :loading=\"form.processing\" class=\"ml-auto rounded-sm bg-slate-900 px-4 py-2 text-white\" type=\"submit\"\r\n                                    >Update User</loading-button\r\n                                >\r\n                            </div>\r\n                        </form> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.update, ["prevent"])
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "text",
@@ -6551,7 +6563,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         type: "password",
         name: "floating_confirm_password",
         id: "floating_confirm_password",
-        "class": "peer appe arance-none block w-full border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500",
+        "class": "peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500",
         placeholder: " ",
         "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
           return $setup.form.confirm_password = $event;
@@ -6560,8 +6572,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* NEED_PATCH */
       ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.confirm_password]]), _hoisted_15])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         "class": "h-16 w-16 rounded-full object-cover",
-        src: $setup.props.user.photo,
-        alt: "Current profile photo"
+        src: $setup.props.user.photo ? $setup.props.user.photo : '/img/public/avatar.jpg',
+        alt: "😎"
       }, null, 8
       /* PROPS */
       , _hoisted_19)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {

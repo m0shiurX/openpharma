@@ -43,12 +43,16 @@
                             <BaseInput label="Name" v-model="form.name" :error="form.errors.name" class="" />
                             <BaseInput label="Generic Name" v-model="form.generic_name" :error="form.errors.generic_name" class="" />
                             <BaseInput label="Manufacturer" v-model="form.manufacturer_id" :error="form.errors.manufacturer_id" class="" />
-                            <BaseInput label="Strength" v-model="form.strength" :error="form.errors.strength" class="" />
+                            <div class="flex gap-x-2">
+                                <BaseInput label="Strength" v-model="form.strength" :error="form.errors.strength" class="flex-1" />
+                                <BaseInput label="Unit" v-model="form.unit" :error="form.errors.unit" class="flex-1" />
+                            </div>
                             <BaseInput label="Category" v-model="form.category" :error="form.errors.category" class="" />
-                            <BaseInput label="Unit" v-model="form.unit" :error="form.errors.unit" class="" />
-                            <BaseInput label="Purchase Price" v-model="form.purchase_price" :error="form.errors.purchase_price" class="" />
-                            <BaseInput label="Selling Price" v-model="form.selling_price" :error="form.errors.selling_price" class="" />
-                            <BaseInput label="Discount (%)" v-model="form.discount" :error="form.errors.discount" class="" />
+                            <div class="flex gap-x-2">
+                                <BaseInput label="Purchase Price" v-model="form.purchase_price" :error="form.errors.purchase_price" class="flex-1" />
+                                <BaseInput label="Selling Price" v-model="form.selling_price" :error="form.errors.selling_price" class="flex-1" />
+                                <BaseInput label="Discount (%)" v-model="form.discount" :error="form.errors.discount" class="flex-1" />
+                            </div>
 
                             <div class="mt-8 flex items-center justify-end space-x-5">
                                 <Link @click="reset" :href="route('manufacturers.index')" class="rounded-md bg-slate-400 px-8 py-2 text-white"
