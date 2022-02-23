@@ -9,34 +9,6 @@
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                     <div class="border-b border-gray-200 bg-white p-6">
-                        <!-- <form @submit.prevent="update">
-                            <div class="-mb-8 -mr-6 flex flex-wrap p-8">
-                                <text-input v-model="form.name" :error="form.errors.name" class="w-full pb-8 pr-6 lg:w-1/2" label="First name" />
-                                <text-input v-model="form.email" :error="form.errors.email" class="w-full pb-8 pr-6 lg:w-1/2" label="Email" />
-                                <text-input
-                                    v-model="form.password"
-                                    :error="form.errors.password"
-                                    class="w-full pb-8 pr-6 lg:w-1/2"
-                                    type="password"
-                                    autocomplete="new-password"
-                                    label="Password"
-                                />
-                                <file-input
-                                    v-model="form.photo"
-                                    :error="form.errors.photo"
-                                    class="w-full pb-8 pr-6 lg:w-1/2"
-                                    type="file"
-                                    accept="image/*"
-                                    label="Photo"
-                                />
-                            </div>
-                            <div class="flex items-center border-t border-gray-100 bg-gray-50 px-8 py-4">
-                                <loading-button :loading="form.processing" class="ml-auto rounded-sm bg-slate-900 px-4 py-2 text-white" type="submit"
-                                    >Update User</loading-button
-                                >
-                            </div>
-                        </form> -->
-
                         <form @submit.prevent="update">
                             <div class="group relative z-0 mb-6 w-full">
                                 <input
@@ -91,7 +63,7 @@
                                         type="password"
                                         name="floating_confirm_password"
                                         id="floating_confirm_password"
-                                        class="peer appe arance-none block w-full border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
+                                        class="peer block w-full appearance-none border-0 border-b-2 border-slate-400 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500"
                                         placeholder=" "
                                         v-model="form.confirm_password"
                                     />
@@ -105,7 +77,11 @@
                             <div class="grid xl:grid-cols-2 xl:gap-6">
                                 <div class="group relative z-0 mb-6 flex w-full items-center space-x-6">
                                     <div class="shrink-0">
-                                        <img class="h-16 w-16 rounded-full object-cover" :src="props.user.photo" alt="Current profile photo" />
+                                        <img
+                                            class="h-16 w-16 rounded-full object-cover"
+                                            :src="props.user.photo ?? '/img/public/avatar.jpg'"
+                                            alt="😎"
+                                        />
                                     </div>
                                     <label class="block">
                                         <span class="sr-only">Choose profile photo</span>
