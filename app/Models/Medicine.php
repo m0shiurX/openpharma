@@ -164,11 +164,18 @@ class Medicine extends Model
     ];
 
 
+    // Relations
     public function manufacturer()
     {
         return $this->belongsTo(Manufacturer::class);
     }
 
+    public function stocks()
+    {
+        return $this->hasMany(Stock::class);
+    }
+
+    // Scopes
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
