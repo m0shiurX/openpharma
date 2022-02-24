@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MedicineController;
@@ -72,3 +73,4 @@ Route::delete('manufacturers/{manufacturer}', [ManufacturerController::class, 'd
 
 Route::resource('customers', CustomerController::class);
 Route::resource('medicines', MedicineController::class);
+Route::resource('stocks', StockController::class);

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Stock extends Model
 {
@@ -26,5 +26,15 @@ class Stock extends Model
     public function medicine()
     {
         return $this->belongsTo(Medicine::class);
+    }
+
+    // Scopes
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->whereHas('medicine', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        });
     }
 }
