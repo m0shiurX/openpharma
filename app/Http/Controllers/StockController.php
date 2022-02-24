@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Stock;
-use App\Models\Medicine;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Request;
 
