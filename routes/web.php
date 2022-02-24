@@ -6,6 +6,7 @@ use App\Http\Controllers\StockController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\ManufacturerController;
 
@@ -74,3 +75,4 @@ Route::delete('manufacturers/{manufacturer}', [ManufacturerController::class, 'd
 Route::resource('customers', CustomerController::class);
 Route::resource('medicines', MedicineController::class);
 Route::resource('stocks', StockController::class);
+Route::resource('purchases', PurchaseController::class);
