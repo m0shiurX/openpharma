@@ -102,7 +102,7 @@
                                                         <button
                                                             class="w-full cursor-pointer rounded-b-md py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
                                                             :class="{ 'bg-orange-600 text-white': active }"
-                                                            @click="destroyItem(manufacturer.id)"
+                                                            @click="destroyItem(medicine.id)"
                                                         >
                                                             Delete
                                                         </button>
