@@ -5,11 +5,10 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class MedicineSeeder extends Seeder
+class PurchaseSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Medicine::factory(20)->create();
-        // \App\Models\Medicine::factory(20)->hasStocks(2)->create();
+        \App\Models\Purchase::factory(5)->hasPurchaseItems(5)->create();
     }
 }

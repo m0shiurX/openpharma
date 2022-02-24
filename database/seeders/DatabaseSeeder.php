@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
             ManufacturerSeeder::class,
             CustomerSeeder::class,
             MedicineSeeder::class,
+            PurchaseSeeder::class,
         ]);
     }
 }
