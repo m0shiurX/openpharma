@@ -30,6 +30,7 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.5.0",
-        "@popperjs/core": "^2.11.2"
+        "@popperjs/core": "^2.11.2",
+        "moment": "^2.29.1"
     }
 }

@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('stocks', StockController::class);
     Route::resource('customers', CustomerController::class);
     Route::resource('medicines', MedicineController::class);
+    Route::get('list-of-medicines', [PurchaseController::class, 'searchMedicine'])->name('purchases.medicine');
     Route::resource('purchases', PurchaseController::class);
     Route::resource('manufacturers', ManufacturerController::class);
 });

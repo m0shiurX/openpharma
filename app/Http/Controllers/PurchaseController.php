@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
+use App\Models\Manufacturer;
+use App\Models\Medicine;
 
 class PurchaseController extends Controller
 {
@@ -40,12 +42,26 @@ class PurchaseController extends Controller
 
     public function create()
     {
-        //
+        $latest_invoice = \App\Models\Purchase::withTrashed()->latest()->max('id') + 1;
+        $invoice_no = 'PR-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
+
+        return Inertia::render('Purchases/Create', [
+            'filters' => Request::only('search'),
+            'invoice_no' => $invoice_no,
+            'manufacturers' => Manufacturer::select(['id', 'name', 'location'])
+                ->orderBy('name', 'asc')
+                ->get()
+                ->map(fn ($manufacturer) => [
+                    'id' => $manufacturer->id,
+                    'name' => $manufacturer->name,
+                    'location' => $manufacturer->location
+                ]),
+        ]);
     }
 
     public function store(StorePurchaseRequest $request)
     {
-        //
+        return dd($request->all());
     }
 
     public function show(Purchase $purchase)
@@ -66,5 +82,22 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         //
+    }
+
+    public function searchMedicine(\Illuminate\Http\Request $request)
+    {
+        return Medicine::query()
+            ->orderBy('created_at', 'desc')
+            ->filter(['search' => $request->input('query')])
+            ->paginate(10)
+            ->withQueryString()
+            ->through(fn ($medicine) => [
+                'id' => $medicine->id,
+                'name' => $medicine->name,
+                'strength' => $medicine->strength,
+                'purchase_price' => $medicine->purchase_price,
+                'selling_price' => $medicine->selling_price,
+                'discount' => $medicine->discount,
+            ]);
     }
 }
