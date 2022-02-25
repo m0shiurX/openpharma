@@ -8,7 +8,7 @@
 
         <div class="mt-8 rounded-lg bg-white/30 py-8">
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
-                <form class="" @submit.prevent="saveCustomers">
+                <form class="" @submit.prevent="saveItem">
                     <div class="w-2xl mx-auto max-w-lg">
                         <!-- Form steps goes here -->
                         <div class="mb-6 rounded-xl border border-orange-100 py-3 px-5">
@@ -58,7 +58,7 @@
                                 <Link @click="reset" :href="route('manufacturers.index')" class="rounded-md bg-slate-400 px-8 py-2 text-white"
                                     >Cancel</Link
                                 >
-                                <button @click="updateItem" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">
+                                <button @click="saveItem" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">
                                     Save
                                 </button>
                             </div>
