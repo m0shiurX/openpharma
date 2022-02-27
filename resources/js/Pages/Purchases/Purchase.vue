@@ -9,7 +9,7 @@
         <div class="mt-8 rounded-lg bg-white/30 py-8">
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
                 <!-- Form -->
-                <div class="">
+                <form class="" @submit.prevent="saveItem">
                     <div class="w-3xl mx-auto max-w-3xl">
                         <!-- Invoice header-->
                         <div class="mb-6 rounded-xl border border-orange-100 py-3 px-5">
@@ -40,6 +40,7 @@
                                         class="h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 text-slate-900 focus:border-orange-400 focus:ring-orange-400"
                                         v-model="form.manufacturer_id"
                                         id="manufacturer"
+                                        required
                                     >
                                         <option value="" selected>Select a Manufacturer</option>
                                         <option v-for="manufacturer in props.manufacturers" :key="manufacturer.id" :value="manufacturer.id">
@@ -89,19 +90,19 @@
                                 <transition name="fade">
                                     <div v-if="search.length > 0 && searchResultShown" class="absolute top-20 left-0 z-50 w-full">
                                         <ul
-                                            class="mt-1 w-full overflow-auto rounded-md bg-orange-200 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                            class="mt-1 w-full overflow-auto rounded-md bg-orange-100 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         >
                                             <li
                                                 v-for="(medicine, index) in filteredMedicine"
                                                 :key="medicine.id"
-                                                class="relative w-full cursor-pointer py-2 pl-10 pr-4 text-gray-900 focus:bg-green-200"
+                                                class="relative w-full cursor-pointer py-2 pl-10 pr-4 text-slate-900 focus:bg-orange-200"
                                                 role="option"
                                                 tabindex="-1"
                                                 value="0"
-                                                :class="{ 'bg-blue-300': index === highlightedIndex }"
-                                                @click="selectItem(index)"
+                                                :class="{ 'border-y border-orange-400 bg-orange-200': index === highlightedIndex }"
+                                                @click="clickedItem(index)"
                                             >
-                                                <span class="block font-normal">{{ medicine.name }}</span>
+                                                <span class="block font-normal capitalize">{{ medicine.name }} - {{ medicine.strength }}</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -117,71 +118,74 @@
                                         <th class="border-x border-gray-100 pl-5 text-left">Qty</th>
                                         <th class="border-x border-gray-100 pl-5 text-left">Rate</th>
                                         <th class="border-x border-gray-100 pl-5 text-left">MRP</th>
-                                        <th class="border-x border-gray-100 pl-5 text-left">Total</th>
+                                        <th class="border-x border-gray-100 pl-5 text-left">Disc (%)</th>
+                                        <th class="border-x border-gray-100 pl-5 pr-3 text-left">Total</th>
                                         <th class="border-l border-gray-100"></th>
                                     </tr>
                                     <tr class="h-2"></tr>
                                 </thead>
                                 <tbody class="">
-                                    <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                    >
-                                        <td class="border-r border-gray-100">
-                                            <div class="flex h-full items-center pl-5">Napa</div>
-                                        </td>
-                                        <td class="border-r border-gray-100">
-                                            <div class="flex h-full items-center pl-5">B21-4</div>
-                                        </td>
-                                        <td class="border-r border-gray-100">
-                                            <div class="flex h-full items-center pl-5">50</div>
-                                        </td>
-                                        <td class="border-r border-gray-100">
-                                            <div class="flex h-full items-center pl-5">5</div>
-                                        </td>
-                                        <td class="border-r border-gray-100">
-                                            <div class="flex h-full items-center pl-5">6</div>
-                                        </td>
-                                        <td class="border-r border-gray-100">
-                                            <div class="flex h-full items-center justify-end pr-3">250.00</div>
-                                        </td>
-                                        <td class="w-12">
-                                            <button
-                                                type="button"
-                                                class="inline-flex h-full w-12 justify-center rounded bg-red-100 py-2.5 px-3 text-center text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
-                                            >
-                                                <Icon icon="close" class="h-5 w-5 stroke-orange-300" />
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr class="h-2"></tr>
-
-                                    <template v-for="(formRow, index) in formRows" :key="index">
+                                    <template v-for="(formRow, index) in form.purchase_items" :key="index">
                                         <tr
-                                            class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
+                                            class="group h-10 rounded border border-orange-200 bg-orange-50 transition-colors duration-200 ease-in hover:bg-orange-100"
                                         >
-                                            <td class="border-r border-gray-100">
-                                                <div class="flex h-full items-center pl-5">{{ formRow.name }} - {{ formRow.strength }}</div>
+                                            <td class="h-10border-gray-100">
+                                                <div class="flex h-full items-center px-2 capitalize">
+                                                    {{ formRow.name }} - {{ formRow.strength }}
+                                                </div>
                                             </td>
-                                            <td class="border-r border-gray-100">
-                                                <div class="flex h-full items-center pl-5">B21-4</div>
+                                            <td class="w-32border-gray-100 h-10">
+                                                <input
+                                                    type="text"
+                                                    v-model="formRow.batch_id"
+                                                    class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                />
                                             </td>
-                                            <td class="border-r border-gray-100">
-                                                <div class="flex h-full items-center pl-5">50</div>
+                                            <td class="w-32border-gray-100 h-10">
+                                                <input
+                                                    @focus="$event.target.select()"
+                                                    type="text"
+                                                    v-model="formRow.quantity"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                />
                                             </td>
-                                            <td class="border-r border-gray-100">
-                                                <div class="flex h-full items-center pl-5">{{ formRow.purchase_price }}</div>
+                                            <td class="w-32border-gray-100 h-10">
+                                                <input
+                                                    @focus="$event.target.select()"
+                                                    type="text"
+                                                    v-model="formRow.purchase_price"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                />
                                             </td>
-                                            <td class="border-r border-gray-100">
-                                                <div class="flex h-full items-center pl-5">{{ formRow.selling_price }}</div>
+                                            <td class="w-32border-gray-100 h-10">
+                                                <input
+                                                    @focus="$event.target.select()"
+                                                    type="text"
+                                                    v-model="formRow.selling_price"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                />
                                             </td>
-                                            <td class="border-r border-gray-100">
-                                                <div class="flex h-full items-center justify-end pr-3">00.00</div>
+                                            <td class="w-32border-gray-100 h-10">
+                                                <input
+                                                    @focus="$event.target.select()"
+                                                    type="text"
+                                                    v-model="formRow.discount"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                />
                                             </td>
-                                            <td class="w-12">
+                                            <td class="w-32border-gray-100 h-10">
+                                                <input
+                                                    disabled
+                                                    type="text"
+                                                    v-model="formRow.total_price"
+                                                    class="h-full w-full border-0 border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                />
+                                            </td>
+                                            <td class="w-12 p-0">
                                                 <button
                                                     @click="removeItem(index)"
                                                     type="button"
-                                                    class="inline-flex h-full w-12 justify-center rounded bg-red-100 py-2.5 px-3 text-center text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
+                                                    class="inline-flex h-full w-12 justify-center bg-red-100 py-2.5 px-3 text-center text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
                                                 >
                                                     <Icon icon="close" class="h-5 w-5 stroke-orange-300" />
                                                 </button>
@@ -194,100 +198,109 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="4" class="border-x border-gray-100">
+                                        <th colspan="6" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Sub Total</div>
                                         </th>
-                                        <th colspan="2" class="w-12 border-r border-gray-100">
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
+                                                disabled
                                                 type="text"
                                                 v-model="form.sub_total"
-                                                class="h-full w-full border-0 bg-orange-50 pr-16 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
+                                        <th class="w-12 text-xs font-light">BDT</th>
                                     </tr>
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="4" class="border-x border-gray-100">
+                                        <th colspan="6" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Discount</div>
                                         </th>
-                                        <th colspan="2" class="w-12 border-r border-gray-100">
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
+                                                @focus="$event.target.select()"
                                                 type="text"
                                                 v-model="form.discount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-16 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
+                                        <th class="w-12 text-xs font-light">BDT</th>
                                     </tr>
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="4" class="border-x border-gray-100">
+                                        <th colspan="6" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">VAT</div>
                                         </th>
-                                        <th colspan="2" class="w-12 border-r border-gray-100">
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
+                                                disabled
                                                 type="text"
                                                 v-model="form.vat"
-                                                class="h-full w-full border-0 bg-orange-50 pr-16 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
+                                        <th class="w-12 text-xs font-light">%</th>
                                     </tr>
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="4" class="border-x border-gray-100">
+                                        <th colspan="6" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Grand Total</div>
                                         </th>
-                                        <th colspan="2" class="w-12 border-r border-gray-100">
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
+                                                disabled
                                                 type="text"
                                                 v-model="form.grand_total"
-                                                class="h-full w-full border-0 bg-orange-50 pr-16 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
+                                        <th class="w-12 text-xs font-light">BDT</th>
                                     </tr>
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="4" class="border-x border-gray-100">
+                                        <th colspan="6" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Paid Total</div>
                                         </th>
-                                        <th colspan="2" class="w-12 border-r border-gray-100">
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
+                                                @focus="$event.target.select()"
                                                 type="text"
                                                 v-model="form.paid_amount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-16 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
+                                        <th class="w-12 text-xs font-light">BDT</th>
                                     </tr>
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="4" class="border-x border-gray-100">
+                                        <th colspan="6" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Due Total</div>
                                         </th>
-                                        <th colspan="2" class="w-12 border-r border-gray-100">
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
                                                 type="text"
                                                 v-model="form.due_amount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-16 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
+                                        <th class="w-12 text-xs font-light">BDT</th>
                                     </tr>
                                 </tfoot>
                             </table>
 
                             <!-- Form actions -->
                             <div class="mt-5 flex flex-row-reverse items-center justify-start gap-x-5">
-                                <button @click="saveItem" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">
-                                    Save
-                                </button>
-                                <button @click="reset" class="rounded-md bg-slate-400 px-8 py-2 text-white">Reset</button>
+                                <button type="submit" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">Save</button>
+                                <button type="button" @click="saveItem" class="rounded-md bg-slate-400 px-8 py-2 text-white">Save & Print</button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </AuthLayout>
@@ -311,24 +324,13 @@ const form = useForm({
     invoice_no: props.invoice_no,
     purchase_date: moment().format('YYYY-MM-DD'),
     manufacturer_id: '',
-    sub_total: 0.0,
-    vat: 0.0,
-    discount: 0.0,
-    grand_total: 0.0,
-    paid_amount: 0.0,
-    due_amount: 0.0,
-    purchase_items: [
-        // {
-        //     medicine_id: Number,
-        //     medicine_name: String,
-        //     batch_id: String,
-        //     expiry_date: String,
-        //     quantity: Number,
-        //     purchase_price: Number,
-        //     selling_price: Number,
-        //     total_price: Number,
-        // },
-    ],
+    sub_total: 0,
+    vat: 0,
+    discount: 0,
+    grand_total: 0,
+    paid_amount: 0,
+    due_amount: 0,
+    purchase_items: [],
 });
 
 // Purchase date
@@ -392,9 +394,11 @@ const softResetSearch = () => {
 };
 
 const selectItem = () => {
-    let item = filteredMedicine.value[highlightedIndex.value];
-    selectedMedicine.value = item;
-    resetSearch();
+    if (filteredMedicine.value.length > 0) {
+        let item = filteredMedicine.value[highlightedIndex.value];
+        selectedMedicine.value = item;
+        resetSearch();
+    }
 };
 const clickedItem = (index) => {
     let item = filteredMedicine.value[index];
@@ -413,12 +417,57 @@ const highlightPrevious = () => {
 };
 
 // Manage table rows with form
-const formRows = ref([]);
 watch(selectedMedicine, (item) => {
-    formRows.value.push(item);
+    item.total_price = 0;
+    item.quantity = 0;
+    item.batch_id = '';
+    form.purchase_items.push(item);
 });
+
+// Calculate fields
+watch(
+    () => form.purchase_items,
+    (items) => {
+        items.map((item) => {
+            let net_price = Number(item.quantity * item.purchase_price).toFixed(2);
+            let discount = Number((item.discount * net_price) / 100).toFixed(2);
+            return (item.total_price = Number(net_price - discount).toFixed(2));
+        });
+    },
+    { deep: true },
+);
+
+// Sub total
+form.sub_total = computed({
+    get() {
+        // if (form.purchase_items.length > 0)
+        return Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.total_price), 0).toFixed(2));
+    },
+});
+
+// Purchase date
+form.grand_total = computed({
+    get() {
+        if (!isNaN(form.discount) && form.discount > 0) {
+            return Number(Math.round(form.sub_total - form.discount)).toFixed(2);
+        } else {
+            return Math.round(form.sub_total);
+        }
+    },
+});
+
+form.due_amount = computed({
+    get() {
+        if (!isNaN(form.paid_amount) && form.paid_amount > 0) {
+            return Number(form.grand_total - form.paid_amount).toFixed(2);
+        } else {
+            return form.grand_total;
+        }
+    },
+});
+
 const removeItem = (index) => {
-    formRows.value.splice(index, 1);
+    form.purchase_items.splice(index, 1);
 };
 
 // Form Actions
@@ -428,6 +477,7 @@ const saveItem = () => {
     });
 };
 const reset = () => {
+    form.purchase_items = [];
     form.reset();
 };
 </script>
