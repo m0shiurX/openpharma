@@ -61,92 +61,59 @@
                                 </div>
                             </div>
 
-                            <div class="mb-5 w-full">
-                                <Combobox v-model="selectedMedicine" @change="add_to_cart(selectedMedicine)">
-                                    <div class="relative mt-1">
-                                        <div
-                                            class="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
-                                        >
-                                            <ComboboxInput
-                                                class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-                                                @change="search = $event.target.value"
-                                                :displayValue="(medicine) => medicine.name"
-                                            />
-                                            <ComboboxButton class="absolute inset-y-0 right-0 flex items-center pr-2">
-                                                <SelectorIcon class="h-5 w-5 text-gray-400" aria-hidden="true" />
-                                            </ComboboxButton>
-                                        </div>
-                                        <TransitionRoot
-                                            leave="transition ease-in duration-100"
-                                            leaveFrom="opacity-100"
-                                            leaveTo="opacity-0"
-                                            @after-leave="search = ''"
-                                        >
-                                            <ComboboxOptions
-                                                class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-                                            >
-                                                <div
-                                                    v-if="search !== '' && filteredMedicine.length === 0"
-                                                    class="relative cursor-default select-none py-2 px-4 text-gray-700"
-                                                >
-                                                    Nothing found.
-                                                </div>
-
-                                                <ComboboxOption
-                                                    as="template"
-                                                    v-slot="{ active, selected }"
-                                                    v-for="medicine in filteredMedicine"
-                                                    :key="medicine.id"
-                                                    :value="medicine"
-                                                >
-                                                    <li
-                                                        class="relative cursor-default select-none py-2 pl-10 pr-4"
-                                                        :class="{
-                                                            'bg-teal-600 text-white': active,
-                                                            'text-gray-900': !active,
-                                                        }"
-                                                    >
-                                                        <span class="block truncate" :class="{ 'font-medium': selected, 'font-normal': !selected }">
-                                                            {{ medicine.name }}
-                                                        </span>
-                                                        <span
-                                                            v-if="selected"
-                                                            class="absolute inset-y-0 left-0 flex items-center pl-3"
-                                                            :class="{ 'text-white': active, 'text-teal-600': !active }"
-                                                        >
-                                                            <CheckIcon class="h-5 w-5" aria-hidden="true" />
-                                                        </span>
-                                                    </li>
-                                                </ComboboxOption>
-                                            </ComboboxOptions>
-                                        </TransitionRoot>
-                                    </div>
-                                </Combobox>
-                            </div>
                             <!-- Medicine search -->
-                            <!--
+
                             <div class="relative flex-1">
-                                <label class="mb-2 block" for="medicine">Medicine</label>
+                                <label class="mb-2 block" for="medicine">Type to search medicine</label>
                                 <input
                                     name="search"
                                     v-model="search"
-                                    placeholder="Type to start"
+                                    placeholder="Napa"
                                     type="text"
-                                    class="mb-5 h-10 w-full rounded-md border border-orange-400 bg-orange-50 focus:border focus:border-orange-400 focus:ring-orange-600"
+                                    autocomplete="off"
+                                    class="mb-5 h-10 w-full rounded-md border border-orange-400 bg-orange-50 placeholder:text-slate-300 focus:border focus:border-orange-400 focus:ring-orange-600"
+                                    @keydown.up.prevent="highlightPrevious"
+                                    @keydown.down.prevent="highlightNext"
+                                    @focus="searchResultShown = true"
+                                    @keydown.esc="searchResultShown = false"
+                                    @input="softResetSearch"
+                                    @keydown.enter.prevent="selectItem"
                                 />
-
-                                <div v-if="medicines" class="absolute top-20 left-0 z-50 w-1/2 bg-orange-500 py-2 pl-2 pr-10">
-                                    <ul v-for="medicine in medicines" :key="medicine.id">
-                                        <li>{{ medicine.name }}</li>
-                                    </ul>
+                                <div
+                                    v-if="search.length > 0"
+                                    class="absolute top-9 right-0 mr-3 cursor-pointer text-2xl text-gray-600 hover:text-gray-800"
+                                    @click="resetSearch"
+                                >
+                                    &times;
                                 </div>
-                            </div> -->
+                                <transition name="fade">
+                                    <div v-if="search.length > 0 && searchResultShown" class="absolute top-20 left-0 z-50 w-full">
+                                        <ul
+                                            class="mt-1 w-full overflow-auto rounded-md bg-orange-200 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                        >
+                                            <li
+                                                v-for="(medicine, index) in filteredMedicine"
+                                                :key="medicine.id"
+                                                class="relative w-full cursor-pointer py-2 pl-10 pr-4 text-gray-900 focus:bg-green-200"
+                                                role="option"
+                                                tabindex="-1"
+                                                value="0"
+                                                :class="{ 'bg-blue-300': index === highlightedIndex }"
+                                                @click="selectItem(index)"
+                                            >
+                                                <span class="block font-normal">{{ medicine.name }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </transition>
+                            </div>
 
                             <!-- Main table -->
                             <table class="w-full table-auto whitespace-nowrap">
                                 <thead>
                                     <tr class="h-12 rounded-lg border border-gray-100 bg-white text-base text-gray-500 focus:outline-none">
                                         <th class="border-r border-gray-100 pl-5 text-left">Medicine</th>
+                                        <th class="border-x border-gray-100 pl-5 text-left">BATCH</th>
                                         <th class="border-x border-gray-100 pl-5 text-left">Qty</th>
                                         <th class="border-x border-gray-100 pl-5 text-left">Rate</th>
                                         <th class="border-x border-gray-100 pl-5 text-left">MRP</th>
@@ -161,6 +128,9 @@
                                     >
                                         <td class="border-r border-gray-100">
                                             <div class="flex h-full items-center pl-5">Napa</div>
+                                        </td>
+                                        <td class="border-r border-gray-100">
+                                            <div class="flex h-full items-center pl-5">B21-4</div>
                                         </td>
                                         <td class="border-r border-gray-100">
                                             <div class="flex h-full items-center pl-5">50</div>
@@ -184,6 +154,41 @@
                                         </td>
                                     </tr>
                                     <tr class="h-2"></tr>
+
+                                    <template v-for="(formRow, index) in formRows" :key="index">
+                                        <tr
+                                            class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
+                                        >
+                                            <td class="border-r border-gray-100">
+                                                <div class="flex h-full items-center pl-5">{{ formRow.name }} - {{ formRow.strength }}</div>
+                                            </td>
+                                            <td class="border-r border-gray-100">
+                                                <div class="flex h-full items-center pl-5">B21-4</div>
+                                            </td>
+                                            <td class="border-r border-gray-100">
+                                                <div class="flex h-full items-center pl-5">50</div>
+                                            </td>
+                                            <td class="border-r border-gray-100">
+                                                <div class="flex h-full items-center pl-5">{{ formRow.purchase_price }}</div>
+                                            </td>
+                                            <td class="border-r border-gray-100">
+                                                <div class="flex h-full items-center pl-5">{{ formRow.selling_price }}</div>
+                                            </td>
+                                            <td class="border-r border-gray-100">
+                                                <div class="flex h-full items-center justify-end pr-3">00.00</div>
+                                            </td>
+                                            <td class="w-12">
+                                                <button
+                                                    @click="removeItem(index)"
+                                                    type="button"
+                                                    class="inline-flex h-full w-12 justify-center rounded bg-red-100 py-2.5 px-3 text-center text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
+                                                >
+                                                    <Icon icon="close" class="h-5 w-5 stroke-orange-300" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr class="h-2"></tr>
+                                    </template>
                                 </tbody>
                                 <tfoot>
                                     <tr
@@ -293,34 +298,15 @@ import { Inertia } from '@inertiajs/inertia';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import BaseInput from '@/Shared/BaseInput.vue';
 import Icon from '@/Shared/Icon.vue';
-import { ref, computed, watch, onMounted, reactive } from 'vue';
+import { ref, computed, watch } from 'vue';
 import moment from 'moment';
 import debounce from 'lodash/debounce';
 import axios from 'axios';
-import { Combobox, ComboboxInput, ComboboxButton, ComboboxOptions, ComboboxOption, TransitionRoot } from '@headlessui/vue';
-import { CheckIcon, SelectorIcon } from '@heroicons/vue/solid';
 
 const props = defineProps({
     invoice_no: String,
     manufacturers: Object,
 });
-
-const display_date = computed({
-    get() {
-        if (moment(form.purchase_date).isValid()) {
-            return moment(form.purchase_date).format('LL');
-        } else {
-            return moment().format('LL');
-        }
-    },
-});
-
-const manufacturer = ref({
-    id: 1,
-    name: 'Select a Manufacturer',
-    location: 'Manufacturer Address',
-});
-
 const form = useForm({
     invoice_no: props.invoice_no,
     purchase_date: moment().format('YYYY-MM-DD'),
@@ -332,45 +318,35 @@ const form = useForm({
     paid_amount: 0.0,
     due_amount: 0.0,
     purchase_items: [
-        {
-            medicine_id: Number,
-            medicine_name: String,
-            batch_id: String,
-            expiry_date: String,
-            quantity: Number,
-            purchase_price: Number,
-            selling_price: Number,
-            total_price: Number,
-        },
+        // {
+        //     medicine_id: Number,
+        //     medicine_name: String,
+        //     batch_id: String,
+        //     expiry_date: String,
+        //     quantity: Number,
+        //     purchase_price: Number,
+        //     selling_price: Number,
+        //     total_price: Number,
+        // },
     ],
 });
 
-const search = ref('');
-const selectedMedicine = ref();
-const filteredMedicine = ref([]);
+// Purchase date
+const display_date = computed({
+    get() {
+        if (moment(form.purchase_date).isValid()) {
+            return moment(form.purchase_date).format('LL');
+        } else {
+            return moment().format('LL');
+        }
+    },
+});
 
-watch(
-    search,
-    debounce((changed_item) => {
-        axios.get(route('purchases.medicine'), { params: { query: changed_item } }).then((data) => (filteredMedicine.value = data.data));
-    }, 1000),
-);
-
-const cart = reactive();
-const add_to_cart = (a) => {
-    console.log('e', a);
-};
-
-watch(selectedMedicine, () => {
-    console.log(selectedMedicine.value);
-    if (selectedMedicine.value.id !== '') {
-        form.purchase_items.push({
-            medicine_id: selectedMedicine.value.id,
-            medicine_name: selectedMedicine.value.name,
-            purchase_price: selectedMedicine.value.purchase_price,
-            selling_price: selectedMedicine.value.selling_price,
-        });
-    }
+// Manufacturers
+const manufacturer = ref({
+    id: 1,
+    name: 'Select a Manufacturer',
+    location: 'Manufacturer Address',
 });
 
 const changeManufacturer = (id) => {
@@ -385,12 +361,72 @@ watch(
     (manufacturer_id) => changeManufacturer(manufacturer_id),
 );
 
+// Medicines
+
+const search = ref('');
+const filteredMedicine = ref([]);
+const selectedMedicine = ref();
+
+watch(
+    search,
+    debounce((txt) => {
+        txt.length > 1 &&
+            axios
+                .get(route('purchases.medicine'), {
+                    params: { query: txt },
+                })
+                .then((result) => (filteredMedicine.value = result.data));
+    }, 500),
+);
+
+const searchResultShown = ref(false);
+const highlightedIndex = ref(0);
+
+const resetSearch = () => {
+    search.value = '';
+    highlightedIndex.value = 0;
+};
+const softResetSearch = () => {
+    searchResultShown.value = true;
+    highlightedIndex.value = 0;
+};
+
+const selectItem = () => {
+    let item = filteredMedicine.value[highlightedIndex.value];
+    selectedMedicine.value = item;
+    resetSearch();
+};
+const clickedItem = (index) => {
+    let item = filteredMedicine.value[index];
+    selectedMedicine.value = item;
+    resetSearch();
+};
+const highlightNext = () => {
+    if (highlightedIndex.value < filteredMedicine.value.length - 1) {
+        highlightedIndex.value++;
+    } else {
+        highlightedIndex.value = 0;
+    }
+};
+const highlightPrevious = () => {
+    highlightedIndex.value > 0 && highlightedIndex.value--;
+};
+
+// Manage table rows with form
+const formRows = ref([]);
+watch(selectedMedicine, (item) => {
+    formRows.value.push(item);
+});
+const removeItem = (index) => {
+    formRows.value.splice(index, 1);
+};
+
+// Form Actions
 const saveItem = () => {
     form.post(route('purchases.store'), {
         preserveScroll: true,
     });
 };
-
 const reset = () => {
     form.reset();
 };

@@ -45,7 +45,7 @@ class PurchaseController extends Controller
         $latest_invoice = \App\Models\Purchase::withTrashed()->latest()->max('id') + 1;
         $invoice_no = 'PR-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
 
-        return Inertia::render('Purchases/Create', [
+        return Inertia::render('Purchases/Purchase', [
             'filters' => Request::only('search'),
             'invoice_no' => $invoice_no,
             'manufacturers' => Manufacturer::select(['id', 'name', 'location'])
@@ -89,9 +89,8 @@ class PurchaseController extends Controller
         return Medicine::query()
             ->orderBy('created_at', 'desc')
             ->filter(['search' => $request->input('query')])
-            ->paginate(10)
-            ->withQueryString()
-            ->through(fn ($medicine) => [
+            ->get()
+            ->map(fn ($medicine) => [
                 'id' => $medicine->id,
                 'name' => $medicine->name,
                 'strength' => $medicine->strength,
