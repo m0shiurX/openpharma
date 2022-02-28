@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             CustomerSeeder::class,
             MedicineSeeder::class,
             PurchaseSeeder::class,
+            SaleSeeder::class,
         ]);
     }
 }
