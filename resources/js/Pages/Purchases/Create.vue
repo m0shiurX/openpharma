@@ -10,7 +10,7 @@
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
                 <!-- Form -->
                 <form class="" @submit.prevent="saveItem">
-                    <div class="w-3xl mx-auto max-w-3xl">
+                    <div class="w-4xl mx-auto max-w-4xl">
                         <!-- Invoice header-->
                         <div class="mb-6 rounded-xl border border-orange-100 py-3 px-5">
                             <div class="flex items-center justify-between divide-x-2">
@@ -115,12 +115,13 @@
                                     <tr class="h-12 rounded-lg border border-gray-100 bg-white text-base text-gray-500 focus:outline-none">
                                         <th class="border-r border-gray-100 pl-5 pr-2 text-left">Medicine</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">BATCH</th>
+                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">Expiry</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">Qty</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">Rate</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">MRP</th>
                                         <th class="W-20 border-x border-gray-100 pl-3 pr-2 text-left">Disc (%)</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 pr-3 text-left">Total</th>
-                                        <th class="border-l border-gray-100"></th>
+                                        <th class="border-l border-gray-100">ACT</th>
                                     </tr>
                                     <tr class="h-2"></tr>
                                 </thead>
@@ -139,6 +140,14 @@
                                                     required
                                                     type="text"
                                                     v-model="formRow.batch_id"
+                                                    class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                />
+                                            </td>
+                                            <td class="h-10 w-32 border-gray-100">
+                                                <input
+                                                    required
+                                                    type="date"
+                                                    v-model="formRow.expiry_date"
                                                     class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
@@ -193,7 +202,13 @@
                                                 </button>
                                             </td>
                                         </tr>
-                                        <tr class="h-2"></tr>
+                                        <tr class="h-2">
+                                            <td colspan="8" v-if="Object.keys(form.errors).length > 0">
+                                                <p class="pl-2 text-xs text-red-400">
+                                                    {{ form.errors['purchase_items.' + index + '.batch_id'] }}
+                                                </p>
+                                            </td>
+                                        </tr>
                                     </template>
                                 </tbody>
                                 <tfoot>
@@ -423,6 +438,7 @@ watch(selectedMedicine, (item) => {
     item.total_price = 0;
     item.quantity = 0;
     item.batch_id = '';
+    item.expiry_date = moment().format('YYYY-MM-DD');
     form.purchase_items.push(item);
 });
 

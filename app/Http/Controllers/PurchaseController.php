@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Inertia\Inertia;
+use App\Models\Medicine;
 use App\Models\Purchase;
+use App\Models\Manufacturer;
+use App\Models\PurchaseItem;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
-use App\Models\Manufacturer;
-use App\Models\Medicine;
 
 class PurchaseController extends Controller
 {
@@ -61,7 +63,37 @@ class PurchaseController extends Controller
 
     public function store(StorePurchaseRequest $request)
     {
-        return dd($request->all());
+        // return dd($request->purchase_items);
+        DB::transaction(function () use ($request) {
+            $purchase = Purchase::create($request->only([
+                'invoice_no',
+                'purchase_date',
+                'manufacturer_id',
+                'sub_total',
+                'vat',
+                'discount',
+                'grand_total',
+                'paid_amount',
+                'due_amount'
+            ]));
+
+
+            foreach ($request->purchase_items as $purchase_item) {
+                $entry = [];
+                $entry['purchase_id'] = $purchase->id;
+                $entry['medicine_id'] = $purchase_item['id'];
+                $entry['batch_id'] = $purchase_item['batch_id'];
+                $entry['expiry_date'] = $purchase_item['expiry_date'];
+                $entry['quantity'] = $purchase_item['quantity'];
+                $entry['purchase_price'] = $purchase_item['purchase_price'];
+                $entry['selling_price'] = $purchase_item['selling_price'];
+                $entry['total_price'] = $purchase_item['total_price'];
+
+                PurchaseItem::create($entry);
+            }
+        });
+
+        return redirect()->route('purchases.index')->with('success', 'Successfully created!');
     }
 
     public function show(Purchase $purchase)

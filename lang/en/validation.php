@@ -142,8 +142,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'purchase_items.*.batch_id' => [
+            'string' => 'Batch ID is required!',
         ],
     ],
 

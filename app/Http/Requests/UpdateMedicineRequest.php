@@ -23,7 +23,7 @@ class UpdateMedicineRequest extends FormRequest
             'unit' => ['required'],
             'purchase_price' => ['numeric', 'required'],
             'selling_price' => ['numeric', 'required'],
-            'discount' => 'required', 'numeric', 'between:0,30',
+            'discount' => ['required', 'numeric', 'between:0,30'],
         ];
     }
 
