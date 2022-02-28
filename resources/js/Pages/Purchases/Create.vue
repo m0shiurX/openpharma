@@ -113,13 +113,13 @@
                             <table class="w-full table-auto whitespace-nowrap">
                                 <thead>
                                     <tr class="h-12 rounded-lg border border-gray-100 bg-white text-base text-gray-500 focus:outline-none">
-                                        <th class="border-r border-gray-100 pl-5 text-left">Medicine</th>
-                                        <th class="border-x border-gray-100 pl-5 text-left">BATCH</th>
-                                        <th class="border-x border-gray-100 pl-5 text-left">Qty</th>
-                                        <th class="border-x border-gray-100 pl-5 text-left">Rate</th>
-                                        <th class="border-x border-gray-100 pl-5 text-left">MRP</th>
-                                        <th class="border-x border-gray-100 pl-5 text-left">Disc (%)</th>
-                                        <th class="border-x border-gray-100 pl-5 pr-3 text-left">Total</th>
+                                        <th class="border-r border-gray-100 pl-5 pr-2 text-left">Medicine</th>
+                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">BATCH</th>
+                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">Qty</th>
+                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">Rate</th>
+                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">MRP</th>
+                                        <th class="W-20 border-x border-gray-100 pl-3 pr-2 text-left">Disc (%)</th>
+                                        <th class="w-32 border-x border-gray-100 pl-5 pr-3 text-left">Total</th>
                                         <th class="border-l border-gray-100"></th>
                                     </tr>
                                     <tr class="h-2"></tr>
@@ -129,27 +129,29 @@
                                         <tr
                                             class="group h-10 rounded border border-orange-200 bg-orange-50 transition-colors duration-200 ease-in hover:bg-orange-100"
                                         >
-                                            <td class="h-10border-gray-100">
+                                            <td class="h-10 border-gray-100">
                                                 <div class="flex h-full items-center px-2 capitalize">
                                                     {{ formRow.name }} - {{ formRow.strength }}
                                                 </div>
                                             </td>
-                                            <td class="w-32border-gray-100 h-10">
+                                            <td class="h-10 w-32 border-gray-100">
                                                 <input
+                                                    required
                                                     type="text"
                                                     v-model="formRow.batch_id"
                                                     class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
-                                            <td class="w-32border-gray-100 h-10">
+                                            <td class="h-10 w-32 border-gray-100">
                                                 <input
+                                                    min="1"
                                                     @focus="$event.target.select()"
-                                                    type="text"
+                                                    type="number"
                                                     v-model="formRow.quantity"
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
-                                            <td class="w-32border-gray-100 h-10">
+                                            <td class="h-10 w-32 border-gray-100">
                                                 <input
                                                     @focus="$event.target.select()"
                                                     type="text"
@@ -157,7 +159,7 @@
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
-                                            <td class="w-32border-gray-100 h-10">
+                                            <td class="h-10 w-32 border-gray-100">
                                                 <input
                                                     @focus="$event.target.select()"
                                                     type="text"
@@ -165,7 +167,7 @@
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
-                                            <td class="w-32border-gray-100 h-10">
+                                            <td class="h-10 w-20 border-gray-100">
                                                 <input
                                                     @focus="$event.target.select()"
                                                     type="text"
@@ -173,7 +175,7 @@
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
-                                            <td class="w-32border-gray-100 h-10">
+                                            <td class="h-10 w-32 border-gray-100">
                                                 <input
                                                     disabled
                                                     type="text"
@@ -448,6 +450,7 @@ form.sub_total = computed({
 // Purchase date
 form.grand_total = computed({
     get() {
+        if (form.purchase_items.length == 0) return 0;
         if (!isNaN(form.discount) && form.discount > 0) {
             return Number(Math.round(form.sub_total - form.discount)).toFixed(2);
         } else {
@@ -479,5 +482,14 @@ const saveItem = () => {
 const reset = () => {
     form.purchase_items = [];
     form.reset();
+};
+
+// Animation
+const beforeLeave = (el) => {
+    const { marginLeft, marginTop, width, height } = window.getComputedStyle(el);
+    el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`;
+    el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`;
+    el.style.width = width;
+    el.style.height = height;
 };
 </script>

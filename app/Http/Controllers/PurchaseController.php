@@ -45,7 +45,7 @@ class PurchaseController extends Controller
         $latest_invoice = \App\Models\Purchase::withTrashed()->latest()->max('id') + 1;
         $invoice_no = 'PR-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
 
-        return Inertia::render('Purchases/Purchase', [
+        return Inertia::render('Purchases/Create', [
             'filters' => Request::only('search'),
             'invoice_no' => $invoice_no,
             'manufacturers' => Manufacturer::select(['id', 'name', 'location'])
