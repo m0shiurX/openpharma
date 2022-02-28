@@ -215,7 +215,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="7" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Sub Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -231,7 +231,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="7" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Discount</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -247,7 +247,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="7" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">VAT</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -263,7 +263,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="7" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Grand Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -279,7 +279,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="7" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Paid Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -295,7 +295,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="7" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Due Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">

@@ -10,7 +10,6 @@ use App\Models\Manufacturer;
 use App\Models\PurchaseItem;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
 
