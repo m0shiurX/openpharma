@@ -1,6 +1,7 @@
 <template>
     <div class="space-y-4">
         <MainMenuItem href="/dashboard" icon="dashboard" :active="isUrl('dashboard')">Dashboard</MainMenuItem>
+        <MainMenuItem href="/sales" icon="manufacturer" :active="isUrl('sales')">SALES</MainMenuItem>
         <MainMenuItem href="/purchases" icon="manufacturer" :active="isUrl('purchases')">Purchase</MainMenuItem>
         <MainMenuItem href="/manufacturers" icon="manufacturer" :active="isUrl('manufacturers')">Manufacturers</MainMenuItem>
         <MainMenuItem href="/medicines" icon="manufacturer" :active="isUrl('medicines')">Medicines</MainMenuItem>

@@ -48,6 +48,16 @@ class Sale extends Model
         });
     }
 
+    // Scopes
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $search) {
+            $query->whereHas('manufacturer', function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            });
+        });
+    }
+
 
     protected function serializeDate(DateTimeInterface $date)
     {

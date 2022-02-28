@@ -2,6 +2,7 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\CustomerController;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('medicines', MedicineController::class);
     Route::get('list-of-medicines', [PurchaseController::class, 'searchMedicine'])->name('purchases.medicine');
     Route::resource('purchases', PurchaseController::class);
+    Route::resource('sales', SaleController::class);
     Route::resource('manufacturers', ManufacturerController::class);
 });
 
