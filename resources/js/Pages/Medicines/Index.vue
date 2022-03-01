@@ -29,8 +29,8 @@
                         <thead>
                             <tr tabindex="0" class="h-16 rounded-lg border border-gray-100 bg-white text-lg text-gray-500 focus:outline-none">
                                 <th class="border-r border-gray-100 pl-5 text-left">Medicine</th>
-                                <th class="border-x border-gray-100 pl-5 text-left">Manufacturer</th>
-                                <th class="border-x border-gray-100 pl-5 text-left">Type</th>
+                                <th class="border-x border-gray-100 pl-5 text-left">Type & Manufacturer</th>
+                                <th class="border-x border-gray-100 pl-5 text-left">Stock</th>
                                 <th class="border-x border-gray-100 pl-5 text-left">Price</th>
                                 <th colspan="2" class="border-l border-gray-100">Action</th>
                             </tr>
@@ -43,26 +43,26 @@
                                     class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                 >
                                     <td class="border-r border-gray-100">
-                                        <div class="flex items-center pt-3 pl-5">
+                                        <div class="flex items-center pt-2 pl-5">
                                             <p class="mr-2 text-lg font-bold capitalize leading-none text-gray-700">
                                                 {{ medicine.name }}
                                                 <span class="text-sm text-gray-400">- {{ medicine.strength }}</span>
                                             </p>
                                         </div>
-                                        <div class="flex items-center pt-2 pb-3 pl-5">
+                                        <div class="flex items-center pt-2 pb-2 pl-5">
                                             <p class="truncate text-base capitalize leading-none text-gray-400">
                                                 {{ medicine.generic_name }}
                                             </p>
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
-                                        <div class="flex items-center pt-2 pb-3 pl-5">
+                                        <div class="flex items-center pt-2 pl-5">
                                             <icon icon="tag" class="h-4 w-4 stroke-slate-400" />
                                             <p class="ml-1 text-base leading-none text-gray-400">
                                                 {{ medicine.category }}
                                             </p>
                                         </div>
-                                        <div class="flex items-center pt-2 pb-3 pl-5">
+                                        <div class="flex items-center pt-2 pb-2 pl-5">
                                             <icon icon="manufacturer" class="h-4 w-4 stroke-slate-400" />
                                             <p class="ml-1 text-base leading-none text-gray-400">
                                                 {{ medicine.manufacturer }}
@@ -77,11 +77,11 @@
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
-                                        <div class="flex items-center pt-2 pb-3 pl-5">
+                                        <div class="flex items-center pt-2 pl-5">
                                             <p class="ml-1 text-sm leading-none text-gray-400">BUY: {{ medicine.purchase_price }}</p>
                                         </div>
-                                        <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <p class="ml-1 text-base font-bold leading-none text-gray-600">SELL: {{ medicine.selling_price }}</p>
+                                        <div class="flex items-center py-2 pl-5">
+                                            <p class="ml-1 text-base font-semibold leading-none text-gray-600">SELL: {{ medicine.selling_price }}</p>
                                         </div>
                                     </td>
                                     <td class="pl-5">

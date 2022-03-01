@@ -30,7 +30,7 @@
                             <tr tabindex="0" class="h-16 rounded-lg border border-gray-100 bg-white text-lg text-gray-500 focus:outline-none">
                                 <th class="border-r border-gray-100 pl-5 text-left">Medicine</th>
                                 <th class="border-x border-gray-100 pl-5 text-left">Batch</th>
-                                <th class="border-x border-gray-100 pl-5 text-left">Stock</th>
+                                <th class="border-x border-gray-100 pr-5 text-right">Stock</th>
                                 <th class="border-l border-gray-100">Action</th>
                             </tr>
                             <tr class="h-3"></tr>
@@ -39,7 +39,7 @@
                             <template v-for="stock in props.stocks.data" :key="stock.id">
                                 <tr
                                     tabindex="0"
-                                    class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
+                                    class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-orange-100"
                                 >
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-3 pl-5">
