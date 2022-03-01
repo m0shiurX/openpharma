@@ -20,7 +20,7 @@ class ManufacturerController extends Controller
     {
         return Inertia::render('Manufacturers/Index', [
             'filters' => Request::only('search'),
-            'manufacturers' => Manufacturer::orderBy('created_at', 'desc')
+            'manufacturers' => Manufacturer::orderBy('name', 'asc')
                 ->filter(Request::only('search'))
                 ->paginate(10)
                 ->withQueryString()

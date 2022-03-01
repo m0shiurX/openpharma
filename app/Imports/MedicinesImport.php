@@ -26,9 +26,9 @@ class MedicinesImport implements ToModel, WithHeadingRow, WithChunkReading, With
 
         return new Medicine([
             'manufacturer_id' => $this->manufacturers[$row['manufacturer']],
-            'name' => $row['medicine_name'],
-            'generic_name' => strlen($row['generic_name']) > 20 ? 'multi' : $row['generic_name'],
-            'strength' => strlen($row['strength']) > 20 ? 'multi' : $row['strength'],
+            'name' => $row['brand_name'],
+            'generic_name' => $row['generic_name'],
+            'strength' => $row['strength'],
             'category' => $row['category'],
             'unit' => 'pcs',
             'purchase_price' => 0,
