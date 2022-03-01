@@ -6,7 +6,7 @@
         <MainMenuItem href="/manufacturers" icon="manufacturer" :active="isUrl('manufacturers')">Manufacturers</MainMenuItem>
         <MainMenuItem href="/medicines" icon="manufacturer" :active="isUrl('medicines')">Medicines</MainMenuItem>
         <MainMenuItem href="/customers" icon="manufacturer" :active="isUrl('customers')">Customers</MainMenuItem>
-        <MainMenuItem href="/stocks" icon="printer" :active="isUrl('stocks')">Stocks</MainMenuItem>
+        <MainMenuItem href="/stocks" icon="stock" :active="isUrl('stocks')">Stocks</MainMenuItem>
         <MainMenuItem href="/profile" icon="user" :active="isUrl('profile')">Profile</MainMenuItem>
         <MainMenuItem href="/about" icon="list" :active="isUrl('about')">About</MainMenuItem>
     </div>

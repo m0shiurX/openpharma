@@ -43,27 +43,37 @@
                                 >
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-3 pl-5">
-                                            <p class="mr-2 text-lg font-bold capitalize leading-none text-gray-700">
+                                            <p class="mr-2 text-lg font-semibold capitalize leading-none text-gray-700">
                                                 {{ stock.medicine }}
                                             </p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <p class="ml-1 truncate text-base capitalize leading-none text-gray-400">{{ stock.manufacturer }}</p>
-                                        </div>
-                                    </td>
-                                    <td class="border-r border-gray-100">
-                                        <div class="flex items-center pt-2 pb-3 pl-5">
                                             <icon icon="manufacturer" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">{{ stock.batch_id }}</p>
-                                        </div>
-                                        <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="phone" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">{{ stock.expiry_date }}</p>
+
+                                            <p class="truncate text-sm capitalize leading-none text-gray-400">
+                                                {{ stock.manufacturer }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <p class="ml-1 text-sm leading-none text-gray-400">{{ stock.stock }}</p>
+                                            <icon icon="hash" class="h-4 w-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                                {{ stock.batch_id }}
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center pt-2 pb-3 pl-5">
+                                            <icon icon="calender" class="h-4 w-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                                {{ stock.expiry_date }}
+                                            </p>
+                                        </div>
+                                    </td>
+                                    <td class="border-r border-gray-100">
+                                        <div class="flex items-center justify-end pt-2 pb-3 pr-5">
+                                            <p class="text-sm leading-none text-gray-400">
+                                                {{ stock.stock }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="pl-5 text-center">
@@ -110,7 +120,10 @@ const form = useForm({
 watch(
     form,
     debounce(() => {
-        Inertia.get(route('stocks.index'), pickBy(form), { preserveState: true, replace: true });
+        Inertia.get(route('stocks.index'), pickBy(form), {
+            preserveState: true,
+            replace: true,
+        });
     }, 500),
 );
 

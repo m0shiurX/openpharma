@@ -18,7 +18,8 @@ class MedicineController extends Controller
         return Inertia::render('Medicines/Index', [
             'filters' => Request::only('search'),
             'medicines' => Medicine::with('manufacturer:id,name')
-                ->orderBy('created_at', 'desc')
+                ->withSum('stocks', 'stock')
+                ->orderBy('stocks_sum_stock', 'desc')
                 ->filter(Request::only('search'))
                 ->paginate(10)
                 ->withQueryString()
@@ -33,6 +34,7 @@ class MedicineController extends Controller
                     'purchase_price' => $medicine->purchase_price,
                     'selling_price' => $medicine->selling_price,
                     'discount' => $medicine->discount,
+                    'in_stock'  => $medicine->stocks_sum_stock,
                     'created_at' => Carbon::parse($medicine->created_at)->format('M d, Y'),
                     'updated_at' => Carbon::parse($medicine->updated_at)->format('M d, Y'),
                 ])
