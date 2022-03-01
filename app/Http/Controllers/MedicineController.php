@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Medicine;
-use Carbon\Carbon;
+use App\Http\Resources\StockResource;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreMedicineRequest;
@@ -64,6 +65,7 @@ class MedicineController extends Controller
                 'purchase_price' => $medicine->purchase_price,
                 'selling_price' => $medicine->selling_price,
                 'discount' => $medicine->discount,
+                'stocks' => StockResource::collection($medicine->stocks),
             ]
         ]);
     }

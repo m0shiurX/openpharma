@@ -9,7 +9,7 @@ class MedicineSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Medicine::factory(20)->create();
-        // \App\Models\Medicine::factory(20)->hasStocks(2)->create();
+        // \App\Models\Medicine::factory(20)->create();
+        \App\Models\Medicine::factory(50)->hasStocks(2)->create();
     }
 }
