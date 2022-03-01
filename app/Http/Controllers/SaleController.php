@@ -7,9 +7,12 @@ use App\Models\Sale;
 use Inertia\Inertia;
 use App\Models\Customer;
 use App\Models\Medicine;
+use Illuminate\Support\Facades\DB;
+use App\Http\Resources\StockResource;
 use App\Http\Requests\StoreSaleRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\UpdateSaleRequest;
+use App\Models\SalesItem;
 
 class SaleController extends Controller
 {
@@ -63,7 +66,36 @@ class SaleController extends Controller
 
     public function store(StoreSaleRequest $request)
     {
-        //
+        // return dd($request->all());
+
+        DB::transaction(function () use ($request) {
+            $sale = Sale::create($request->only([
+                'customer_id',
+                'invoice_no',
+                'sales_date',
+                'sub_total',
+                'invoice_discount',
+                'vat',
+                'grand_total',
+                'paid_amount',
+                'exchange_amount',
+            ]));
+
+
+            foreach ($request->sales_items as $sales_item) {
+                $entry = [];
+                $entry['sale_id'] = $sale->id;
+                $entry['medicine_id'] = $sales_item['id'];
+                $entry['batch_id'] = $sales_item['batch_id'];
+                $entry['quantity'] = $sales_item['quantity'];
+                $entry['selling_price'] = $sales_item['selling_price'];
+                $entry['discount'] = $sales_item['discount'];
+                $entry['total_price'] = $sales_item['total_price'];
+
+                SalesItem::create($entry);
+            }
+        });
+        return redirect()->route('sales.index')->with('success', 'Successfully created!');
     }
 
 
@@ -102,7 +134,7 @@ class SaleController extends Controller
                 'strength' => $medicine->strength,
                 'selling_price' => $medicine->selling_price,
                 'discount' => $medicine->discount,
-                'stocks' => $medicine->stocks
+                'stocks' => StockResource::collection($medicine->stocks)
             ]);
     }
 }

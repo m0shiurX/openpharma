@@ -142,16 +142,20 @@
                                                     {{ formRow.name }} - {{ formRow.strength }}
                                                 </div>
                                             </td>
-                                            <td class="h-10 w-32 border-gray-100">
-                                                <input
-                                                    required
-                                                    type="text"
-                                                    v-model="formRow.batch_id"
+                                            <td class="h-10 w-36 border-gray-100">
+                                                <select
                                                     class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                />
+                                                    v-model="formRow.batch_id"
+                                                    required
+                                                >
+                                                    <option v-for="stock in formRow.stocks" :key="stock.id" :value="stock.id">
+                                                        {{ stock.batch_id }} - {{ stock.stock }}
+                                                    </option>
+                                                </select>
                                             </td>
-                                            <td class="h-10 w-32 border-gray-100">
+                                            <td class="h-10 w-28 border-gray-100">
                                                 <input
+                                                    :disabled="!formRow.batch_id"
                                                     min="1"
                                                     @focus="$event.target.select()"
                                                     type="number"
@@ -304,7 +308,14 @@
                             <!-- Form actions -->
                             <div class="mt-5 flex flex-row-reverse items-center justify-start gap-x-5">
                                 <button type="submit" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">Save</button>
-                                <button type="button" @click="saveItem" class="rounded-md bg-slate-400 px-8 py-2 text-white">Save & Print</button>
+                                <button
+                                    type="button"
+                                    :disabled="form.processing"
+                                    @click="saveItem"
+                                    class="rounded-md bg-slate-400 px-8 py-2 text-white"
+                                >
+                                    Save & Print
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -365,6 +376,15 @@ const changeCustomer = (id) => {
         customer.value = detail;
     }
 };
+
+// :max="formRow.batch_id ? formRow.stocks[formRow.batch_id].stock : 0"
+// const getMaxStock = (medicine, batch_id, index) => {
+//     let selectedStock = medicine.stocks.filter((stock) => {
+//         return (stock.batch_id = batch_id);
+//     });
+//     console.log(selectedStock);
+//     return selectedStock.stock;
+// };
 
 watch(
     () => form.customer_id,
