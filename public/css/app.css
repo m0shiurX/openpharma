@@ -821,6 +821,14 @@ select {
 .h-12 {
   height: 3rem;
 }
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.h-96 {
+  height: 24rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1308,6 +1316,9 @@ select {
 }
 .p-0 {
   padding: 0px;
+}
+.p-8 {
+  padding: 2rem;
 }
 .px-4 {
   padding-left: 1rem;

@@ -28,13 +28,6 @@
                     <table class="w-full table-auto whitespace-nowrap">
                         <thead>
                             <tr tabindex="0" class="h-16 rounded-lg border border-gray-100 bg-white text-lg text-gray-500 focus:outline-none">
-                                <th>
-                                    <div class="ml-5 flex items-center">
-                                        <div class="relative flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm bg-gray-200">
-                                            <input placeholder="checkbox" type="checkbox" class="h-full w-full cursor-pointer" />
-                                        </div>
-                                    </div>
-                                </th>
                                 <th class="border-r border-gray-100 pl-5 text-left">Customer</th>
                                 <th class="border-x border-gray-100 pl-5 text-left">Contact</th>
                                 <th colspan="2" class="border-l border-gray-100">Action</th>
@@ -42,31 +35,30 @@
                             <tr class="h-3"></tr>
                         </thead>
                         <tbody class="">
-                            <template v-for="(customer, i) in props.customers.data" :key="customer.id">
+                            <template v-for="customer in props.customers.data" :key="customer.id">
                                 <tr
                                     tabindex="0"
                                     class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                 >
-                                    <td>
-                                        <div class="ml-5">
-                                            <div class="relative flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-sm bg-gray-200">
-                                                <input placeholder="checkbox" type="checkbox" class="h-full w-full cursor-pointer" />
-                                            </div>
-                                        </div>
-                                    </td>
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-3 pl-5">
-                                            <p class="mr-2 text-lg font-medium leading-none text-gray-700">{{ customer.name }}</p>
+                                            <p class="mr-2 text-lg font-medium leading-none text-gray-700">
+                                                {{ customer.name }}
+                                            </p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
                                             <icon icon="location" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 truncate text-base leading-none text-gray-400">{{ customer.address }}</p>
+                                            <p class="ml-1 truncate text-base leading-none text-gray-400">
+                                                {{ customer.address }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
                                             <icon icon="phone" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">{{ customer.phone }}</p>
+                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                                {{ customer.phone }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="pl-5">
@@ -144,7 +136,10 @@ const form = useForm({
 watch(
     form,
     debounce(() => {
-        Inertia.get(route('customers.index'), pickBy(form), { preserveState: true, replace: true });
+        Inertia.get(route('customers.index'), pickBy(form), {
+            preserveState: true,
+            replace: true,
+        });
     }, 500),
 );
 

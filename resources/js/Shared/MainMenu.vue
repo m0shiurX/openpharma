@@ -1,10 +1,10 @@
 <template>
     <div class="space-y-4">
         <MainMenuItem href="/dashboard" icon="dashboard" :active="isUrl('dashboard')">Dashboard</MainMenuItem>
-        <MainMenuItem href="/sales" icon="manufacturer" :active="isUrl('sales')">SALES</MainMenuItem>
-        <MainMenuItem href="/purchases" icon="manufacturer" :active="isUrl('purchases')">Purchase</MainMenuItem>
+        <MainMenuItem href="/sales" icon="cart" :active="isUrl('sales')">SALES</MainMenuItem>
+        <MainMenuItem href="/purchases" icon="bag" :active="isUrl('purchases')">Purchase</MainMenuItem>
         <MainMenuItem href="/manufacturers" icon="manufacturer" :active="isUrl('manufacturers')">Manufacturers</MainMenuItem>
-        <MainMenuItem href="/medicines" icon="manufacturer" :active="isUrl('medicines')">Medicines</MainMenuItem>
+        <MainMenuItem href="/medicines" icon="clip-list" :active="isUrl('medicines')">Medicines</MainMenuItem>
         <MainMenuItem href="/customers" icon="user-group" :active="isUrl('customers')">Customers</MainMenuItem>
         <MainMenuItem href="/stocks" icon="stock" :active="isUrl('stocks')">Stocks</MainMenuItem>
         <MainMenuItem href="/profile" icon="user" :active="isUrl('profile')">Profile</MainMenuItem>
