@@ -101,7 +101,18 @@ class SaleController extends Controller
 
     public function show(Sale $sale)
     {
-        //
+        $sale->load('salesItems', 'customer');
+
+        return Inertia::render('Sales/Show', [
+            'sale' => [
+                'id' => $sale->id,
+                'invoice_no' => $sale->invoice_no,
+                'customer' => $sale->customer->name,
+                'sub_total' => $sale->sub_total,
+                'grand_total' => $sale->grand_total,
+                'sales_items' => $sale->salesItems
+            ]
+        ]);
     }
 
 

@@ -97,7 +97,18 @@ class PurchaseController extends Controller
 
     public function show(Purchase $purchase)
     {
-        //
+        $purchase->load('purchaseItems', 'manufacturer');
+
+        return Inertia::render('Purchases/Show', [
+            'purchase' => [
+                'id' => $purchase->id,
+                'invoice_no' => $purchase->invoice_no,
+                'manufacturer' => $purchase->manufacturer->name,
+                'sub_total' => $purchase->sub_total,
+                'grand_total' => $purchase->grand_total,
+                'purchase_items' => $purchase->purchaseItems
+            ]
+        ]);
     }
 
     public function edit(Purchase $purchase)
