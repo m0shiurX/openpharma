@@ -18,6 +18,9 @@ class ManufacturersImport implements ToModel, WithHeadingRow, WithChunkReading, 
     {
         return new Manufacturer([
             'name' => $row['manufacturer'],
+            'location'  => $row['location'],
+            'contact_name' => 'Contact Person',
+            'contact_tel' => '+8801 XXX XXX XXX'
         ]);
     }
     public function chunkSize(): int

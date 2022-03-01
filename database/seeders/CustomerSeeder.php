@@ -9,6 +9,6 @@ class CustomerSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Customer::factory(20)->create();
+        \App\Models\Customer::factory(1)->create(['name' => 'Walk in Customer']);
     }
 }
