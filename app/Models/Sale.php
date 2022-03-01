@@ -15,8 +15,8 @@ class Sale extends Model
         'customer_id',
         'invoice_no',
         'sales_date',
+        'sub_total',
         'invoice_discount',
-        'total_discount',
         'vat',
         'grand_total',
         'paid_amount',
@@ -52,8 +52,10 @@ class Sale extends Model
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->whereHas('manufacturer', function ($query) use ($search) {
+            $query->whereHas('customer', function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
+            })->orWhere(function ($query) use ($search) {
+                $query->where('invoice_no', 'like', '%' . $search . '%');
             });
         });
     }

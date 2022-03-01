@@ -16,7 +16,7 @@ class SaleController extends Controller
     {
         return Inertia::render('Sales/Index', [
             'filters' => Request::only('search'),
-            'purchases' => Sale::with('customer:id,name')
+            'sales' => Sale::with('customer:id,name')
                 ->orderBy('created_at', 'desc')
                 ->filter(Request::only('search'))
                 ->paginate(10)
@@ -28,10 +28,10 @@ class SaleController extends Controller
                     'customer' => $sale->customer->name,
                     'sub_total' => $sale->sub_total,
                     'vat' => $sale->vat,
-                    'discount' => $sale->discount,
+                    'invoice_discount' => $sale->invoice_discount,
                     'grand_total' => $sale->grand_total,
                     'paid_amount' => $sale->paid_amount,
-                    'due_amount' => $sale->due_amount,
+                    'exchange_amount' => $sale->exchange_amount,
                     'created_at' => Carbon::parse($sale->created_at)->format('M d, Y'),
                     'updated_at' => Carbon::parse($sale->updated_at)->format('M d, Y'),
                 ])
