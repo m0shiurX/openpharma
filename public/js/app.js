@@ -7374,7 +7374,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_26 = ["onKeydown"];
 var _hoisted_27 = {
   key: 0,
-  "class": "absolute top-20 left-0 z-50 w-full"
+  "class": "absolute top-20 left-0 z-50 h-96 w-full overflow-y-auto rounded-b-lg rounded-t-sm"
 };
 var _hoisted_28 = {
   "class": "mt-1 w-full overflow-auto rounded-md bg-orange-100 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -7709,7 +7709,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return [$setup.search.length > 0 && $setup.searchResultShown ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_28, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.filteredMedicine, function (medicine, index) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
               key: medicine.id,
-              "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative w-full cursor-pointer py-2 pl-10 pr-4 text-slate-900 focus:bg-orange-200", {
+              "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative w-full cursor-pointer border-y border-orange-200 py-2 pl-10 pr-4 text-slate-900 hover:border-y hover:border-orange-300 hover:bg-orange-200 focus:bg-orange-200", {
                 'border-y border-orange-400 bg-orange-200': index === $setup.highlightedIndex
               }]),
               role: "option",
@@ -8660,7 +8660,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_26 = ["onKeydown"];
 var _hoisted_27 = {
   key: 0,
-  "class": "absolute top-20 left-0 z-50 w-full"
+  "class": "absolute top-20 left-0 z-50 h-96 w-full overflow-y-auto rounded-b-lg rounded-t-sm"
 };
 var _hoisted_28 = {
   key: 0,
@@ -8990,7 +8990,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return [$setup.search.length > 0 && $setup.searchResultShown ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_27, [$setup.filteredMedicine.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", _hoisted_28, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.filteredMedicine, function (medicine, index) {
             return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
               key: medicine.id,
-              "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative w-full cursor-pointer py-2 pl-10 pr-4 text-slate-900 focus:bg-orange-200", {
+              "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["relative w-full cursor-pointer border-y border-orange-200 py-2 pl-10 pr-4 text-slate-900 hover:border-y hover:border-orange-300 hover:bg-orange-200 focus:bg-orange-200", {
                 'border-y border-orange-400 bg-orange-200': index === $setup.highlightedIndex
               }]),
               role: "option",

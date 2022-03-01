@@ -88,14 +88,17 @@
                                     &times;
                                 </div>
                                 <transition name="fade">
-                                    <div v-if="search.length > 0 && searchResultShown" class="absolute top-20 left-0 z-50 w-full">
+                                    <div
+                                        v-if="search.length > 0 && searchResultShown"
+                                        class="absolute top-20 left-0 z-50 h-96 w-full overflow-y-auto rounded-b-lg rounded-t-sm"
+                                    >
                                         <ul
                                             class="mt-1 w-full overflow-auto rounded-md bg-orange-100 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         >
                                             <li
                                                 v-for="(medicine, index) in filteredMedicine"
                                                 :key="medicine.id"
-                                                class="relative w-full cursor-pointer py-2 pl-10 pr-4 text-slate-900 focus:bg-orange-200"
+                                                class="relative w-full cursor-pointer border-y border-orange-200 py-2 pl-10 pr-4 text-slate-900 hover:border-y hover:border-orange-300 hover:bg-orange-200 focus:bg-orange-200"
                                                 role="option"
                                                 tabindex="-1"
                                                 value="0"

@@ -131,6 +131,7 @@ class PurchaseController extends Controller
         return Medicine::query()
             ->orderBy('created_at', 'desc')
             ->filter(['search' => $request->input('query')])
+            ->limit(20)
             ->get()
             ->map(fn ($medicine) => [
                 'id' => $medicine->id,
