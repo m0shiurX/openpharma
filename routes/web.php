@@ -25,6 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    // Default route
+    Route::get('/about', function () {
+        return Inertia::render('About');
+    })->name('about');
 
 
     // Profile management
