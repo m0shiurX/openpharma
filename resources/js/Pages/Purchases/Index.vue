@@ -46,33 +46,43 @@
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-3 pl-5">
                                             <p class="mr-2 text-lg font-bold capitalize leading-none text-gray-700">
-                                                {{ purchase.invoice_no }} <span class="text-sm text-gray-400"></span>
+                                                {{ purchase.invoice_no }}
                                             </p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <p class="ml-1 truncate text-base capitalize leading-none text-gray-400">{{ purchase.purchase_date }}</p>
+                                            <p class="truncate text-base capitalize leading-none text-gray-400">
+                                                {{ purchase.purchase_date }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
                                             <icon icon="manufacturer" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">{{ purchase.manufacturer }}</p>
+                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                                {{ purchase.manufacturer }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
                                             <icon icon="phone" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">{{ purchase.grand_total }}</p>
+                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                                {{ purchase.grand_total }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <p class="ml-1 text-sm leading-none text-gray-400">{{ purchase.paid_amount }}</p>
+                                            <p class="ml-1 text-sm leading-none text-gray-400">
+                                                {{ purchase.paid_amount }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="border-r border-gray-100">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <p class="ml-1 text-sm leading-none text-gray-400">{{ purchase.due_amount }}</p>
+                                            <p class="ml-1 text-sm leading-none text-gray-400">
+                                                {{ purchase.due_amount }}
+                                            </p>
                                         </div>
                                     </td>
                                     <td class="pl-5">
@@ -150,7 +160,10 @@ const form = useForm({
 watch(
     form,
     debounce(() => {
-        Inertia.get(route('purchases.index'), pickBy(form), { preserveState: true, replace: true });
+        Inertia.get(route('purchases.index'), pickBy(form), {
+            preserveState: true,
+            replace: true,
+        });
     }, 500),
 );
 
