@@ -3,7 +3,7 @@
 
     <AuthLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">Purchase #{{ invoice_no }}</h2>
+            <h2 class="text-xl font-semibold leading-tight text-gray-800">Sales #{{ invoice_no }}</h2>
         </template>
 
         <div class="mt-8 rounded-lg bg-white/30 py-8">
@@ -22,10 +22,10 @@
                                     </div>
                                 </div>
                                 <div class="flex flex-1 items-center pl-2">
-                                    <Icon icon="manufacturer" class="h-8 w-8 stroke-orange-300" />
+                                    <Icon icon="user-circle" class="h-8 w-8 stroke-orange-300" />
                                     <div class="ml-2 flex flex-col">
-                                        <span class="text-sm font-semibold text-slate-500">{{ manufacturer.name }}</span>
-                                        <span class="text-xs text-slate-400">{{ manufacturer.location }}</span>
+                                        <span class="text-sm font-semibold text-slate-500">{{ customer.name }}</span>
+                                        <span class="text-xs text-slate-400">{{ customer.phone }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -35,24 +35,24 @@
                             <!-- Purchase info -->
                             <div class="mb-3 flex gap-x-2">
                                 <div class="flex-1">
-                                    <label class="mb-2 block" for="manufacturer"> Manufacturer</label>
+                                    <label class="mb-2 block" for="customer"> Customer</label>
                                     <select
                                         class="h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 text-slate-900 focus:border-orange-400 focus:ring-orange-400"
-                                        v-model="form.manufacturer_id"
-                                        id="manufacturer"
+                                        v-model="form.customer_id"
+                                        id="customer"
                                         required
                                     >
-                                        <option value="" selected>Select a Manufacturer</option>
-                                        <option v-for="manufacturer in props.manufacturers" :key="manufacturer.id" :value="manufacturer.id">
-                                            {{ manufacturer.name }}
+                                        <option value="" selected>Select a Customer</option>
+                                        <option v-for="customer in props.customers" :key="customer.id" :value="customer.id">
+                                            {{ customer.name }}
                                         </option>
                                     </select>
                                 </div>
                                 <div class="flex-1">
-                                    <label class="mb-2 block" for="purchase_date">Purchase Date</label>
+                                    <label class="mb-2 block" for="sales_date">Sales Date</label>
                                     <input
-                                        id="purchase_date"
-                                        v-model="form.purchase_date"
+                                        id="sales_date"
+                                        v-model="form.sales_date"
                                         type="date"
                                         onkeydown="return false"
                                         class="h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 text-slate-900 focus:border-orange-400 focus:outline-none focus:ring-orange-400 sm:text-sm"
@@ -90,6 +90,7 @@
                                 <transition name="fade">
                                     <div v-if="search.length > 0 && searchResultShown" class="absolute top-20 left-0 z-50 w-full">
                                         <ul
+                                            v-if="filteredMedicine.length > 0"
                                             class="mt-1 w-full overflow-auto rounded-md bg-orange-100 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         >
                                             <li
@@ -105,6 +106,14 @@
                                                 <span class="block font-normal capitalize">{{ medicine.name }} - {{ medicine.strength }}</span>
                                             </li>
                                         </ul>
+                                        <ul
+                                            v-else
+                                            class="mt-1 w-full overflow-auto rounded-md bg-orange-100 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                        >
+                                            <li class="relative w-full cursor-pointer py-2 pl-10 pr-4 text-slate-900 focus:bg-orange-200">
+                                                No results found
+                                            </li>
+                                        </ul>
                                     </div>
                                 </transition>
                             </div>
@@ -115,18 +124,16 @@
                                     <tr class="h-12 rounded-lg border border-gray-100 bg-white text-base text-gray-500 focus:outline-none">
                                         <th class="border-r border-gray-100 pl-5 pr-2 text-left">Medicine</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">BATCH</th>
-                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">Expiry</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">Qty</th>
-                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">Rate</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">MRP</th>
                                         <th class="W-20 border-x border-gray-100 pl-3 pr-2 text-left">Disc (%)</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 pr-3 text-left">Total</th>
-                                        <th class="border-l border-gray-100">ACT</th>
+                                        <th class="border-l border-gray-100"></th>
                                     </tr>
                                     <tr class="h-2"></tr>
                                 </thead>
                                 <tbody class="">
-                                    <template v-for="(formRow, index) in form.purchase_items" :key="index">
+                                    <template v-for="(formRow, index) in form.sales_items" :key="index">
                                         <tr
                                             class="group h-10 rounded border border-orange-200 bg-orange-50 transition-colors duration-200 ease-in hover:bg-orange-100"
                                         >
@@ -145,26 +152,10 @@
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
                                                 <input
-                                                    required
-                                                    type="date"
-                                                    v-model="formRow.expiry_date"
-                                                    class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                />
-                                            </td>
-                                            <td class="h-10 w-32 border-gray-100">
-                                                <input
                                                     min="1"
                                                     @focus="$event.target.select()"
                                                     type="number"
                                                     v-model="formRow.quantity"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                />
-                                            </td>
-                                            <td class="h-10 w-32 border-gray-100">
-                                                <input
-                                                    @focus="$event.target.select()"
-                                                    type="text"
-                                                    v-model="formRow.purchase_price"
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
@@ -205,7 +196,7 @@
                                         <tr class="h-2">
                                             <td colspan="8" v-if="Object.keys(form.errors).length > 0">
                                                 <p class="pl-2 text-xs text-red-400">
-                                                    {{ form.errors['purchase_items.' + index + '.batch_id'] }}
+                                                    {{ form.errors['sales_items.' + index + '.batch_id'] }}
                                                 </p>
                                             </td>
                                         </tr>
@@ -215,7 +206,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="5" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Sub Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -231,14 +222,14 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Discount</div>
+                                        <th colspan="5" class="border-x border-gray-100">
+                                            <div class="flex items-center justify-end pr-5">Invoice Discount</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
                                                 @focus="$event.target.select()"
                                                 type="text"
-                                                v-model="form.discount"
+                                                v-model="form.invoice_discount"
                                                 class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
@@ -247,7 +238,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="5" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">VAT</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -263,7 +254,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="5" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Grand Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -279,7 +270,7 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
+                                        <th colspan="5" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Paid Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
@@ -295,13 +286,13 @@
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
-                                        <th colspan="6" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Due Total</div>
+                                        <th colspan="5" class="border-x border-gray-100">
+                                            <div class="flex items-center justify-end pr-5">Exchange Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
                                                 type="text"
-                                                v-model="form.due_amount"
+                                                v-model="form.exchange_amount"
                                                 class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
@@ -335,49 +326,49 @@ import axios from 'axios';
 
 const props = defineProps({
     invoice_no: String,
-    manufacturers: Object,
+    customers: Object,
 });
 const form = useForm({
     invoice_no: props.invoice_no,
-    purchase_date: moment().format('YYYY-MM-DD'),
-    manufacturer_id: '',
+    sales_date: moment().format('YYYY-MM-DD'),
+    customer_id: '',
     sub_total: 0,
     vat: 0,
-    discount: 0,
+    invoice_discount: 0,
     grand_total: 0,
     paid_amount: 0,
-    due_amount: 0,
-    purchase_items: [],
+    exchange_amount: 0,
+    sales_items: [],
 });
 
 // Purchase date
 const display_date = computed({
     get() {
-        if (moment(form.purchase_date).isValid()) {
-            return moment(form.purchase_date).format('LL');
+        if (moment(form.sales_date).isValid()) {
+            return moment(form.sales_date).format('LL');
         } else {
             return moment().format('LL');
         }
     },
 });
 
-// Manufacturers
-const manufacturer = ref({
+// Customers
+const customer = ref({
     id: 1,
-    name: 'Select a Manufacturer',
-    location: 'Manufacturer Address',
+    name: 'Select a Customer',
+    phone: '+8801 XXX XXXXXX',
 });
 
-const changeManufacturer = (id) => {
-    let detail = props.manufacturers.find((item) => item.id === id);
+const changeCustomer = (id) => {
+    let detail = props.customers.find((item) => item.id === id);
     if (detail) {
-        manufacturer.value = detail;
+        customer.value = detail;
     }
 };
 
 watch(
-    () => form.manufacturer_id,
-    (manufacturer_id) => changeManufacturer(manufacturer_id),
+    () => form.customer_id,
+    (customer_id) => changeCustomer(customer_id),
 );
 
 // Medicines
@@ -391,7 +382,7 @@ watch(
     debounce((txt) => {
         txt.length > 1 &&
             axios
-                .get(route('purchases.medicine'), {
+                .get(route('sales.medicine'), {
                     params: { query: txt },
                 })
                 .then((result) => (filteredMedicine.value = result.data));
@@ -437,17 +428,15 @@ const highlightPrevious = () => {
 watch(selectedMedicine, (item) => {
     item.total_price = 0;
     item.quantity = 0;
-    item.batch_id = '';
-    item.expiry_date = moment().format('YYYY-MM-DD');
-    form.purchase_items.push(item);
+    form.sales_items.push(item);
 });
 
 // Calculate fields
 watch(
-    () => form.purchase_items,
+    () => form.sales_items,
     (items) => {
         items.map((item) => {
-            let net_price = Number(item.quantity * item.purchase_price).toFixed(2);
+            let net_price = Number(item.quantity * item.selling_price).toFixed(2);
             let discount = Number((item.discount * net_price) / 100).toFixed(2);
             return (item.total_price = Number(net_price - discount).toFixed(2));
         });
@@ -458,24 +447,23 @@ watch(
 // Sub total
 form.sub_total = computed({
     get() {
-        // if (form.purchase_items.length > 0)
-        return Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.total_price), 0).toFixed(2));
+        return Number(form.sales_items.reduce((accumulator, current) => accumulator + parseFloat(current.total_price), 0).toFixed(2));
     },
 });
 
 // Purchase date
 form.grand_total = computed({
     get() {
-        if (form.purchase_items.length == 0) return 0;
-        if (!isNaN(form.discount) && form.discount > 0) {
-            return Number(Math.round(form.sub_total - form.discount)).toFixed(2);
+        if (form.sales_items.length == 0) return 0;
+        if (!isNaN(form.invoice_discount) && form.invoice_discount > 0) {
+            return Number(Math.round(form.sub_total - form.invoice_discount)).toFixed(2);
         } else {
             return Math.round(form.sub_total);
         }
     },
 });
 
-form.due_amount = computed({
+form.exchange_amount = computed({
     get() {
         if (!isNaN(form.paid_amount) && form.paid_amount > 0) {
             return Number(form.grand_total - form.paid_amount).toFixed(2);
@@ -486,26 +474,17 @@ form.due_amount = computed({
 });
 
 const removeItem = (index) => {
-    form.purchase_items.splice(index, 1);
+    form.sales_items.splice(index, 1);
 };
 
 // Form Actions
 const saveItem = () => {
-    form.post(route('purchases.store'), {
+    form.post(route('sales.store'), {
         preserveScroll: true,
     });
 };
 const reset = () => {
-    form.purchase_items = [];
+    form.sales_items = [];
     form.reset();
-};
-
-// Animation
-const beforeLeave = (el) => {
-    const { marginLeft, marginTop, width, height } = window.getComputedStyle(el);
-    el.style.left = `${el.offsetLeft - parseFloat(marginLeft, 10)}px`;
-    el.style.top = `${el.offsetTop - parseFloat(marginTop, 10)}px`;
-    el.style.width = width;
-    el.style.height = height;
 };
 </script>

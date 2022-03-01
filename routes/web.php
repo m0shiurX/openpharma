@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('medicines', MedicineController::class);
     Route::get('list-of-medicines', [PurchaseController::class, 'searchMedicine'])->name('purchases.medicine');
     Route::resource('purchases', PurchaseController::class);
+    Route::get('list-of-medicines-with-batch', [SaleController::class, 'searchMedicine'])->name('sales.medicine');
     Route::resource('sales', SaleController::class);
     Route::resource('manufacturers', ManufacturerController::class);
 });

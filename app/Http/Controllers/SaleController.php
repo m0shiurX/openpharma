@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Sale;
 use Inertia\Inertia;
+use App\Models\Customer;
+use App\Models\Medicine;
 use App\Http\Requests\StoreSaleRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\UpdateSaleRequest;
@@ -41,6 +43,21 @@ class SaleController extends Controller
 
     public function create()
     {
+        $latest_invoice = \App\Models\Sale::withTrashed()->latest()->max('id') + 1;
+        $invoice_no = 'SL-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
+
+        return Inertia::render('Sales/Create', [
+            'filters' => Request::only('search'),
+            'invoice_no' => $invoice_no,
+            'customers' => Customer::select(['id', 'name', 'phone'])
+                ->orderBy('name', 'asc')
+                ->get()
+                ->map(fn ($customer) => [
+                    'id' => $customer->id,
+                    'name' => $customer->name,
+                    'phone' => $customer->phone
+                ]),
+        ]);
     }
 
 
@@ -71,5 +88,21 @@ class SaleController extends Controller
     public function destroy(Sale $sale)
     {
         //
+    }
+
+    public function searchMedicine(\Illuminate\Http\Request $request)
+    {
+        return Medicine::with('stocks')
+            ->orderBy('created_at', 'desc')
+            ->filter(['search' => $request->input('query')])
+            ->get()
+            ->map(fn ($medicine) => [
+                'id' => $medicine->id,
+                'name' => $medicine->name,
+                'strength' => $medicine->strength,
+                'selling_price' => $medicine->selling_price,
+                'discount' => $medicine->discount,
+                'stocks' => $medicine->stocks
+            ]);
     }
 }
