@@ -131,8 +131,9 @@
                                             class="group h-10 rounded border border-orange-200 bg-orange-50 transition-colors duration-200 ease-in hover:bg-orange-100"
                                         >
                                             <td class="h-10 border-gray-100">
-                                                <div class="flex h-full items-center px-2 capitalize">
-                                                    {{ formRow.name }} - {{ formRow.strength }}
+                                                <div class="flex h-full flex-col items-start justify-center px-2 capitalize">
+                                                    {{ formRow.name }} <br />
+                                                    <span class="block truncate text-xs">{{ formRow.strength }}</span>
                                                 </div>
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
@@ -148,7 +149,7 @@
                                                     required
                                                     type="date"
                                                     v-model="formRow.expiry_date"
-                                                    class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
@@ -157,7 +158,7 @@
                                                     @focus="$event.target.select()"
                                                     type="number"
                                                     v-model="formRow.quantity"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
@@ -165,7 +166,7 @@
                                                     @focus="$event.target.select()"
                                                     type="text"
                                                     v-model="formRow.purchase_price"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
@@ -173,7 +174,7 @@
                                                     @focus="$event.target.select()"
                                                     type="text"
                                                     v-model="formRow.selling_price"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-20 border-gray-100">
@@ -181,7 +182,7 @@
                                                     @focus="$event.target.select()"
                                                     type="text"
                                                     v-model="formRow.discount"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
@@ -189,7 +190,7 @@
                                                     disabled
                                                     type="text"
                                                     v-model="formRow.total_price"
-                                                    class="h-full w-full border-0 border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    class="h-full w-full border-0 border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="w-12 p-0">
