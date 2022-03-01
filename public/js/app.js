@@ -1317,6 +1317,15 @@ __webpack_require__.r(__webpack_exports__);
     var form = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
       search: props.filters.search
     });
+    var importerForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+      _method: 'post',
+      file: null
+    });
+
+    var startImporting = function startImporting() {
+      importerForm.post(route('manufacturers.import'));
+    };
+
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(form, lodash_debounce__WEBPACK_IMPORTED_MODULE_8___default()(function () {
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.get(route('manufacturers.index'), lodash_pickBy__WEBPACK_IMPORTED_MODULE_6___default()(form), {
         preserveState: true,
@@ -1336,6 +1345,8 @@ __webpack_require__.r(__webpack_exports__);
     var __returned__ = {
       props: props,
       form: form,
+      importerForm: importerForm,
+      startImporting: startImporting,
       destroyItem: destroyItem,
       resetSearch: resetSearch,
       watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
@@ -1625,11 +1636,22 @@ __webpack_require__.r(__webpack_exports__);
       form.reset();
     };
 
+    var importerForm = (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+      _method: 'post',
+      file: null
+    });
+
+    var startImporting = function startImporting() {
+      importerForm.post(route('medicines.import'));
+    };
+
     var __returned__ = {
       props: props,
       form: form,
       destroyItem: destroyItem,
       resetSearch: resetSearch,
+      importerForm: importerForm,
+      startImporting: startImporting,
       watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
@@ -5760,6 +5782,27 @@ var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
+var _hoisted_29 = {
+  "class": "rounded-lg py-12 px-4 md:px-8 xl:px-10"
+};
+var _hoisted_30 = ["onSubmit"];
+var _hoisted_31 = {
+  "class": "block"
+};
+
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "sr-only"
+}, "Choose csv file", -1
+/* HOISTED */
+);
+
+var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2",
+  type: "submit"
+}, " Start Importing ", -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Manufacturers"
@@ -5903,7 +5946,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         links: $setup.props.manufacturers.links
       }, null, 8
       /* PROPS */
-      , ["links"])])])];
+      , ["links"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+        "class": "flex items-center",
+        onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.startImporting, ["prevent"])
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        onInput: _cache[1] || (_cache[1] = function ($event) {
+          return $setup.importerForm.file = $event.target.files[0];
+        }),
+        type: "file",
+        accept: "application/csv",
+        "class": "block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
+      }, null, 32
+      /* HYDRATE_EVENTS */
+      )]), _hoisted_33], 40
+      /* PROPS, HYDRATE_EVENTS */
+      , _hoisted_30)])])];
     }),
     _: 1
     /* STABLE */
@@ -6644,6 +6701,27 @@ var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
+var _hoisted_38 = {
+  "class": "rounded-lg py-12 px-4 md:px-8 xl:px-10"
+};
+var _hoisted_39 = ["onSubmit"];
+var _hoisted_40 = {
+  "class": "block"
+};
+
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "sr-only"
+}, "Choose csv file", -1
+/* HOISTED */
+);
+
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2",
+  type: "submit"
+}, " Start Importing ", -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Medicines"
@@ -6795,7 +6873,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         links: $setup.props.medicines.links
       }, null, 8
       /* PROPS */
-      , ["links"])])])];
+      , ["links"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+        "class": "flex items-center",
+        onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.startImporting, ["prevent"])
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        onInput: _cache[1] || (_cache[1] = function ($event) {
+          return $setup.importerForm.file = $event.target.files[0];
+        }),
+        type: "file",
+        accept: "application/csv",
+        "class": "block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
+      }, null, 32
+      /* HYDRATE_EVENTS */
+      )]), _hoisted_42], 40
+      /* PROPS, HYDRATE_EVENTS */
+      , _hoisted_39)])])];
     }),
     _: 1
     /* STABLE */

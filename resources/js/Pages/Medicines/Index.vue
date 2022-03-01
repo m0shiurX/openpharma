@@ -131,6 +131,25 @@
                 </div>
                 <Pagination class="mt-5" :links="props.medicines.links" />
             </div>
+            <div class="rounded-lg py-12 px-4 md:px-8 xl:px-10">
+                <form class="flex items-center" @submit.prevent="startImporting">
+                    <label class="block">
+                        <span class="sr-only">Choose csv file</span>
+                        <input
+                            @input="importerForm.file = $event.target.files[0]"
+                            type="file"
+                            accept="application/csv"
+                            class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
+                        />
+                    </label>
+                    <button
+                        class="inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        type="submit"
+                    >
+                        Start Importing
+                    </button>
+                </form>
+            </div>
         </div>
     </AuthLayout>
 </template>
@@ -173,5 +192,13 @@ const destroyItem = (item) => {
 
 const resetSearch = () => {
     form.reset();
+};
+const importerForm = useForm({
+    _method: 'post',
+    file: null,
+});
+
+const startImporting = () => {
+    importerForm.post(route('medicines.import'));
 };
 </script>

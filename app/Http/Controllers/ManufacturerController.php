@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Manufacturer;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Bus;
+use App\Imports\ManufacturersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreManufacturerRequest;
@@ -84,5 +87,14 @@ class ManufacturerController extends Controller
 
         // return Redirect::back()->with('success', 'Successfully deleted.');
         return Redirect::route('manufacturers.index')->with('success', 'Successfully deleted.');
+    }
+
+
+    public function importManufacturer(\Illuminate\Http\Request $request)
+    {
+        $file_path = $request->file('file')->store('storage');
+        Bus::chain([Excel::import(new ManufacturersImport, $file_path)]);
+
+        return redirect()->route('manufacturers.index')->with('success', 'Successfully started importing!');
     }
 }
