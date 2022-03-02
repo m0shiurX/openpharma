@@ -131,7 +131,7 @@
                 </div>
                 <Pagination class="mt-5" :links="props.medicines.links" />
             </div>
-            <div class="rounded-lg py-12 px-4 md:px-8 xl:px-10">
+            <div v-if="roles.includes('admin')" class="rounded-lg py-12 px-4 md:px-8 xl:px-10">
                 <form class="flex items-center" @submit.prevent="startImporting">
                     <label class="block">
                         <span class="sr-only">Choose csv file</span>
@@ -154,8 +154,8 @@
     </AuthLayout>
 </template>
 <script setup>
-import { watch, ref, onMounted } from 'vue';
-import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
+import { watch, computed, ref, onMounted } from 'vue';
+import { Head, useForm, usePage, Link } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import Pagination from '@/Shared/Pagination';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
@@ -170,6 +170,7 @@ const props = defineProps({
     medicines: Object,
     filters: Object,
 });
+const roles = computed(() => usePage().props.value.auth.role);
 
 const form = useForm({
     search: props.filters.search,
