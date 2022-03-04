@@ -13,7 +13,7 @@ class AuthResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'photo'  => $this->photo_path ? URL::route('storage', ['path' => $this->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
+            'photo'  => $this->photo_path ? URL::route('image', ['path' => $this->photo_path, 'w' => 60, 'h' => 60, 'fit' => 'crop']) : null,
         ];
     }
 }
