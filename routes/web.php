@@ -63,6 +63,6 @@ Route::middleware('auth')->group(function () {
 
 
 // Images
-Route::get('/img/{path}', [ImagesController::class, 'show'])
+Route::get('/image/{path}', [ImagesController::class, 'show'])
     ->where('path', '.*')
     ->name('image');
