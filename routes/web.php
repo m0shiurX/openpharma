@@ -1,6 +1,7 @@
 <?php
 
 use Inertia\Inertia;
+use App\Notifications\SmsMessage;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\StockController;
@@ -29,6 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/about', function () {
         return Inertia::render('About');
     })->name('about');
+
+    Route::get('/sms', function () {
+        // Or send a sms directly
+        $sms = new SmsMessage;
+        // Replace with your telephone number :-)
+        $sms->to('+8801719454658')->line('Hello World.')->line('Open.')->send();
+    });
 
 
     // Profile management

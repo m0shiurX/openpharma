@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'ubernetSMS' => [
+        'from' => 'Netway',
+        'base_url' => 'http://www.btssms.com/smsapi',
+        'api_key' => 'C200049660e4424af12ed8.59294911',
+    ],
+
 ];

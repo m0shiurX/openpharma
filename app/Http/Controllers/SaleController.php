@@ -13,6 +13,7 @@ use App\Http\Requests\StoreSaleRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\UpdateSaleRequest;
 use App\Models\SalesItem;
+use App\Notifications\SalesNotification;
 
 class SaleController extends Controller
 {
@@ -95,7 +96,13 @@ class SaleController extends Controller
                 SalesItem::create($entry);
             }
         });
-        return redirect()->route('sales.index')->with('success', 'Successfully created!');
+
+        $customer = Customer::find($request->only('customer_id'))->first();
+        if ($customer->phone != 0) {
+            $customer->notify(new SalesNotification());
+        }
+
+        return redirect()->route('sales.index')->with('success', 'Successfully created and sent sms!');
     }
 
 
