@@ -33,7 +33,7 @@
                         <span class="inline-flex items-center rounded-md">
                             <img
                                 class="mr-1 inline-flex h-8 w-8 rounded-full object-cover ring-1 ring-orange-100 ring-offset-2"
-                                :src="$page.props.auth.user.photo ?? '/img/public/avatar.jpg'"
+                                :src="$page.props.auth.user.photo ?? '/storage/avatar.jpg'"
                             />
                             <button
                                 type="button"

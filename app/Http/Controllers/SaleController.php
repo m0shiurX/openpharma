@@ -117,6 +117,8 @@ class SaleController extends Controller
                 'customer' => $sale->customer->name,
                 'sub_total' => $sale->sub_total,
                 'grand_total' => $sale->grand_total,
+                'paid_amount' => $sale->paid_amount,
+                'exchange_amount' => $sale->exchange_amount,
                 'sales_items' => $sale->salesItems
             ]
         ]);

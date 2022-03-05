@@ -2771,17 +2771,19 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
-    var props = __props;
+    var props = __props; // const destroyItem = () => {
+    //     if (confirm('Are you sure you want to delete?')) {
+    //         Inertia.delete(route('sales.destroy', props.sale.id));
+    //     }
+    // };
 
-    var destroyItem = function destroyItem() {
-      if (confirm('Are you sure you want to delete?')) {
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia["delete"](route('sales.destroy', props.sale.id));
-      }
+    var printItem = function printItem() {
+      console.log('trying to print the invoice');
     };
 
     var __returned__ = {
       props: props,
-      destroyItem: destroyItem,
+      printItem: printItem,
       Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
       Link: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Link,
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.useForm,
@@ -3714,7 +3716,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
         "class": "mr-1 inline-flex h-8 w-8 rounded-full object-cover ring-1 ring-orange-100 ring-offset-2",
-        src: (_ctx$$page$props$auth = _ctx.$page.props.auth.user.photo) !== null && _ctx$$page$props$auth !== void 0 ? _ctx$$page$props$auth : '/img/public/avatar.jpg'
+        src: (_ctx$$page$props$auth = _ctx.$page.props.auth.user.photo) !== null && _ctx$$page$props$auth !== void 0 ? _ctx$$page$props$auth : '/storage/avatar.jpg'
       }, null, 8
       /* PROPS */
       , _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.name) + " ", 1
@@ -9811,7 +9813,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         type: "button",
-        onClick: $setup.destroyItem,
+        onClick: $setup.printItem,
         "class": "rounded-md bg-orange-500 px-8 py-2 text-white"
       }, "Delete")])])])])])];
     }),

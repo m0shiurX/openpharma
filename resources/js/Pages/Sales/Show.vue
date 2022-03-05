@@ -21,7 +21,7 @@
                             <Link :href="route('sales.index')" as="button" tabindex="0" class="rounded-md bg-green-500 px-8 py-2 text-white">
                                 Back
                             </Link>
-                            <button type="button" @click="destroyItem" class="rounded-md bg-orange-500 px-8 py-2 text-white">Delete</button>
+                            <button type="button" @click="printItem" class="rounded-md bg-orange-500 px-8 py-2 text-white">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -38,9 +38,13 @@ const props = defineProps({
     sale: Object,
 });
 
-const destroyItem = () => {
-    if (confirm('Are you sure you want to delete?')) {
-        Inertia.delete(route('sales.destroy', props.sale.id));
-    }
+// const destroyItem = () => {
+//     if (confirm('Are you sure you want to delete?')) {
+//         Inertia.delete(route('sales.destroy', props.sale.id));
+//     }
+// };
+
+const printItem = () => {
+    console.log('trying to print the invoice');
 };
 </script>
