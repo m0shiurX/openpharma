@@ -38,7 +38,7 @@ const props = defineProps({
 
 const destroyCustomer = () => {
     if (confirm('Are you sure you want to delete this organization?')) {
-        Inertia.delete(route('customers.destroy', props.customer.id));
+        // Inertia.delete(route('customers.destroy', props.customer.id));
     }
 };
 </script>

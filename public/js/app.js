@@ -1002,8 +1002,7 @@ __webpack_require__.r(__webpack_exports__);
     }, 500));
 
     var destroyItem = function destroyItem(item) {
-      console.log(item);
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"](route('customers.destroy', item));
+      console.log(item); // Inertia.delete(route('customers.destroy', item));
     };
 
     var resetSearch = function resetSearch() {
@@ -1071,8 +1070,7 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
 
     var destroyCustomer = function destroyCustomer() {
-      if (confirm('Are you sure you want to delete this organization?')) {
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia["delete"](route('customers.destroy', props.customer.id));
+      if (confirm('Are you sure you want to delete this organization?')) {// Inertia.delete(route('customers.destroy', props.customer.id));
       }
     };
 
@@ -1337,8 +1335,7 @@ __webpack_require__.r(__webpack_exports__);
     }, 500));
 
     var destroyItem = function destroyItem(item) {
-      console.log(item);
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"](route('manufacturers.destroy', item));
+      console.log(item); // Inertia.delete(route('manufacturers.destroy', item));
     };
 
     var resetSearch = function resetSearch() {
@@ -1410,8 +1407,7 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
 
     var destroyManufacturer = function destroyManufacturer() {
-      if (confirm('Are you sure you want to delete this organization?')) {
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia["delete"](route('manufacturers.destroy', props.manufacturer.id));
+      if (confirm('Are you sure you want to delete this organization?')) {// Inertia.delete(route('manufacturers.destroy', props.manufacturer.id));
       }
     };
 
@@ -1636,8 +1632,7 @@ __webpack_require__.r(__webpack_exports__);
     }, 500));
 
     var destroyItem = function destroyItem(item) {
-      console.log(item);
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"](route('medicines.destroy', item));
+      console.log(item); // Inertia.delete(route('medicines.destroy', item));
     };
 
     var resetSearch = function resetSearch() {
@@ -1719,8 +1714,7 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
 
     var destroyItem = function destroyItem() {
-      if (confirm('Are you sure you want to delete?')) {
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia["delete"](route('medicines.destroy', props.medicine.id));
+      if (confirm('Are you sure you want to delete?')) {// Inertia.delete(route('medicines.destroy', props.medicine.id));
       }
     };
 
@@ -2236,8 +2230,7 @@ __webpack_require__.r(__webpack_exports__);
     }, 500));
 
     var destroyItem = function destroyItem(item) {
-      console.log(item);
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"](route('purchases.destroy', item));
+      console.log(item); // Inertia.delete(route('purchases.destroy', item));
     };
 
     var resetSearch = function resetSearch() {
@@ -2711,8 +2704,7 @@ __webpack_require__.r(__webpack_exports__);
     }, 500));
 
     var destroyItem = function destroyItem(item) {
-      console.log(item);
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"](route('sales.destroy', item));
+      console.log(item); // Inertia.delete(route('sales.destroy', item));
     };
 
     var resetSearch = function resetSearch() {
@@ -2866,8 +2858,7 @@ __webpack_require__.r(__webpack_exports__);
     }, 500));
 
     var destroyItem = function destroyItem(item) {
-      console.log(item);
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia["delete"](route('stocks.destroy', item));
+      console.log(item); // Inertia.delete(route('stocks.destroy', item));
     };
 
     var resetSearch = function resetSearch() {
@@ -2935,8 +2926,7 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
 
     var destroyItem = function destroyItem() {
-      if (confirm('Are you sure you want to delete?')) {
-        _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia["delete"](route('medicines.destroy', props.medicine.id));
+      if (confirm('Are you sure you want to delete?')) {// Inertia.delete(route('medicines.destroy', props.medicine.id));
       }
     };
 
@@ -6542,7 +6532,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["modelValue", "error"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
         onClick: $setup.reset,
-        href: _ctx.route('manufacturers.index'),
+        href: _ctx.route('medicines.index'),
         "class": "rounded-md bg-slate-400 px-8 py-2 text-white"
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

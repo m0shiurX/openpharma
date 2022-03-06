@@ -145,7 +145,7 @@ watch(
 
 const destroyItem = (item) => {
     console.log(item);
-    Inertia.delete(route('customers.destroy', item));
+    // Inertia.delete(route('customers.destroy', item));
 };
 
 const resetSearch = () => {

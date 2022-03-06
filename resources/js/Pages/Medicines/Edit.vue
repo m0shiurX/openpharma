@@ -53,7 +53,7 @@
                                 <BaseInput label="Discount (%)" v-model="form.discount" :error="form.errors.discount" class="flex-1" />
                             </div>
                             <div class="mt-8 flex items-center justify-end space-x-5">
-                                <Link @click="reset" :href="route('manufacturers.index')" class="rounded-md bg-slate-400 px-8 py-2 text-white"
+                                <Link @click="reset" :href="route('medicines.index')" class="rounded-md bg-slate-400 px-8 py-2 text-white"
                                     >Cancel</Link
                                 >
                                 <button @click="updateItem" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">

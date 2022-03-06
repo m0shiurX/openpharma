@@ -40,7 +40,7 @@ const props = defineProps({
 
 const destroyManufacturer = () => {
     if (confirm('Are you sure you want to delete this organization?')) {
-        Inertia.delete(route('manufacturers.destroy', props.manufacturer.id));
+        // Inertia.delete(route('manufacturers.destroy', props.manufacturer.id));
     }
 };
 </script>

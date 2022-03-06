@@ -168,7 +168,7 @@ watch(
 
 const destroyItem = (item) => {
     console.log(item);
-    Inertia.delete(route('manufacturers.destroy', item));
+    // Inertia.delete(route('manufacturers.destroy', item));
 };
 
 const resetSearch = () => {

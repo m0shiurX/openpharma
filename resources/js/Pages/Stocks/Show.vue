@@ -46,7 +46,7 @@ const props = defineProps({
 
 const destroyItem = () => {
     if (confirm('Are you sure you want to delete?')) {
-        Inertia.delete(route('medicines.destroy', props.medicine.id));
+        // Inertia.delete(route('medicines.destroy', props.medicine.id));
     }
 };
 </script>
