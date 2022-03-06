@@ -23,7 +23,7 @@
             </div>
             <div class="rounded-lg px-4 md:px-8 xl:px-10">
                 <div
-                    class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full mt-5 overflow-auto overflow-y-scroll scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700"
+                    class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full mt-5 overflow-auto overflow-y-scroll pb-20 scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700"
                 >
                     <table class="w-full table-auto whitespace-nowrap">
                         <thead>
