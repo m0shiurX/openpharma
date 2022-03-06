@@ -35,7 +35,18 @@
                             <!-- Purchase info -->
                             <div class="mb-3 flex gap-x-2">
                                 <div class="flex-1">
-                                    <label class="mb-2 block" for="manufacturer"> Manufacturer</label>
+                                    <div class="mb-2 max-w-full">
+                                        <label class="mb-2 block" for="manufacturer"> Manufacturer</label>
+                                        <v-select
+                                            class="h-full bg-orange-100"
+                                            placeholder="Choose a Manufacturer"
+                                            v-model="form.manufacturer_id"
+                                            :options="props.manufacturers"
+                                            :reduce="(manufacturer) => manufacturer.id"
+                                            label="name"
+                                        />
+                                    </div>
+                                    <!-- <label class="mb-2 block" for="manufacturer"> Manufacturer</label>
                                     <select
                                         class="h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 text-slate-900 focus:border-orange-400 focus:ring-orange-400"
                                         v-model="form.manufacturer_id"
@@ -46,7 +57,7 @@
                                         <option v-for="manufacturer in props.manufacturers" :key="manufacturer.id" :value="manufacturer.id">
                                             {{ manufacturer.name }}
                                         </option>
-                                    </select>
+                                    </select> -->
                                 </div>
                                 <div class="flex-1">
                                     <label class="mb-2 block" for="purchase_date">Purchase Date</label>
@@ -122,7 +133,7 @@
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">Qty</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">Rate</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 text-left">MRP</th>
-                                        <th class="W-20 border-x border-gray-100 pl-3 pr-2 text-left">Disc (%)</th>
+                                        <th class="W-20 border-x border-gray-100 pl-3 pr-2 text-left">VAT</th>
                                         <th class="w-32 border-x border-gray-100 pl-5 pr-3 text-left">Total</th>
                                         <th class="border-l border-gray-100">ACT</th>
                                     </tr>
@@ -190,7 +201,6 @@
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
                                                 <input
-                                                    disabled
                                                     type="text"
                                                     v-model="formRow.total_price"
                                                     class="h-full w-full border-0 border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
@@ -256,7 +266,6 @@
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
-                                                disabled
                                                 type="text"
                                                 v-model="form.vat"
                                                 class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
@@ -336,6 +345,8 @@ import { ref, computed, watch } from 'vue';
 import moment from 'moment';
 import debounce from 'lodash/debounce';
 import axios from 'axios';
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 
 const props = defineProps({
     invoice_no: String,
@@ -344,9 +355,9 @@ const props = defineProps({
 const form = useForm({
     invoice_no: props.invoice_no,
     purchase_date: moment().format('YYYY-MM-DD'),
-    manufacturer_id: '',
+    manufacturer_id: null,
     sub_total: 0,
-    vat: 0,
+    vat: 17.4,
     discount: 0,
     grand_total: 0,
     paid_amount: 0,
@@ -441,6 +452,7 @@ const highlightPrevious = () => {
 watch(selectedMedicine, (item) => {
     item.total_price = 0;
     item.quantity = 0;
+    item.purchase_price = 0;
     item.batch_id = '';
     item.expiry_date = moment().format('YYYY-MM-DD');
     form.purchase_items.push(item);
@@ -451,10 +463,16 @@ watch(
     () => form.purchase_items,
     (items) => {
         items.map((item) => {
-            let net_price = Number(item.quantity * item.purchase_price).toFixed(2);
-            let discount = Number((item.discount * net_price) / 100).toFixed(2);
-            return (item.total_price = Number(net_price - discount).toFixed(2));
+            let vat = (parseFloat(item.total_price) / 100) * form.vat;
+            let rate = (parseFloat(item.total_price) + vat) / item.quantity;
+
+            return [(item.discount = Number(vat).toFixed(2)), (item.purchase_price = rate ? Number(rate).toFixed(2) : 0)];
         });
+        // items.map((item) => {
+        //     let net_price = Number(item.quantity * item.purchase_price).toFixed(2);
+        //     let discount = Number((item.discount * net_price) / 100).toFixed(2);
+        //     return (item.total_price = Number(net_price - discount).toFixed(2));
+        // });
     },
     { deep: true },
 );

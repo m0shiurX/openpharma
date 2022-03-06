@@ -242,7 +242,7 @@
                                         </th>
                                         <th class="w-12 text-xs font-light">BDT</th>
                                     </tr>
-                                    <tr
+                                    <!-- <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
                                         <th colspan="5" class="border-x border-gray-100">
@@ -257,7 +257,7 @@
                                             />
                                         </th>
                                         <th class="w-12 text-xs font-light">%</th>
-                                    </tr>
+                                    </tr> -->
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
@@ -345,7 +345,7 @@ const props = defineProps({
 const form = useForm({
     invoice_no: props.invoice_no,
     sales_date: moment().format('YYYY-MM-DD'),
-    customer_id: '',
+    customer_id: 1,
     sub_total: 0,
     vat: 0,
     invoice_discount: 0,

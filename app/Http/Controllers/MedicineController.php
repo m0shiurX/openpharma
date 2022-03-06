@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Medicine;
+use App\Models\Manufacturer;
 use App\Exports\MedicinesExport;
 use App\Imports\MedicinesImport;
 use Illuminate\Support\Facades\Bus;
@@ -48,7 +49,9 @@ class MedicineController extends Controller
 
     public function create()
     {
-        return Inertia::render('Medicines/Create');
+        return Inertia::render('Medicines/Create', [
+            'manufacturers' => Manufacturer::select('id', 'name')->get()
+        ]);
     }
 
     public function store(StoreMedicineRequest $request)
@@ -78,7 +81,9 @@ class MedicineController extends Controller
 
     public function edit(Medicine $medicine)
     {
+        $medicine->load('manufacturer');
         return Inertia::render('Medicines/Edit', [
+            'manufacturers' => Manufacturer::select('id', 'name')->get(),
             'medicine' => [
                 'id' => $medicine->id,
                 'name' => $medicine->name,

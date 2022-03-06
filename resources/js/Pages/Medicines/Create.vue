@@ -42,7 +42,16 @@
                         <div class="mt-6">
                             <BaseInput label="Name" v-model="form.name" :error="form.errors.name" class="" />
                             <BaseInput label="Generic Name" v-model="form.generic_name" :error="form.errors.generic_name" class="" />
-                            <BaseInput label="Manufacturer" v-model="form.manufacturer_id" :error="form.errors.manufacturer_id" class="" />
+                            <div class="mb-3 w-full bg-orange-100">
+                                <v-select
+                                    class="h-full"
+                                    placeholder="Choose a Manufacturer"
+                                    v-model="form.manufacturer_id"
+                                    :options="props.manufacturers"
+                                    :reduce="(manufacturer) => manufacturer.id"
+                                    label="name"
+                                />
+                            </div>
                             <div class="flex gap-x-2">
                                 <BaseInput label="Strength" v-model="form.strength" :error="form.errors.strength" class="flex-1" />
                                 <BaseInput label="Unit" v-model="form.unit" :error="form.errors.unit" class="flex-1" />
@@ -75,6 +84,12 @@ import { Inertia } from '@inertiajs/inertia';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import BaseInput from '@/Shared/BaseInput.vue';
 import Icon from '@/Shared/Icon.vue';
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
+
+const props = defineProps({
+    manufacturers: Object,
+});
 
 const form = useForm({
     name: '',
@@ -98,3 +113,22 @@ const reset = () => {
     form.reset();
 };
 </script>
+
+<style scoped>
+:root {
+    --vs-controls-color: #c36e4c;
+    --vs-border-color: #c3684c;
+
+    --vs-dropdown-bg: #282c34;
+    --vs-dropdown-color: #cc99cd;
+    --vs-dropdown-option-color: #cc99cd;
+
+    --vs-selected-bg: #664cc3;
+    --vs-selected-color: #eeeeee;
+
+    --vs-search-input-color: #eeeeee;
+
+    --vs-dropdown-option--active-bg: #664cc3;
+    --vs-dropdown-option--active-color: #eeeeee;
+}
+</style>
