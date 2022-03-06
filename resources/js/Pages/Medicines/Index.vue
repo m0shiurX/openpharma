@@ -148,6 +148,12 @@
                     >
                         Start Importing
                     </button>
+                    <a
+                        :href="route('medicines.export')"
+                        class="ml-5 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                    >
+                        Export Medicines
+                    </a>
                 </form>
             </div>
         </div>

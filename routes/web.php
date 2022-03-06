@@ -50,14 +50,15 @@ Route::middleware('auth')->group(function () {
     // Resources
     Route::resource('stocks', StockController::class);
     Route::resource('customers', CustomerController::class);
-    Route::post('medicines/import', [MedicineController::class, 'importMedicine'])->name('medicines.import');
+    Route::post('medicines/import', [MedicineController::class, 'importMedicines'])->name('medicines.import');
+    Route::get('medicines/export', [MedicineController::class, 'exportMedicines'])->name('medicines.export');
     Route::resource('medicines', MedicineController::class);
     Route::get('list-of-medicines', [PurchaseController::class, 'searchMedicine'])->name('purchases.medicine');
     Route::resource('purchases', PurchaseController::class);
     Route::get('list-of-medicines-with-batch', [SaleController::class, 'searchMedicine'])->name('sales.medicine');
     Route::resource('sales', SaleController::class);
-    Route::post('manufacturers/import', [ManufacturerController::class, 'importManufacturer'])->name('manufacturers.import');
-
+    Route::post('manufacturers/import', [ManufacturerController::class, 'importManufacturers'])->name('manufacturers.import');
+    Route::get('manufacturers/export', [ManufacturerController::class, 'exportManufacturers'])->name('manufacturers.export');
     Route::resource('manufacturers', ManufacturerController::class);
 });
 

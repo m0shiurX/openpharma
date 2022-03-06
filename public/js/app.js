@@ -5818,6 +5818,7 @@ var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
+var _hoisted_34 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Manufacturers"
@@ -5973,7 +5974,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
       }, null, 32
       /* HYDRATE_EVENTS */
-      )]), _hoisted_33], 40
+      )]), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: _ctx.route('manufacturers.export'),
+        "class": "ml-5 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+      }, " Export Manufacturers ", 8
+      /* PROPS */
+      , _hoisted_34)], 40
       /* PROPS, HYDRATE_EVENTS */
       , _hoisted_30)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])];
     }),
@@ -6738,6 +6744,7 @@ var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
+var _hoisted_43 = ["href"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], {
     title: "Medicines"
@@ -6901,7 +6908,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
       }, null, 32
       /* HYDRATE_EVENTS */
-      )]), _hoisted_42], 40
+      )]), _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: _ctx.route('medicines.export'),
+        "class": "ml-5 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+      }, " Export Medicines ", 8
+      /* PROPS */
+      , _hoisted_43)], 40
       /* PROPS, HYDRATE_EVENTS */
       , _hoisted_39)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])];
     }),

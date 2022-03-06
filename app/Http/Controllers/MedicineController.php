@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Medicine;
+use App\Exports\MedicinesExport;
 use App\Imports\MedicinesImport;
 use Illuminate\Support\Facades\Bus;
 use App\Imports\ManufacturersImport;
@@ -105,10 +106,15 @@ class MedicineController extends Controller
         return Redirect::route('medicines.index')->with('success', 'Successfully deleted.');
     }
 
-    public function importMedicine(\Illuminate\Http\Request $request)
+    public function importMedicines(\Illuminate\Http\Request $request)
     {
         $file_path = $request->file('file')->store('storage');
         Bus::chain([Excel::import(new MedicinesImport, $file_path)]);
         return redirect()->route('medicines.index')->with('success', 'Successfully started importing!');
+    }
+
+    public function exportMedicines()
+    {
+        return Excel::download(new MedicinesExport, 'medicines.csv');
     }
 }

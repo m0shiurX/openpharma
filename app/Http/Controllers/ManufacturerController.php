@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Manufacturer;
 use Illuminate\Support\Facades\Bus;
+use App\Exports\ManufacturersExport;
 use App\Imports\ManufacturersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Request;
@@ -90,11 +91,16 @@ class ManufacturerController extends Controller
     }
 
 
-    public function importManufacturer(\Illuminate\Http\Request $request)
+    public function importManufacturers(\Illuminate\Http\Request $request)
     {
         $file_path = $request->file('file')->store('storage');
         Bus::chain([Excel::import(new ManufacturersImport, $file_path)]);
 
         return redirect()->route('manufacturers.index')->with('success', 'Successfully started importing!');
+    }
+
+    public function exportManufacturers()
+    {
+        return Excel::download(new ManufacturersExport, 'manufacturers.csv');
     }
 }
