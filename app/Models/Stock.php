@@ -33,7 +33,7 @@ class Stock extends Model
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
             $query->whereHas('medicine', function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
+                $query->where('name', 'like', $search . '%');
             });
         });
     }

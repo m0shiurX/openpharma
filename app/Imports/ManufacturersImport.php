@@ -18,7 +18,7 @@ class ManufacturersImport implements ToModel, WithHeadingRow, WithChunkReading, 
     {
         return new Manufacturer([
             'name' => $row['manufacturer'],
-            'location'  => $row['location'],
+            'location'  => 'Bangladesh',
             'contact_name' => 'Contact Person',
             'contact_tel' => '+8801 XXX XXX XXX'
         ]);
