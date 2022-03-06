@@ -2,7 +2,7 @@
     <!-- Whitespace & wrapper around the app -->
     <div class="min-h-screen w-full gap-5 p-2 pr-4 md:grid md:grid-cols-12">
         <!-- Side navigation menu -->
-        <aside class="rounded-xls w-full bg-white shadow-sm md:col-span-3 2xl:col-span-2">
+        <aside class="rounded-xls w-full bg-white shadow-sm print:hidden md:col-span-3 2xl:col-span-2">
             <div class="flex items-center justify-between rounded-md md:justify-center md:rounded-b-none">
                 <!-- Logo -->
                 <Link class="px-4 py-4 md:py-6">
@@ -26,7 +26,7 @@
         </aside>
         <main class="w-full md:col-span-9 2xl:col-span-10">
             <!-- Header navigation -->
-            <header class="mb-5 mt-2 flex w-full items-center justify-between rounded-xl bg-white px-5 py-4 shadow-sm md:mt-0">
+            <header class="mb-5 mt-2 flex w-full items-center justify-between rounded-xl bg-white px-5 py-4 shadow-sm print:hidden md:mt-0">
                 <slot name="header" />
                 <BreezeDropdown align="right" width="48">
                     <template #trigger>

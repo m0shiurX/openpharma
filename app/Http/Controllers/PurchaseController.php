@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StorePurchaseRequest;
 use App\Http\Requests\UpdatePurchaseRequest;
+use App\Http\Resources\PurchaseItemResource;
 
 class PurchaseController extends Controller
 {
@@ -97,16 +98,20 @@ class PurchaseController extends Controller
 
     public function show(Purchase $purchase)
     {
-        $purchase->load('purchaseItems', 'manufacturer');
-
+        $purchase->load('purchaseItems', 'manufacturer', 'purchaseItems.medicine');
+        // dd($purchase);
         return Inertia::render('Purchases/Show', [
             'purchase' => [
                 'id' => $purchase->id,
                 'invoice_no' => $purchase->invoice_no,
                 'manufacturer' => $purchase->manufacturer->name,
                 'sub_total' => $purchase->sub_total,
+                'invoice_discount' => $purchase->discount,
                 'grand_total' => $purchase->grand_total,
-                'purchase_items' => $purchase->purchaseItems
+                'paid_amount' => $purchase->paid_amount,
+                'due_amount' => $purchase->due_amount,
+                'purchase_date' => Carbon::parse($purchase->purchase_date)->format('d M, Y'),
+                'purchase_items' => PurchaseItemResource::collection($purchase->purchaseItems)
             ]
         ]);
     }
