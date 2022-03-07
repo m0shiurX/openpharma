@@ -77,6 +77,14 @@
                                     </tr>
                                     <tr class="h-10 border border-gray-100 bg-gray-50">
                                         <th colspan="4" class="border-x border-gray-100">
+                                            <div class="flex items-center justify-end pr-5">VAT</div>
+                                        </th>
+                                        <th colspan="1" class="border-r border-gray-100">
+                                            {{ purchase.vat }}
+                                        </th>
+                                    </tr>
+                                    <tr class="h-10 border border-gray-100 bg-gray-50">
+                                        <th colspan="4" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">Grand Total</div>
                                         </th>
                                         <th colspan="1" class="border-r border-gray-100">
@@ -124,14 +132,21 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import { ref } from 'vue';
+import { Printd } from 'printd';
 
 const props = defineProps({
     purchase: Object,
 });
 
+const printer = new Printd();
+
 const printDiv = ref(null);
+const testPrint = ref(null);
+
 const printItem = () => {
-    window.print();
     console.log('trying to print the invoice', printDiv.value);
+};
+const printTest = () => {
+    // printer.print(testPrint.value, cssText);
 };
 </script>

@@ -145,7 +145,7 @@
                                             class="group h-10 rounded border border-orange-200 bg-orange-50 transition-colors duration-200 ease-in hover:bg-orange-100"
                                         >
                                             <td class="h-10 border-gray-100">
-                                                <div class="flex h-full flex-col items-start justify-center px-2 capitalize">
+                                                <div class="flex h-full flex-col items-start justify-center bg-slate-100 px-2 capitalize">
                                                     {{ formRow.name }} <br />
                                                     <span class="block truncate text-xs">{{ formRow.strength }}</span>
                                                 </div>
@@ -154,7 +154,9 @@
                                                 <input
                                                     required
                                                     type="text"
-                                                    v-model="formRow.batch_id"
+                                                    @focus="$event.target.select()"
+                                                    @input="formRow.batch_id = $event.target.value.toUpperCase()"
+                                                    v-model.trim="formRow.batch_id"
                                                     class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
@@ -163,6 +165,8 @@
                                                     required
                                                     type="date"
                                                     v-model="formRow.expiry_date"
+                                                    :max="moment().add(5, 'y').format('YYYY-MM-DD')"
+                                                    :min="moment().format('YYYY-MM-DD')"
                                                     class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
@@ -171,38 +175,43 @@
                                                     min="1"
                                                     @focus="$event.target.select()"
                                                     type="number"
-                                                    v-model="formRow.quantity"
+                                                    v-model.number="formRow.quantity"
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
                                                 <input
-                                                    @focus="$event.target.select()"
-                                                    type="text"
-                                                    v-model="formRow.purchase_price"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    disabled
+                                                    type="number"
+                                                    step="0.01"
+                                                    v-model.number="formRow.purchase_price"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-slate-100 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
                                                 <input
                                                     @focus="$event.target.select()"
-                                                    type="text"
-                                                    v-model="formRow.selling_price"
+                                                    type="number"
+                                                    step="0.01"
+                                                    v-model.number="formRow.selling_price"
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-20 border-gray-100">
                                                 <input
-                                                    @focus="$event.target.select()"
-                                                    type="text"
-                                                    v-model="formRow.discount"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                    disabled
+                                                    type="number"
+                                                    step="0.01"
+                                                    v-model.number="formRow.discount"
+                                                    class="h-full w-full border-0 border-r border-orange-200 bg-slate-100 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
                                             <td class="h-10 w-32 border-gray-100">
                                                 <input
-                                                    type="text"
-                                                    v-model="formRow.total_price"
+                                                    type="number"
+                                                    step="0.01"
+                                                    @focus="$event.target.select()"
+                                                    v-model.number="formRow.total_price"
                                                     class="h-full w-full border-0 border-orange-200 bg-orange-50 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
@@ -235,29 +244,15 @@
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
                                                 disabled
-                                                type="text"
+                                                type="number"
+                                                step="0.01"
                                                 v-model="form.sub_total"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-slate-100 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
                                         <th class="w-12 text-xs font-light">BDT</th>
                                     </tr>
-                                    <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                    >
-                                        <th colspan="7" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Discount</div>
-                                        </th>
-                                        <th colspan="1" class="w-12 border-r border-gray-100">
-                                            <input
-                                                @focus="$event.target.select()"
-                                                type="text"
-                                                v-model="form.discount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                            />
-                                        </th>
-                                        <th class="w-12 text-xs font-light">BDT</th>
-                                    </tr>
+
                                     <tr
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
@@ -266,7 +261,9 @@
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
-                                                type="text"
+                                                @focus="$event.target.select()"
+                                                type="number"
+                                                step="0.01"
                                                 v-model="form.vat"
                                                 class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
@@ -277,13 +274,31 @@
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
                                         <th colspan="7" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Grand Total</div>
+                                            <div class="flex items-center justify-end pr-5">VAT Total</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
                                                 disabled
-                                                type="text"
-                                                v-model="form.grand_total"
+                                                type="number"
+                                                step="0.01"
+                                                v-model="form.vat_total"
+                                                class="h-full w-full border-0 bg-slate-100 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                            />
+                                        </th>
+                                        <th class="w-12 text-xs font-light">BDT</th>
+                                    </tr>
+                                    <tr
+                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
+                                    >
+                                        <th colspan="7" class="border-x border-gray-100">
+                                            <div class="flex items-center justify-end pr-5">Invoice Discount</div>
+                                        </th>
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
+                                            <input
+                                                @focus="$event.target.select()"
+                                                type="number"
+                                                step="0.01"
+                                                v-model="form.discount"
                                                 class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
@@ -293,12 +308,30 @@
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
                                         <th colspan="7" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Paid Total</div>
+                                            <div class="flex items-center justify-end pr-5">Grand Total</div>
+                                        </th>
+                                        <th colspan="1" class="w-12 border-r border-gray-100">
+                                            <input
+                                                disabled
+                                                type="number"
+                                                step="0.01"
+                                                v-model="form.grand_total"
+                                                class="h-full w-full border-0 bg-slate-100 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                            />
+                                        </th>
+                                        <th class="w-12 text-xs font-light">BDT</th>
+                                    </tr>
+                                    <tr
+                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
+                                    >
+                                        <th colspan="7" class="border-x border-gray-100">
+                                            <div class="flex items-center justify-end pr-5">Paid Amount</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
                                                 @focus="$event.target.select()"
-                                                type="text"
+                                                type="number"
+                                                step="0.01"
                                                 v-model="form.paid_amount"
                                                 class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
@@ -309,13 +342,15 @@
                                         class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
                                     >
                                         <th colspan="7" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Due Total</div>
+                                            <div class="flex items-center justify-end pr-5">Due Amount</div>
                                         </th>
                                         <th colspan="1" class="w-12 border-r border-gray-100">
                                             <input
-                                                type="text"
+                                                disabled
+                                                type="number"
+                                                step="0.01"
                                                 v-model="form.due_amount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="h-full w-full border-0 bg-slate-100 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                             />
                                         </th>
                                         <th class="w-12 text-xs font-light">BDT</th>
@@ -359,6 +394,7 @@ const form = useForm({
     sub_total: 0,
     vat: 17.4,
     discount: 0,
+    vat_total: 0,
     grand_total: 0,
     paid_amount: 0,
     due_amount: 0,
@@ -454,7 +490,7 @@ watch(selectedMedicine, (item) => {
     item.quantity = 0;
     item.purchase_price = 0;
     item.batch_id = '';
-    item.expiry_date = moment().format('YYYY-MM-DD');
+    item.expiry_date = moment().add(2, 'y').format('YYYY-MM-DD');
     form.purchase_items.push(item);
 });
 
@@ -468,11 +504,6 @@ watch(
 
             return [(item.discount = Number(vat).toFixed(2)), (item.purchase_price = rate ? Number(rate).toFixed(2) : 0)];
         });
-        // items.map((item) => {
-        //     let net_price = Number(item.quantity * item.purchase_price).toFixed(2);
-        //     let discount = Number((item.discount * net_price) / 100).toFixed(2);
-        //     return (item.total_price = Number(net_price - discount).toFixed(2));
-        // });
     },
     { deep: true },
 );
@@ -490,10 +521,19 @@ form.grand_total = computed({
     get() {
         if (form.purchase_items.length == 0) return 0;
         if (!isNaN(form.discount) && form.discount > 0) {
-            return Number(Math.round(form.sub_total - form.discount)).toFixed(2);
+            return Number(Math.round(form.sub_total - form.discount + form.vat_total)).toFixed(2);
         } else {
-            return Math.round(form.sub_total);
+            return Number(Math.round(form.sub_total + form.vat_total)).toFixed(2);
         }
+    },
+});
+
+form.vat_total = computed({
+    get() {
+        if (form.purchase_items.length == 0) return 0;
+        if (form.vat == 0) return 0;
+
+        return Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.discount), 0).toFixed(2));
     },
 });
 

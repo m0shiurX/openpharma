@@ -99,7 +99,7 @@ class PurchaseController extends Controller
     public function show(Purchase $purchase)
     {
         $purchase->load('purchaseItems', 'manufacturer', 'purchaseItems.medicine');
-        // dd($purchase);
+
         return Inertia::render('Purchases/Show', [
             'purchase' => [
                 'id' => $purchase->id,
@@ -108,6 +108,7 @@ class PurchaseController extends Controller
                 'sub_total' => $purchase->sub_total,
                 'invoice_discount' => $purchase->discount,
                 'grand_total' => $purchase->grand_total,
+                'vat' => $purchase->vat,
                 'paid_amount' => $purchase->paid_amount,
                 'due_amount' => $purchase->due_amount,
                 'purchase_date' => Carbon::parse($purchase->purchase_date)->format('d M, Y'),

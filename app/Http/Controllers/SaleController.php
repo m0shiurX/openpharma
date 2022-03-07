@@ -7,13 +7,14 @@ use App\Models\Sale;
 use Inertia\Inertia;
 use App\Models\Customer;
 use App\Models\Medicine;
+use App\Models\SalesItem;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\StockResource;
 use App\Http\Requests\StoreSaleRequest;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\UpdateSaleRequest;
-use App\Models\SalesItem;
 use App\Notifications\SalesNotification;
+use App\Http\Resources\SalesItemResource;
 
 class SaleController extends Controller
 {
@@ -108,7 +109,7 @@ class SaleController extends Controller
 
     public function show(Sale $sale)
     {
-        $sale->load('salesItems', 'customer');
+        $sale->load('salesItems', 'customer', 'salesItems.medicine');
 
         return Inertia::render('Sales/Show', [
             'sale' => [
@@ -124,7 +125,7 @@ class SaleController extends Controller
                 'grand_total' => $sale->grand_total,
                 'paid_amount' => $sale->paid_amount,
                 'exchange_amount' => $sale->exchange_amount,
-                'sales_items' => $sale->salesItems
+                'sales_items' => SalesItemResource::collection($sale->salesItems)
             ]
         ]);
     }
