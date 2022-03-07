@@ -32,6 +32,7 @@ class PurchaseController extends Controller
                     'manufacturer' => $purchase->manufacturer->name,
                     'sub_total' => $purchase->sub_total,
                     'vat' => $purchase->vat,
+                    'vat_total' => $purchase->vat_total,
                     'discount' => $purchase->discount,
                     'grand_total' => $purchase->grand_total,
                     'paid_amount' => $purchase->paid_amount,
@@ -71,6 +72,7 @@ class PurchaseController extends Controller
                 'manufacturer_id',
                 'sub_total',
                 'vat',
+                'vat_total',
                 'discount',
                 'grand_total',
                 'paid_amount',
@@ -85,6 +87,7 @@ class PurchaseController extends Controller
                 $entry['batch_id'] = $purchase_item['batch_id'];
                 $entry['expiry_date'] = $purchase_item['expiry_date'];
                 $entry['quantity'] = $purchase_item['quantity'];
+                $entry['vat'] = $purchase_item['vat'];
                 $entry['purchase_price'] = $purchase_item['purchase_price'];
                 $entry['selling_price'] = $purchase_item['selling_price'];
                 $entry['total_price'] = $purchase_item['total_price'];
@@ -109,6 +112,7 @@ class PurchaseController extends Controller
                 'invoice_discount' => $purchase->discount,
                 'grand_total' => $purchase->grand_total,
                 'vat' => $purchase->vat,
+                'vat_total' => $purchase->vat_total,
                 'paid_amount' => $purchase->paid_amount,
                 'due_amount' => $purchase->due_amount,
                 'purchase_date' => Carbon::parse($purchase->purchase_date)->format('d M, Y'),
@@ -145,7 +149,6 @@ class PurchaseController extends Controller
                 'strength' => $medicine->strength,
                 'purchase_price' => $medicine->purchase_price,
                 'selling_price' => $medicine->selling_price,
-                'discount' => $medicine->discount,
             ]);
     }
 }

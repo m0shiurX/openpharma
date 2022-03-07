@@ -202,7 +202,7 @@
                                                     disabled
                                                     type="number"
                                                     step="0.01"
-                                                    v-model.number="formRow.discount"
+                                                    v-model.number="formRow.vat"
                                                     class="h-full w-full border-0 border-r border-orange-200 bg-slate-100 px-1 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
                                                 />
                                             </td>
@@ -488,6 +488,7 @@ const highlightPrevious = () => {
 watch(selectedMedicine, (item) => {
     item.total_price = 0;
     item.quantity = 0;
+    item.vat = 0;
     item.purchase_price = 0;
     item.batch_id = '';
     item.expiry_date = moment().add(2, 'y').format('YYYY-MM-DD');
@@ -502,7 +503,7 @@ watch(
             let vat = (parseFloat(item.total_price) / 100) * form.vat;
             let rate = (parseFloat(item.total_price) + vat) / item.quantity;
 
-            return [(item.discount = Number(vat).toFixed(2)), (item.purchase_price = rate ? Number(rate).toFixed(2) : 0)];
+            return [(item.vat = Number(vat).toFixed(2)), (item.purchase_price = rate ? Number(rate).toFixed(2) : 0)];
         });
     },
     { deep: true },
@@ -533,7 +534,7 @@ form.vat_total = computed({
         if (form.purchase_items.length == 0) return 0;
         if (form.vat == 0) return 0;
 
-        return Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.discount), 0).toFixed(2));
+        return Number(form.purchase_items.reduce((accumulator, current) => accumulator + parseFloat(current.vat), 0).toFixed(2));
     },
 });
 

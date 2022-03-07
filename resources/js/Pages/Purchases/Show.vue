@@ -67,20 +67,29 @@
                                             {{ purchase.sub_total }}
                                         </th>
                                     </tr>
-                                    <tr class="h-10 border border-gray-100 bg-gray-50">
-                                        <th colspan="4" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Invoice Discount</div>
-                                        </th>
-                                        <th colspan="1" class="border-r border-gray-100">
-                                            {{ purchase.invoice_discount }}
-                                        </th>
-                                    </tr>
+
                                     <tr class="h-10 border border-gray-100 bg-gray-50">
                                         <th colspan="4" class="border-x border-gray-100">
                                             <div class="flex items-center justify-end pr-5">VAT</div>
                                         </th>
                                         <th colspan="1" class="border-r border-gray-100">
                                             {{ purchase.vat }}
+                                        </th>
+                                    </tr>
+                                    <tr class="h-10 border border-gray-100 bg-gray-50">
+                                        <th colspan="4" class="border-x border-gray-100">
+                                            <div class="flex items-center justify-end pr-5">VAT Total</div>
+                                        </th>
+                                        <th colspan="1" class="border-r border-gray-100">
+                                            {{ purchase.vat_total }}
+                                        </th>
+                                    </tr>
+                                    <tr class="h-10 border border-gray-100 bg-gray-50">
+                                        <th colspan="4" class="border-x border-gray-100">
+                                            <div class="flex items-center justify-end pr-5">Invoice Discount</div>
+                                        </th>
+                                        <th colspan="1" class="border-r border-gray-100">
+                                            {{ purchase.invoice_discount }}
                                         </th>
                                     </tr>
                                     <tr class="h-10 border border-gray-100 bg-gray-50">

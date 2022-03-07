@@ -13,6 +13,7 @@ class PurchaseItemResource extends JsonResource
             'medicine_name' => $this->medicine->name,
             'batch_id' => $this->batch_id,
             'quantity' => $this->quantity,
+            'vat' => $this->vat,
             'purchase_price' => $this->purchase_price,
             'total_price' => $this->total_price,
         ];

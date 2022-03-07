@@ -20,6 +20,7 @@ class Purchase extends Model
         'sub_total',
         'vat',
         'discount',
+        'vat_total',
         'grand_total',
         'paid_amount',
         'due_amount',

@@ -21,6 +21,7 @@ class PurchaseItem extends Model
         'batch_id',
         'expiry_date',
         'quantity',
+        'vat',
         'purchase_price',
         'selling_price',
         'total_price',

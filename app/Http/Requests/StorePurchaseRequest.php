@@ -19,6 +19,7 @@ class StorePurchaseRequest extends FormRequest
             "manufacturer_id" => ['exists:manufacturers,id'],
             "sub_total" => ['numeric', 'required'],
             "vat" => ['numeric', 'required'],
+            "vat_total" => ['numeric', 'required'],
             "discount" => ['numeric', 'required'],
             "grand_total" => ['numeric', 'required'],
             "paid_amount" => ['numeric', 'required'],
@@ -29,7 +30,7 @@ class StorePurchaseRequest extends FormRequest
             "purchase_items.*.quantity" => ['numeric', 'required'],
             "purchase_items.*.purchase_price" => ['numeric', 'required'],
             "purchase_items.*.selling_price" => ['numeric', 'required'],
-            "purchase_items.*.discount" => ['numeric', 'required'],
+            "purchase_items.*.vat" => ['numeric', 'required'],
             "purchase_items.*.total_price" => ['numeric', 'required'],
         ];
     }
