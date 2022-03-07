@@ -19,6 +19,7 @@ class PurchaseFactory extends Factory
             'sub_total'         => $this->faker->randomFloat(2, 50, 200),
             'vat'               => $this->faker->randomFloat(2, 50, 200),
             'discount'          => $this->faker->randomFloat(2, 10, 20),
+            'vat_total'       => $this->faker->randomFloat(2, 50, 200),
             'grand_total'       => $this->faker->randomFloat(2, 50, 200),
             'paid_amount'       => $this->faker->randomFloat(2, 50, 200),
             'due_amount'        => $this->faker->randomFloat(2, 50, 200),

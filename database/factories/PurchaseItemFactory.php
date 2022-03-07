@@ -22,6 +22,7 @@ class PurchaseItemFactory extends Factory
             'expiry_date' => Carbon::today()->addYear(),
             'quantity' => $quantity,
             'purchase_price' => $purchase,
+            'vat' => 0,
             'selling_price' => $selling,
             'total_price' => $total,
         ];
