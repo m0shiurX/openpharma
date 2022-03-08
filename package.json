@@ -19,7 +19,7 @@
         "axios": "^0.26",
         "laravel-mix": "^6.0.43",
         "lodash": "^4.17.21",
-        "postcss": "^8.4.7",
+        "postcss": "^8.4.8",
         "postcss-import": "^14.0.2",
         "prettier": "^2.5.1",
         "prettier-plugin-tailwindcss": "^0.1.8",
