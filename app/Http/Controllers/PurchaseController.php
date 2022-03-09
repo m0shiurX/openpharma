@@ -64,7 +64,6 @@ class PurchaseController extends Controller
 
     public function store(StorePurchaseRequest $request)
     {
-        // return dd($request->purchase_items);
         DB::transaction(function () use ($request) {
             $purchase = Purchase::create($request->only([
                 'invoice_no',
