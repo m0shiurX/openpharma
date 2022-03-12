@@ -4,6 +4,9 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
+import Swal from 'sweetalert2';
+
+window.swal = Swal; //Making it available globally
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'OpenPharma';
 
