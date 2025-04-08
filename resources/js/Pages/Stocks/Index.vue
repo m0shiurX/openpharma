@@ -17,7 +17,7 @@
                     </SearchFilter>
 
                     <Link
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
                         href="#"><span class="font-medium text-sm text-white leading-none">Add to Stock</span>
                     </Link>
                 </div>
@@ -28,7 +28,7 @@
                     <table class="w-full whitespace-nowrap table-auto">
                         <thead>
                             <tr tabindex="0"
-                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-none">
+                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-hidden">
                                 <th class="pl-5 border-gray-100 border-r text-left">Medicine</th>
                                 <th class="pl-5 border-gray-100 border-x text-left">Batch</th>
                                 <th class="text-right pr-5 border-gray-100 border-x">Stock</th>
@@ -39,7 +39,7 @@
                         <tbody class="">
                             <template v-for="stock in props.stocks.data" :key="stock.id">
                                 <tr tabindex="0"
-                                    class="group bg-gray-50 hover:bg-orange-100 border border-gray-100 rounded h-14 transition-colors duration-200 ease-in">
+                                    class="group bg-gray-50 hover:bg-orange-100 border border-gray-100 rounded-sm h-14 transition-colors duration-200 ease-in">
                                     <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-3 pl-5">
                                             <p class="mr-2 font-semibold text-gray-700 text-lg capitalize leading-none">
@@ -77,7 +77,7 @@
                                     </td>
                                     <td class="pl-5 text-center">
                                         <Link :href="route('stocks.show', stock.id)"
-                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded text-orange-900 text-sm leading-none focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded-sm text-orange-900 text-sm leading-none focus:outline-hidden focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
                                         See History
                                         </Link>
                                     </td>

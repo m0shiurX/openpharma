@@ -4,7 +4,7 @@
         <div class="form-input p-0" :class="{ error: errors.length }">
             <input ref="file" type="file" :accept="accept" class="hidden" @change="change" />
             <div v-if="!modelValue" class="p-2">
-                <button type="button" class="rounded-sm bg-gray-500 px-4 py-1 text-xs font-medium text-white hover:bg-gray-700" @click="browse">
+                <button type="button" class="rounded-xs bg-gray-500 px-4 py-1 text-xs font-medium text-white hover:bg-gray-700" @click="browse">
                     Browse
                 </button>
             </div>
@@ -13,7 +13,7 @@
                     {{ modelValue.name }}
                     <span class="text-xs text-gray-500">({{ filesize(modelValue.size) }})</span>
                 </div>
-                <button type="button" class="rounded-sm bg-gray-500 px-4 py-1 text-xs font-medium text-white hover:bg-gray-700" @click="remove">
+                <button type="button" class="rounded-xs bg-gray-500 px-4 py-1 text-xs font-medium text-white hover:bg-gray-700" @click="remove">
                     Remove
                 </button>
             </div>

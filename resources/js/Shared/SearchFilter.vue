@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center">
-        <div class="flex w-full rounded bg-white shadow">
+        <div class="flex w-full rounded-sm bg-white shadow-sm">
             <input
                 class="focus:shadow-outline relative w-full rounded-md px-3 py-1.5 focus-within:ring-orange-400"
                 autocomplete="off"

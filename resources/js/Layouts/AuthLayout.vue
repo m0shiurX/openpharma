@@ -2,7 +2,7 @@
     <!-- Whitespace & wrapper around the app -->
     <div class="gap-5 md:grid md:grid-cols-12 p-2 pr-4 w-full min-h-screen">
         <!-- Side navigation menu -->
-        <aside class="print:hidden md:col-span-3 2xl:col-span-2 bg-white shadow-sm rounded-xls w-full">
+        <aside class="print:hidden md:col-span-3 2xl:col-span-2 bg-white shadow-xs rounded-xls w-full">
             <div class="flex justify-between md:justify-center items-center rounded-md md:rounded-b-none">
                 <!-- Logo -->
                 <Link class="px-4 py-4 md:py-6">
@@ -29,7 +29,7 @@
         <main class="md:col-span-9 2xl:col-span-10 w-full">
             <!-- Header navigation -->
             <header
-                class="flex justify-between items-center print:hidden bg-white shadow-sm mt-2 md:mt-0 mb-5 px-5 py-4 rounded-xl w-full">
+                class="flex justify-between items-center print:hidden bg-white shadow-xs mt-2 md:mt-0 mb-5 px-5 py-4 rounded-xl w-full">
                 <slot name="header" />
                 <BreezeDropdown align="right" width="48">
                     <template #trigger>
@@ -37,7 +37,7 @@
                             <img class="inline-flex mr-1 rounded-full w-8 h-8 object-cover ring-1 ring-orange-100 ring-offset-2"
                                 :src="$page.props.auth.user.photo ?? '/storage/avatar.jpg'" />
                             <button type="button"
-                                class="inline-flex items-center bg-white px-3 py-2 border border-transparent rounded-md font-medium text-gray-500 text-sm hover:text-gray-700 leading-4 transition duration-150 ease-in-out focus:outline-none">
+                                class="inline-flex items-center bg-white px-3 py-2 border border-transparent rounded-md font-medium text-gray-500 text-sm hover:text-gray-700 leading-4 transition duration-150 ease-in-out focus:outline-hidden">
                                 {{ $page.props.auth.user.name }}
 
                                 <svg class="-mr-0.5 ml-2 w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"

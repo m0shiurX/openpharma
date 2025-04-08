@@ -51,7 +51,7 @@
                                     <label class="block mb-2" for="sales_date">Sales Date</label>
                                     <input id="sales_date" v-model="form.sales_date" type="date"
                                         onkeydown="return false"
-                                        class="bg-orange-50 border border-orange-300 focus:border-orange-400 rounded-md w-full h-10 text-slate-900 sm:text-sm appearance-none focus:outline-none focus:ring-orange-400"
+                                        class="bg-orange-50 border border-orange-300 focus:border-orange-400 rounded-md w-full h-10 text-slate-900 sm:text-sm appearance-none focus:outline-hidden focus:ring-orange-400"
                                         required disabled />
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                                     <div v-if="search.length > 0 && searchResultShown"
                                         class="top-20 left-0 z-50 absolute rounded-b-lg rounded-t-sm w-full h-96 overflow-y-auto">
                                         <ul v-if="filteredMedicine.length > 0"
-                                            class="bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black focus:outline-none">
+                                            class="bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black focus:outline-hidden">
                                             <li v-for="(medicine, index) in filteredMedicine" :key="medicine.id"
                                                 class="relative hover:bg-orange-200 focus:bg-orange-200 py-2 pr-4 pl-10 border-orange-200 border-y hover:border-orange-300 hover:border-y w-full text-slate-900 cursor-pointer"
                                                 role="option" tabindex="-1" value="0"
@@ -85,7 +85,7 @@
                                             </li>
                                         </ul>
                                         <ul v-else
-                                            class="bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black focus:outline-none">
+                                            class="bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black focus:outline-hidden">
                                             <li
                                                 class="relative focus:bg-orange-200 py-2 pr-4 pl-10 w-full text-slate-900 cursor-pointer">
                                                 No results found
@@ -99,7 +99,7 @@
                             <table class="w-full whitespace-nowrap table-auto">
                                 <thead>
                                     <tr
-                                        class="bg-white border border-gray-100 rounded-lg h-12 text-base text-gray-500 focus:outline-none">
+                                        class="bg-white border border-gray-100 rounded-lg h-12 text-base text-gray-500 focus:outline-hidden">
                                         <th class="pr-2 pl-5 border-gray-100 border-r text-left">Medicine</th>
                                         <th class="pl-5 border-gray-100 border-x w-32 text-left">BATCH</th>
                                         <th class="pl-5 border-gray-100 border-x w-32 text-left">Qty</th>
@@ -113,7 +113,7 @@
                                 <tbody class="">
                                     <template v-for="(formRow, index) in form.sales_items" :key="index">
                                         <tr
-                                            class="group bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded h-10 transition-colors duration-200 ease-in">
+                                            class="group bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-sm h-10 transition-colors duration-200 ease-in">
                                             <td class="border-gray-100 h-10">
                                                 <div class="flex items-center px-2 h-full capitalize">
                                                     {{ formRow.name }} - {{ formRow.strength }}
@@ -151,7 +151,7 @@
                                             </td>
                                             <td class="p-0 w-12">
                                                 <button @click="removeItem(index)" type="button"
-                                                    class="inline-flex justify-center bg-red-100 hover:bg-red-200 px-3 py-2.5 w-12 h-full text-center text-orange-900 text-sm leading-none focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                                    class="inline-flex justify-center bg-red-100 hover:bg-red-200 px-3 py-2.5 w-12 h-full text-center text-orange-900 text-sm leading-none focus:outline-hidden focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
                                                     <Icon icon="close" class="w-5 h-5 stroke-orange-300" />
                                                 </button>
                                             </td>
@@ -167,7 +167,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr
-                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded-sm h-10 transition-colors duration-200 ease-in">
                                         <th colspan="5" class="border-gray-100 border-x">
                                             <div class="flex justify-end items-center pr-5">Sub Total</div>
                                         </th>
@@ -178,7 +178,7 @@
                                         <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <tr
-                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded-sm h-10 transition-colors duration-200 ease-in">
                                         <th colspan="5" class="border-gray-100 border-x">
                                             <div class="flex justify-end items-center pr-5">Invoice Discount</div>
                                         </th>
@@ -190,7 +190,7 @@
                                         <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <!-- <tr
-                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in"
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded-sm h-10 transition-colors duration-200 ease-in"
                                     >
                                         <th colspan="5" class="border-gray-100 border-x">
                                             <div class="flex justify-end items-center pr-5">VAT</div>
@@ -206,7 +206,7 @@
                                         <th class="w-12 font-light text-xs">%</th>
                                     </tr> -->
                                     <tr
-                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded-sm h-10 transition-colors duration-200 ease-in">
                                         <th colspan="5" class="border-gray-100 border-x">
                                             <div class="flex justify-end items-center pr-5">Grand Total</div>
                                         </th>
@@ -217,7 +217,7 @@
                                         <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <tr
-                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded-sm h-10 transition-colors duration-200 ease-in">
                                         <th colspan="5" class="border-gray-100 border-x">
                                             <div class="flex justify-end items-center pr-5">Paid Total</div>
                                         </th>
@@ -229,7 +229,7 @@
                                         <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <tr
-                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded-sm h-10 transition-colors duration-200 ease-in">
                                         <th colspan="5" class="border-gray-100 border-x">
                                             <div class="flex justify-end items-center pr-5">Exchange Total</div>
                                         </th>

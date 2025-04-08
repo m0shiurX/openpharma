@@ -17,7 +17,7 @@
                     </SearchFilter>
 
                     <Link
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
                         :href="route('manufacturers.create')"><span
                         class="font-medium text-sm text-white leading-none">Add
                         Manufacturer</span>
@@ -30,7 +30,7 @@
                     <table class="w-full whitespace-nowrap table-auto">
                         <thead>
                             <tr tabindex="0"
-                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-none">
+                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-hidden">
                                 <th class="pl-5 border-gray-100 border-r text-left">Manufacturer</th>
                                 <th class="pl-5 border-gray-100 border-x text-left">Contact</th>
                                 <th colspan="2" class="border-gray-100 border-l">Action</th>
@@ -40,7 +40,7 @@
                         <tbody class="">
                             <template v-for="manufacturer in props.manufacturers.data" :key="manufacturer.id">
                                 <tr tabindex="0"
-                                    class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-14 transition-colors duration-200 ease-in">
+                                    class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded-sm h-14 transition-colors duration-200 ease-in">
                                     <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-3 pl-5">
                                             <p class="mr-2 font-medium text-gray-700 text-lg leading-none">{{
@@ -65,7 +65,7 @@
                                     </td>
                                     <td class="pl-5">
                                         <Link :href="route('manufacturers.show', manufacturer.id)"
-                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded text-orange-900 text-sm leading-none focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded-sm text-orange-900 text-sm leading-none focus:outline-hidden focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
                                         See Details
                                         </Link>
                                     </td>
@@ -77,10 +77,10 @@
                                                 </MenuButton>
 
                                                 <MenuItems
-                                                    class="right-0 z-30 absolute flex flex-col bg-white shadow mr-2 rounded-md w-24">
+                                                    class="right-0 z-30 absolute flex flex-col bg-white shadow-sm mr-2 rounded-md w-24">
                                                     <MenuItem v-slot="{ active }">
                                                     <Link
-                                                        class="hover:bg-orange-600 px-4 py-4 rounded-t-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-none"
+                                                        class="hover:bg-orange-600 px-4 py-4 rounded-t-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-hidden"
                                                         :class="{ 'bg-orange-600 text-white': active }"
                                                         :href="route('manufacturers.edit', manufacturer.id)"
                                                         as="button">
@@ -89,7 +89,7 @@
                                                     </MenuItem>
                                                     <MenuItem v-slot="{ active }">
                                                     <button
-                                                        class="hover:bg-orange-600 px-4 py-4 rounded-b-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-none"
+                                                        class="hover:bg-orange-600 px-4 py-4 rounded-b-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-hidden"
                                                         :class="{ 'bg-orange-600 text-white': active }"
                                                         @click="destroyItem(manufacturer.id)">
                                                         Delete
@@ -115,12 +115,12 @@
                             class="block hover:file:bg-violet-100 file:bg-violet-50 file:mr-4 file:px-4 file:py-2 file:border-0 file:rounded-full w-full file:font-semibold text-slate-500 text-sm file:text-sm file:text-violet-700" />
                     </label>
                     <button
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 px-6 py-2 rounded text-white focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 px-6 py-2 rounded-sm text-white focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
                         type="submit">
                         Start Importing
                     </button>
                     <a :href="route('manufacturers.export')"
-                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 ml-5 px-6 py-2 rounded text-white focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2">
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 ml-5 px-6 py-2 rounded-sm text-white focus:outline-hidden focus:ring-2 focus:ring-orange-600 focus:ring-offset-2">
                         Export Manufacturers
                     </a>
                 </form>
