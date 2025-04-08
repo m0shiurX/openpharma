@@ -1,72 +1,70 @@
 <template>
+
     <Head title="Customers" />
 
     <AuthLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">Customers List</h2>
+            <h2 class="font-semibold text-gray-800 text-xl leading-tight">Customers List</h2>
         </template>
 
-        <div class="mt-8 rounded-lg bg-white/30 py-4">
+        <div class="bg-white/30 mt-8 py-4 rounded-lg">
             <div class="px-4 md:px-8 xl:px-10">
                 <FlashMessages />
             </div>
             <div class="px-4 md:px-8 xl:px-10">
-                <div class="flex items-center justify-between">
-                    <SearchFilter v-model="form.search" class="mr-4 w-80 rounded-lg" @reset="resetSearch"></SearchFilter>
+                <div class="flex justify-between items-center">
+                    <SearchFilter v-model="form.search" class="mr-4 rounded-lg w-80" @reset="resetSearch">
+                    </SearchFilter>
 
                     <Link
-                        class="mt-4 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-3 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 sm:mt-0"
-                        :href="route('customers.create')"
-                        ><span class="text-sm font-medium leading-none text-white">Add Customer</span>
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        :href="route('customers.create')"><span class="font-medium text-sm text-white leading-none">Add
+                        Customer</span>
                     </Link>
                 </div>
             </div>
-            <div class="rounded-lg px-4 md:px-8 xl:px-10">
+            <div class="px-4 md:px-8 xl:px-10 rounded-lg">
                 <div
-                    class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full mt-5 overflow-auto overflow-y-scroll pb-20 scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700"
-                >
-                    <table class="w-full table-auto whitespace-nowrap">
+                    class="mt-5 pb-20 scrollbar-thumb-rounded-full scrollbar-track-rounded-full overflow-auto overflow-y-scroll scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700">
+                    <table class="w-full whitespace-nowrap table-auto">
                         <thead>
-                            <tr tabindex="0" class="h-16 rounded-lg border border-gray-100 bg-white text-lg text-gray-500 focus:outline-none">
-                                <th class="border-r border-gray-100 pl-5 text-left">Customer</th>
-                                <th class="border-x border-gray-100 pl-5 text-left">Contact</th>
-                                <th colspan="2" class="border-l border-gray-100">Action</th>
+                            <tr tabindex="0"
+                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-none">
+                                <th class="pl-5 border-gray-100 border-r text-left">Customer</th>
+                                <th class="pl-5 border-gray-100 border-x text-left">Contact</th>
+                                <th colspan="2" class="border-gray-100 border-l">Action</th>
                             </tr>
                             <tr class="h-3"></tr>
                         </thead>
                         <tbody class="">
                             <template v-for="customer in props.customers.data" :key="customer.id">
-                                <tr
-                                    tabindex="0"
-                                    class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                >
-                                    <td class="border-r border-gray-100">
+                                <tr tabindex="0"
+                                    class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-14 transition-colors duration-200 ease-in">
+                                    <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-3 pl-5">
-                                            <p class="mr-2 text-lg font-medium leading-none text-gray-700">
+                                            <p class="mr-2 font-medium text-gray-700 text-lg leading-none">
                                                 {{ customer.name }}
                                             </p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="location" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 truncate text-base leading-none text-gray-400">
+                                            <icon icon="location" class="w-4 h-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base text-gray-400 truncate leading-none">
                                                 {{ customer.address }}
                                             </p>
                                         </div>
                                     </td>
-                                    <td class="border-r border-gray-100">
+                                    <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="phone" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                            <icon icon="phone" class="w-4 h-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base text-gray-400 leading-none">
                                                 {{ customer.phone }}
                                             </p>
                                         </div>
                                     </td>
                                     <td class="pl-5">
-                                        <Link
-                                            :href="route('customers.show', customer.id)"
-                                            class="rounded bg-red-100 py-2 px-5 text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
-                                        >
-                                            See Details
+                                        <Link :href="route('customers.show', customer.id)"
+                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded text-orange-900 text-sm leading-none focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                        See Details
                                         </Link>
                                     </td>
                                     <td>
@@ -76,25 +74,23 @@
                                                     <Icon icon="dots" />
                                                 </MenuButton>
 
-                                                <MenuItems class="absolute right-0 z-30 mr-2 flex w-24 flex-col rounded-md bg-white shadow">
+                                                <MenuItems
+                                                    class="right-0 z-30 absolute flex flex-col bg-white shadow mr-2 rounded-md w-24">
                                                     <MenuItem v-slot="{ active }">
-                                                        <Link
-                                                            class="w-full cursor-pointer rounded-t-md py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
-                                                            :class="{ 'bg-orange-600 text-white': active }"
-                                                            :href="route('customers.edit', customer.id)"
-                                                            as="button"
-                                                        >
-                                                            Edit
-                                                        </Link>
+                                                    <Link
+                                                        class="hover:bg-orange-600 px-4 py-4 rounded-t-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-none"
+                                                        :class="{ 'bg-orange-600 text-white': active }"
+                                                        :href="route('customers.edit', customer.id)" as="button">
+                                                    Edit
+                                                    </Link>
                                                     </MenuItem>
                                                     <MenuItem v-slot="{ active }">
-                                                        <button
-                                                            class="w-full cursor-pointer rounded-b-md py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
-                                                            :class="{ 'bg-orange-600 text-white': active }"
-                                                            @click="destroyItem(customer.id)"
-                                                        >
-                                                            Delete
-                                                        </button>
+                                                    <button
+                                                        class="hover:bg-orange-600 px-4 py-4 rounded-b-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-none"
+                                                        :class="{ 'bg-orange-600 text-white': active }"
+                                                        @click="destroyItem(customer.id)">
+                                                        Delete
+                                                    </button>
                                                     </MenuItem>
                                                 </MenuItems>
                                             </Menu>
@@ -113,8 +109,8 @@
 </template>
 <script setup>
 import { watch, ref, onMounted } from 'vue';
-import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
-import { Inertia } from '@inertiajs/inertia';
+import { Head, useForm, Link } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
 import Pagination from '@/Shared/Pagination';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';

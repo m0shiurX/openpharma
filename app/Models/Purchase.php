@@ -44,7 +44,7 @@ class Purchase extends Model
     {
         parent::boot();
 
-        static::creating(function ($model) {
+        static::creating(function ($model): void {
             $latest_invoice = \App\Models\Purchase::withTrashed()->latest()->max('id') + 1;
             $model->invoice_no = 'PR-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
         });
@@ -53,8 +53,8 @@ class Purchase extends Model
     // Scopes
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->whereHas('manufacturer', function ($query) use ($search) {
+        $query->when($filters['search'] ?? null, function ($query, $search): void {
+            $query->whereHas('manufacturer', function ($query) use ($search): void {
                 $query->where('name', 'like', '%' . $search . '%');
             });
         });

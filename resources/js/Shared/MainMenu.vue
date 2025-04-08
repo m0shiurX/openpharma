@@ -14,7 +14,7 @@
 
 <script setup>
 // Helpers
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3';
 
 // Components
 import MainMenuItem from './MainMenuItem.vue';

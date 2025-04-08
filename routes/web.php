@@ -20,7 +20,7 @@ Route::redirect('/', '/dashboard');
 
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function (): void {
 
     // Default route
     Route::get('/dashboard', function () {
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('About');
     })->name('about');
 
-    Route::get('/sms', function () {
+    Route::get('/sms', function (): void {
         // Or send a sms directly
         $sms = new SmsMessage;
         // Replace with your telephone number :-)
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
 
     // Profile management
-    Route::controller(ProfileController::class)->group(function () {
+    Route::controller(ProfileController::class)->group(function (): void {
         Route::get('profile', 'index')->name('profile');
         Route::get('profile/edit', 'create')->name('profile.edit');
         Route::put('profile/update', 'update')->name('profile.update');

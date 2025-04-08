@@ -31,8 +31,8 @@ class Stock extends Model
     // Scopes
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->whereHas('medicine', function ($query) use ($search) {
+        $query->when($filters['search'] ?? null, function ($query, $search): void {
+            $query->whereHas('medicine', function ($query) use ($search): void {
                 $query->where('name', 'like', $search . '%');
             });
         });

@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from '@inertiajs/vue3';
 
 const props = defineProps(['href', 'active']);
 
@@ -9,6 +9,6 @@ const classes = computed(() => (props.active ? 'inline-flex items-center px-1 pt
 
 <template>
     <Link :href="href" :class="classes">
-        <slot />
+    <slot />
     </Link>
 </template>

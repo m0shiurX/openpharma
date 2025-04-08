@@ -70,7 +70,7 @@ class SaleController extends Controller
     {
         // return dd($request->all());
 
-        DB::transaction(function () use ($request) {
+        DB::transaction(function () use ($request): void {
             $sale = Sale::create($request->only([
                 'customer_id',
                 'invoice_no',

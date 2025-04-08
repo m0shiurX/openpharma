@@ -1,69 +1,72 @@
 <template>
+
     <Head title="Manufacturers" />
 
     <AuthLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">Manufacturers List</h2>
+            <h2 class="font-semibold text-gray-800 text-xl leading-tight">Manufacturers List</h2>
         </template>
 
-        <div class="mt-8 rounded-lg bg-white/30 py-4">
+        <div class="bg-white/30 mt-8 py-4 rounded-lg">
             <div class="px-4 md:px-8 xl:px-10">
                 <FlashMessages />
             </div>
             <div class="px-4 md:px-8 xl:px-10">
-                <div class="flex items-center justify-between">
-                    <SearchFilter v-model="form.search" class="mr-4 w-80 rounded-lg" @reset="resetSearch"></SearchFilter>
+                <div class="flex justify-between items-center">
+                    <SearchFilter v-model="form.search" class="mr-4 rounded-lg w-80" @reset="resetSearch">
+                    </SearchFilter>
 
                     <Link
-                        class="mt-4 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-3 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 sm:mt-0"
-                        :href="route('manufacturers.create')"
-                        ><span class="text-sm font-medium leading-none text-white">Add Manufacturer</span>
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        :href="route('manufacturers.create')"><span
+                        class="font-medium text-sm text-white leading-none">Add
+                        Manufacturer</span>
                     </Link>
                 </div>
             </div>
-            <div class="rounded-lg px-4 md:px-8 xl:px-10">
+            <div class="px-4 md:px-8 xl:px-10 rounded-lg">
                 <div
-                    class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full mt-5 overflow-auto overflow-y-scroll pb-20 scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700"
-                >
-                    <table class="w-full table-auto whitespace-nowrap">
+                    class="mt-5 pb-20 scrollbar-thumb-rounded-full scrollbar-track-rounded-full overflow-auto overflow-y-scroll scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700">
+                    <table class="w-full whitespace-nowrap table-auto">
                         <thead>
-                            <tr tabindex="0" class="h-16 rounded-lg border border-gray-100 bg-white text-lg text-gray-500 focus:outline-none">
-                                <th class="border-r border-gray-100 pl-5 text-left">Manufacturer</th>
-                                <th class="border-x border-gray-100 pl-5 text-left">Contact</th>
-                                <th colspan="2" class="border-l border-gray-100">Action</th>
+                            <tr tabindex="0"
+                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-none">
+                                <th class="pl-5 border-gray-100 border-r text-left">Manufacturer</th>
+                                <th class="pl-5 border-gray-100 border-x text-left">Contact</th>
+                                <th colspan="2" class="border-gray-100 border-l">Action</th>
                             </tr>
                             <tr class="h-3"></tr>
                         </thead>
                         <tbody class="">
                             <template v-for="manufacturer in props.manufacturers.data" :key="manufacturer.id">
-                                <tr
-                                    tabindex="0"
-                                    class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                >
-                                    <td class="border-r border-gray-100">
+                                <tr tabindex="0"
+                                    class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-14 transition-colors duration-200 ease-in">
+                                    <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-3 pl-5">
-                                            <p class="mr-2 text-lg font-medium leading-none text-gray-700">{{ manufacturer.name }}</p>
+                                            <p class="mr-2 font-medium text-gray-700 text-lg leading-none">{{
+                                                manufacturer.name }}</p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="location" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 truncate text-base leading-none text-gray-400">{{ manufacturer.location }}</p>
+                                            <icon icon="location" class="w-4 h-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base text-gray-400 truncate leading-none">{{
+                                                manufacturer.location }}</p>
                                         </div>
                                     </td>
-                                    <td class="border-r border-gray-100">
+                                    <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-3 pl-5">
-                                            <p class="mr-2 text-lg font-medium leading-none text-gray-600">{{ manufacturer.contact_name }}</p>
+                                            <p class="mr-2 font-medium text-gray-600 text-lg leading-none">{{
+                                                manufacturer.contact_name }}</p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="phone" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">{{ manufacturer.contact_tel }}</p>
+                                            <icon icon="phone" class="w-4 h-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base text-gray-400 leading-none">{{
+                                                manufacturer.contact_tel }}</p>
                                         </div>
                                     </td>
                                     <td class="pl-5">
-                                        <Link
-                                            :href="route('manufacturers.show', manufacturer.id)"
-                                            class="rounded bg-red-100 py-2 px-5 text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
-                                        >
-                                            See Details
+                                        <Link :href="route('manufacturers.show', manufacturer.id)"
+                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded text-orange-900 text-sm leading-none focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                        See Details
                                         </Link>
                                     </td>
                                     <td>
@@ -73,25 +76,24 @@
                                                     <Icon icon="dots" />
                                                 </MenuButton>
 
-                                                <MenuItems class="absolute right-0 z-30 mr-2 flex w-24 flex-col rounded-md bg-white shadow">
+                                                <MenuItems
+                                                    class="right-0 z-30 absolute flex flex-col bg-white shadow mr-2 rounded-md w-24">
                                                     <MenuItem v-slot="{ active }">
-                                                        <Link
-                                                            class="w-full cursor-pointer rounded-t-md py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
-                                                            :class="{ 'bg-orange-600 text-white': active }"
-                                                            :href="route('manufacturers.edit', manufacturer.id)"
-                                                            as="button"
-                                                        >
-                                                            Edit
-                                                        </Link>
+                                                    <Link
+                                                        class="hover:bg-orange-600 px-4 py-4 rounded-t-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-none"
+                                                        :class="{ 'bg-orange-600 text-white': active }"
+                                                        :href="route('manufacturers.edit', manufacturer.id)"
+                                                        as="button">
+                                                    Edit
+                                                    </Link>
                                                     </MenuItem>
                                                     <MenuItem v-slot="{ active }">
-                                                        <button
-                                                            class="w-full cursor-pointer rounded-b-md py-4 px-4 text-xs hover:bg-orange-600 hover:text-white focus:text-orange-200 focus:outline-none"
-                                                            :class="{ 'bg-orange-600 text-white': active }"
-                                                            @click="destroyItem(manufacturer.id)"
-                                                        >
-                                                            Delete
-                                                        </button>
+                                                    <button
+                                                        class="hover:bg-orange-600 px-4 py-4 rounded-b-md w-full text-xs hover:text-white focus:text-orange-200 cursor-pointer focus:outline-none"
+                                                        :class="{ 'bg-orange-600 text-white': active }"
+                                                        @click="destroyItem(manufacturer.id)">
+                                                        Delete
+                                                    </button>
                                                     </MenuItem>
                                                 </MenuItems>
                                             </Menu>
@@ -105,27 +107,20 @@
                 </div>
                 <Pagination class="mt-5" :links="props.manufacturers.links" />
             </div>
-            <div v-if="roles.includes('admin')" class="rounded-lg py-12 px-4 md:px-8 xl:px-10">
+            <div v-if="roles.includes('admin')" class="px-4 md:px-8 xl:px-10 py-12 rounded-lg">
                 <form class="flex items-center" @submit.prevent="startImporting">
                     <label class="block">
                         <span class="sr-only">Choose csv file</span>
-                        <input
-                            @input="importerForm.file = $event.target.files[0]"
-                            type="file"
-                            accept="application/csv"
-                            class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-100"
-                        />
+                        <input @input="importerForm.file = $event.target.files[0]" type="file" accept="application/csv"
+                            class="block hover:file:bg-violet-100 file:bg-violet-50 file:mr-4 file:px-4 file:py-2 file:border-0 file:rounded-full w-full file:font-semibold text-slate-500 text-sm file:text-sm file:text-violet-700" />
                     </label>
                     <button
-                        class="inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
-                        type="submit"
-                    >
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 px-6 py-2 rounded text-white focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        type="submit">
                         Start Importing
                     </button>
-                    <a
-                        :href="route('manufacturers.export')"
-                        class="ml-5 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-2 text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
-                    >
+                    <a :href="route('manufacturers.export')"
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 ml-5 px-6 py-2 rounded text-white focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2">
                         Export Manufacturers
                     </a>
                 </form>
@@ -135,8 +130,8 @@
 </template>
 <script setup>
 import { watch, ref, computed } from 'vue';
-import { Head, useForm, usePage, Link } from '@inertiajs/inertia-vue3';
-import { Inertia } from '@inertiajs/inertia';
+import { Head, useForm, usePage, Link } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
 import Pagination from '@/Shared/Pagination';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';

@@ -1,9 +1,7 @@
 require('./bootstrap');
 
 import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/inertia-vue3';
-import { InertiaProgress } from '@inertiajs/progress';
-import AuthLayout from '@/Layouts/AuthLayout.vue';
+import { createInertiaApp } from '@inertiajs/vue3';
 import Swal from 'sweetalert2';
 
 window.swal = Swal; //Making it available globally
@@ -19,6 +17,7 @@ createInertiaApp({
             .mixin({ methods: { route } })
             .mount(el);
     },
+    progress: {
+        color: '#4B5563',
+    },
 });
-
-InertiaProgress.init({ color: '#4B5563' });

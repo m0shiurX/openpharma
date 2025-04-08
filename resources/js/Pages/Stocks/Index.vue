@@ -1,87 +1,84 @@
 <template>
+
     <Head title="Medicines" />
 
     <AuthLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">Medicines List</h2>
+            <h2 class="font-semibold text-gray-800 text-xl leading-tight">Medicines List</h2>
         </template>
 
-        <div class="mt-8 rounded-lg bg-white/30 py-4">
+        <div class="bg-white/30 mt-8 py-4 rounded-lg">
             <div class="px-4 md:px-8 xl:px-10">
                 <FlashMessages />
             </div>
             <div class="px-4 md:px-8 xl:px-10">
-                <div class="flex items-center justify-between">
-                    <SearchFilter v-model="form.search" class="mr-4 w-80 rounded-lg" @reset="resetSearch"></SearchFilter>
+                <div class="flex justify-between items-center">
+                    <SearchFilter v-model="form.search" class="mr-4 rounded-lg w-80" @reset="resetSearch">
+                    </SearchFilter>
 
                     <Link
-                        class="mt-4 inline-flex items-start justify-start rounded bg-orange-700 px-6 py-3 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2 sm:mt-0"
-                        href="#"
-                        ><span class="text-sm font-medium leading-none text-white">Add to Stock</span>
+                        class="inline-flex justify-start items-start bg-orange-700 hover:bg-orange-600 mt-4 sm:mt-0 px-6 py-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-600 focus:ring-offset-2"
+                        href="#"><span class="font-medium text-sm text-white leading-none">Add to Stock</span>
                     </Link>
                 </div>
             </div>
-            <div class="rounded-lg px-4 md:px-8 xl:px-10">
+            <div class="px-4 md:px-8 xl:px-10 rounded-lg">
                 <div
-                    class="scrollbar-thumb-rounded-full scrollbar-track-rounded-full mt-5 overflow-auto overflow-y-scroll pb-20 scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700"
-                >
-                    <table class="w-full table-auto whitespace-nowrap">
+                    class="mt-5 pb-20 scrollbar-thumb-rounded-full scrollbar-track-rounded-full overflow-auto overflow-y-scroll scrollbar-thin scrollbar-track-orange-300 scrollbar-thumb-orange-700">
+                    <table class="w-full whitespace-nowrap table-auto">
                         <thead>
-                            <tr tabindex="0" class="h-16 rounded-lg border border-gray-100 bg-white text-lg text-gray-500 focus:outline-none">
-                                <th class="border-r border-gray-100 pl-5 text-left">Medicine</th>
-                                <th class="border-x border-gray-100 pl-5 text-left">Batch</th>
-                                <th class="border-x border-gray-100 pr-5 text-right">Stock</th>
-                                <th class="border-l border-gray-100">Action</th>
+                            <tr tabindex="0"
+                                class="bg-white border border-gray-100 rounded-lg h-16 text-gray-500 text-lg focus:outline-none">
+                                <th class="pl-5 border-gray-100 border-r text-left">Medicine</th>
+                                <th class="pl-5 border-gray-100 border-x text-left">Batch</th>
+                                <th class="text-right pr-5 border-gray-100 border-x">Stock</th>
+                                <th class="border-gray-100 border-l">Action</th>
                             </tr>
                             <tr class="h-3"></tr>
                         </thead>
                         <tbody class="">
                             <template v-for="stock in props.stocks.data" :key="stock.id">
-                                <tr
-                                    tabindex="0"
-                                    class="group h-14 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-orange-100"
-                                >
-                                    <td class="border-r border-gray-100">
+                                <tr tabindex="0"
+                                    class="group bg-gray-50 hover:bg-orange-100 border border-gray-100 rounded h-14 transition-colors duration-200 ease-in">
+                                    <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-3 pl-5">
-                                            <p class="mr-2 text-lg font-semibold capitalize leading-none text-gray-700">
+                                            <p class="mr-2 font-semibold text-gray-700 text-lg capitalize leading-none">
                                                 {{ stock.medicine }}
                                             </p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="manufacturer" class="h-4 w-4 stroke-slate-400" />
+                                            <icon icon="manufacturer" class="w-4 h-4 stroke-slate-400" />
 
-                                            <p class="truncate text-sm capitalize leading-none text-gray-400">
+                                            <p class="text-gray-400 text-sm truncate capitalize leading-none">
                                                 {{ stock.manufacturer }}
                                             </p>
                                         </div>
                                     </td>
-                                    <td class="border-r border-gray-100">
+                                    <td class="border-gray-100 border-r">
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="hash" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                            <icon icon="hash" class="w-4 h-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base text-gray-400 leading-none">
                                                 {{ stock.batch_id }}
                                             </p>
                                         </div>
                                         <div class="flex items-center pt-2 pb-3 pl-5">
-                                            <icon icon="calender" class="h-4 w-4 stroke-slate-400" />
-                                            <p class="ml-1 text-base leading-none text-gray-400">
+                                            <icon icon="calender" class="w-4 h-4 stroke-slate-400" />
+                                            <p class="ml-1 text-base text-gray-400 leading-none">
                                                 {{ stock.expiry_date }}
                                             </p>
                                         </div>
                                     </td>
-                                    <td class="border-r border-gray-100">
-                                        <div class="flex items-center justify-end pt-2 pb-3 pr-5">
-                                            <p class="text-sm leading-none text-gray-400">
+                                    <td class="border-gray-100 border-r">
+                                        <div class="flex justify-end items-center pt-2 pr-5 pb-3">
+                                            <p class="text-gray-400 text-sm leading-none">
                                                 {{ stock.stock }}
                                             </p>
                                         </div>
                                     </td>
                                     <td class="pl-5 text-center">
-                                        <Link
-                                            :href="route('stocks.show', stock.id)"
-                                            class="rounded bg-red-100 py-2 px-5 text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
-                                        >
-                                            See History
+                                        <Link :href="route('stocks.show', stock.id)"
+                                            class="bg-red-100 hover:bg-red-200 px-5 py-2 rounded text-orange-900 text-sm leading-none focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                        See History
                                         </Link>
                                     </td>
                                 </tr>
@@ -97,8 +94,8 @@
 </template>
 <script setup>
 import { watch, ref, onMounted } from 'vue';
-import { Head, useForm, Link } from '@inertiajs/inertia-vue3';
-import { Inertia } from '@inertiajs/inertia';
+import { Head, useForm, Link } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
 import Pagination from '@/Shared/Pagination';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import SearchFilter from '@/Shared/SearchFilter.vue';

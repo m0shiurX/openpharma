@@ -1,31 +1,32 @@
 <template>
+
     <Head title="Customers" />
 
     <AuthLayout>
         <template #header>
-            <h2 class="text-xl font-semibold leading-tight text-gray-800">Sales #{{ invoice_no }}</h2>
+            <h2 class="font-semibold text-gray-800 text-xl leading-tight">Sales #{{ invoice_no }}</h2>
         </template>
 
-        <div class="mt-8 rounded-lg bg-white/30 py-8">
-            <div class="rounded-lg px-4 md:px-8 xl:px-10">
+        <div class="bg-white/30 mt-8 py-8 rounded-lg">
+            <div class="px-4 md:px-8 xl:px-10 rounded-lg">
                 <!-- Form -->
                 <form class="" @submit.prevent="saveItem">
-                    <div class="w-4xl mx-auto max-w-4xl">
+                    <div class="mx-auto w-4xl max-w-4xl">
                         <!-- Invoice header-->
-                        <div class="mb-6 rounded-xl border border-orange-100 py-3 px-5">
-                            <div class="flex items-center justify-between divide-x-2">
+                        <div class="mb-6 px-5 py-3 border border-orange-100 rounded-xl">
+                            <div class="flex justify-between items-center divide-x-2">
                                 <div class="flex flex-1 items-center pr-2">
-                                    <Icon icon="hash" class="h-10 w-8 stroke-orange-300" />
-                                    <div class="ml-2 flex flex-col">
-                                        <span class="text-xs font-semibold text-slate-400"> #{{ invoice_no }}</span>
-                                        <span class="text-sm text-slate-500"> {{ display_date }} </span>
+                                    <Icon icon="hash" class="w-8 h-10 stroke-orange-300" />
+                                    <div class="flex flex-col ml-2">
+                                        <span class="font-semibold text-slate-400 text-xs"> #{{ invoice_no }}</span>
+                                        <span class="text-slate-500 text-sm"> {{ display_date }} </span>
                                     </div>
                                 </div>
                                 <div class="flex flex-1 items-center pl-2">
-                                    <Icon icon="user-circle" class="h-8 w-8 stroke-orange-300" />
-                                    <div class="ml-2 flex flex-col">
-                                        <span class="text-sm font-semibold text-slate-500">{{ customer.name }}</span>
-                                        <span class="text-xs text-slate-400">{{ customer.phone }}</span>
+                                    <Icon icon="user-circle" class="w-8 h-8 stroke-orange-300" />
+                                    <div class="flex flex-col ml-2">
+                                        <span class="font-semibold text-slate-500 text-sm">{{ customer.name }}</span>
+                                        <span class="text-slate-400 text-xs">{{ customer.phone }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -33,87 +34,60 @@
 
                         <div class="mt-6">
                             <!-- Purchase info -->
-                            <div class="mb-3 flex gap-x-2">
+                            <div class="flex gap-x-2 mb-3">
                                 <div class="flex-1">
-                                    <label class="mb-2 block" for="customer"> Customer</label>
+                                    <label class="block mb-2" for="customer"> Customer</label>
                                     <select
-                                        class="h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 text-slate-900 focus:border-orange-400 focus:ring-orange-400"
-                                        v-model="form.customer_id"
-                                        id="customer"
-                                        required
-                                    >
+                                        class="bg-orange-50 border border-orange-300 focus:border-orange-400 rounded-md w-full h-10 text-slate-900 appearance-none focus:ring-orange-400"
+                                        v-model="form.customer_id" id="customer" required>
                                         <option value="" selected>Select a Customer</option>
-                                        <option v-for="customer in props.customers" :key="customer.id" :value="customer.id">
+                                        <option v-for="customer in props.customers" :key="customer.id"
+                                            :value="customer.id">
                                             {{ customer.name }}
                                         </option>
                                     </select>
                                 </div>
                                 <div class="flex-1">
-                                    <label class="mb-2 block" for="sales_date">Sales Date</label>
-                                    <input
-                                        id="sales_date"
-                                        v-model="form.sales_date"
-                                        type="date"
+                                    <label class="block mb-2" for="sales_date">Sales Date</label>
+                                    <input id="sales_date" v-model="form.sales_date" type="date"
                                         onkeydown="return false"
-                                        class="h-10 w-full appearance-none rounded-md border border-orange-300 bg-orange-50 text-slate-900 focus:border-orange-400 focus:outline-none focus:ring-orange-400 sm:text-sm"
-                                        required
-                                        disabled
-                                    />
+                                        class="bg-orange-50 border border-orange-300 focus:border-orange-400 rounded-md w-full h-10 text-slate-900 sm:text-sm appearance-none focus:outline-none focus:ring-orange-400"
+                                        required disabled />
                                 </div>
                             </div>
 
                             <!-- Medicine search -->
 
                             <div class="relative flex-1">
-                                <label class="mb-2 block" for="medicine">Type to search medicine</label>
-                                <input
-                                    name="search"
-                                    v-model="search"
-                                    placeholder="Napa"
-                                    type="text"
-                                    autocomplete="off"
-                                    class="mb-5 h-10 w-full rounded-md border border-orange-400 bg-orange-50 placeholder:text-slate-300 focus:border focus:border-orange-400 focus:ring-orange-600"
-                                    @keydown.up.prevent="highlightPrevious"
-                                    @keydown.down.prevent="highlightNext"
-                                    @focus="searchResultShown = true"
-                                    @keydown.esc="searchResultShown = false"
-                                    @input="softResetSearch"
-                                    @keydown.enter.prevent="selectItem"
-                                />
-                                <div
-                                    v-if="search.length > 0"
-                                    class="absolute top-9 right-0 mr-3 cursor-pointer text-2xl text-gray-600 hover:text-gray-800"
-                                    @click="resetSearch"
-                                >
+                                <label class="block mb-2" for="medicine">Type to search medicine</label>
+                                <input name="search" v-model="search" placeholder="Napa" type="text" autocomplete="off"
+                                    class="bg-orange-50 mb-5 border border-orange-400 focus:border focus:border-orange-400 rounded-md w-full h-10 placeholder:text-slate-300 focus:ring-orange-600"
+                                    @keydown.up.prevent="highlightPrevious" @keydown.down.prevent="highlightNext"
+                                    @focus="searchResultShown = true" @keydown.esc="searchResultShown = false"
+                                    @input="softResetSearch" @keydown.enter.prevent="selectItem" />
+                                <div v-if="search.length > 0"
+                                    class="top-9 right-0 absolute mr-3 text-2xl text-gray-600 hover:text-gray-800 cursor-pointer"
+                                    @click="resetSearch">
                                     &times;
                                 </div>
                                 <transition name="fade">
-                                    <div
-                                        v-if="search.length > 0 && searchResultShown"
-                                        class="absolute top-20 left-0 z-50 h-96 w-full overflow-y-auto rounded-b-lg rounded-t-sm"
-                                    >
-                                        <ul
-                                            v-if="filteredMedicine.length > 0"
-                                            class="mt-1 w-full overflow-auto rounded-md bg-orange-100 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                        >
-                                            <li
-                                                v-for="(medicine, index) in filteredMedicine"
-                                                :key="medicine.id"
-                                                class="relative w-full cursor-pointer border-y border-orange-200 py-2 pl-10 pr-4 text-slate-900 hover:border-y hover:border-orange-300 hover:bg-orange-200 focus:bg-orange-200"
-                                                role="option"
-                                                tabindex="-1"
-                                                value="0"
+                                    <div v-if="search.length > 0 && searchResultShown"
+                                        class="top-20 left-0 z-50 absolute rounded-b-lg rounded-t-sm w-full h-96 overflow-y-auto">
+                                        <ul v-if="filteredMedicine.length > 0"
+                                            class="bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black focus:outline-none">
+                                            <li v-for="(medicine, index) in filteredMedicine" :key="medicine.id"
+                                                class="relative hover:bg-orange-200 focus:bg-orange-200 py-2 pr-4 pl-10 border-orange-200 border-y hover:border-orange-300 hover:border-y w-full text-slate-900 cursor-pointer"
+                                                role="option" tabindex="-1" value="0"
                                                 :class="{ 'border-y border-orange-400 bg-orange-200': index === highlightedIndex }"
-                                                @click="clickedItem(index)"
-                                            >
-                                                <span class="block font-normal capitalize">{{ medicine.name }} - {{ medicine.strength }}</span>
+                                                @click="clickedItem(index)">
+                                                <span class="block font-normal capitalize">{{ medicine.name }} - {{
+                                                    medicine.strength }}</span>
                                             </li>
                                         </ul>
-                                        <ul
-                                            v-else
-                                            class="mt-1 w-full overflow-auto rounded-md bg-orange-100 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                        >
-                                            <li class="relative w-full cursor-pointer py-2 pl-10 pr-4 text-slate-900 focus:bg-orange-200">
+                                        <ul v-else
+                                            class="bg-orange-100 ring-opacity-5 shadow-lg mt-1 rounded-md w-full text-base overflow-auto ring-1 ring-black focus:outline-none">
+                                            <li
+                                                class="relative focus:bg-orange-200 py-2 pr-4 pl-10 w-full text-slate-900 cursor-pointer">
                                                 No results found
                                             </li>
                                         </ul>
@@ -122,87 +96,69 @@
                             </div>
 
                             <!-- Main table -->
-                            <table class="w-full table-auto whitespace-nowrap">
+                            <table class="w-full whitespace-nowrap table-auto">
                                 <thead>
-                                    <tr class="h-12 rounded-lg border border-gray-100 bg-white text-base text-gray-500 focus:outline-none">
-                                        <th class="border-r border-gray-100 pl-5 pr-2 text-left">Medicine</th>
-                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">BATCH</th>
-                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">Qty</th>
-                                        <th class="w-32 border-x border-gray-100 pl-5 text-left">MRP</th>
-                                        <th class="W-20 border-x border-gray-100 pl-3 pr-2 text-left">Disc (%)</th>
-                                        <th class="w-32 border-x border-gray-100 pl-5 pr-3 text-left">Total</th>
-                                        <th class="border-l border-gray-100"></th>
+                                    <tr
+                                        class="bg-white border border-gray-100 rounded-lg h-12 text-base text-gray-500 focus:outline-none">
+                                        <th class="pr-2 pl-5 border-gray-100 border-r text-left">Medicine</th>
+                                        <th class="pl-5 border-gray-100 border-x w-32 text-left">BATCH</th>
+                                        <th class="pl-5 border-gray-100 border-x w-32 text-left">Qty</th>
+                                        <th class="pl-5 border-gray-100 border-x w-32 text-left">MRP</th>
+                                        <th class="pr-2 pl-3 border-gray-100 border-x text-left W-20">Disc (%)</th>
+                                        <th class="pr-3 pl-5 border-gray-100 border-x w-32 text-left">Total</th>
+                                        <th class="border-gray-100 border-l"></th>
                                     </tr>
                                     <tr class="h-2"></tr>
                                 </thead>
                                 <tbody class="">
                                     <template v-for="(formRow, index) in form.sales_items" :key="index">
                                         <tr
-                                            class="group h-10 rounded border border-orange-200 bg-orange-50 transition-colors duration-200 ease-in hover:bg-orange-100"
-                                        >
-                                            <td class="h-10 border-gray-100">
-                                                <div class="flex h-full items-center px-2 capitalize">
+                                            class="group bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded h-10 transition-colors duration-200 ease-in">
+                                            <td class="border-gray-100 h-10">
+                                                <div class="flex items-center px-2 h-full capitalize">
                                                     {{ formRow.name }} - {{ formRow.strength }}
                                                 </div>
                                             </td>
-                                            <td class="h-10 w-36 border-gray-100">
+                                            <td class="border-gray-100 w-36 h-10">
                                                 <select
-                                                    class="h-full w-full border-0 border-x border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                    v-model="formRow.batch_id"
-                                                    required
-                                                >
-                                                    <option v-for="stock in formRow.stocks" :key="stock.id" :value="stock.id">
+                                                    class="text-right bg-orange-50 pr-3 border-0 border-orange-200 border-x focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600"
+                                                    v-model="formRow.batch_id" required>
+                                                    <option v-for="stock in formRow.stocks" :key="stock.id"
+                                                        :value="stock.id">
                                                         {{ stock.batch_id }} - {{ stock.stock }}
                                                     </option>
                                                 </select>
                                             </td>
-                                            <td class="h-10 w-28 border-gray-100">
-                                                <input
-                                                    :disabled="!formRow.batch_id"
-                                                    min="1"
-                                                    @focus="$event.target.select()"
-                                                    type="number"
+                                            <td class="border-gray-100 w-28 h-10">
+                                                <input :disabled="!formRow.batch_id" min="1"
+                                                    @focus="$event.target.select()" type="number"
                                                     v-model="formRow.quantity"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                />
+                                                    class="text-right bg-orange-50 pr-3 border-0 border-orange-200 focus:border focus:border-orange-400 border-r w-full h-full focus:ring-orange-600" />
                                             </td>
-                                            <td class="h-10 w-32 border-gray-100">
-                                                <input
-                                                    @focus="$event.target.select()"
-                                                    type="text"
+                                            <td class="border-gray-100 w-32 h-10">
+                                                <input @focus="$event.target.select()" type="text"
                                                     v-model="formRow.selling_price"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                />
+                                                    class="text-right bg-orange-50 pr-3 border-0 border-orange-200 focus:border focus:border-orange-400 border-r w-full h-full focus:ring-orange-600" />
                                             </td>
-                                            <td class="h-10 w-20 border-gray-100">
-                                                <input
-                                                    @focus="$event.target.select()"
-                                                    type="text"
+                                            <td class="border-gray-100 w-20 h-10">
+                                                <input @focus="$event.target.select()" type="text"
                                                     v-model="formRow.discount"
-                                                    class="h-full w-full border-0 border-r border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                />
+                                                    class="text-right bg-orange-50 pr-3 border-0 border-orange-200 focus:border focus:border-orange-400 border-r w-full h-full focus:ring-orange-600" />
                                             </td>
-                                            <td class="h-10 w-32 border-gray-100">
-                                                <input
-                                                    disabled
-                                                    type="text"
-                                                    v-model="formRow.total_price"
-                                                    class="h-full w-full border-0 border-orange-200 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                                />
+                                            <td class="border-gray-100 w-32 h-10">
+                                                <input disabled type="text" v-model="formRow.total_price"
+                                                    class="text-right bg-orange-50 pr-3 border-0 border-orange-200 focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600" />
                                             </td>
-                                            <td class="w-12 p-0">
-                                                <button
-                                                    @click="removeItem(index)"
-                                                    type="button"
-                                                    class="inline-flex h-full w-12 justify-center bg-red-100 py-2.5 px-3 text-center text-sm leading-none text-orange-900 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2"
-                                                >
-                                                    <Icon icon="close" class="h-5 w-5 stroke-orange-300" />
+                                            <td class="p-0 w-12">
+                                                <button @click="removeItem(index)" type="button"
+                                                    class="inline-flex justify-center bg-red-100 hover:bg-red-200 px-3 py-2.5 w-12 h-full text-center text-orange-900 text-sm leading-none focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2">
+                                                    <Icon icon="close" class="w-5 h-5 stroke-orange-300" />
                                                 </button>
                                             </td>
                                         </tr>
                                         <tr class="h-2">
                                             <td colspan="8" v-if="Object.keys(form.errors).length > 0">
-                                                <p class="pl-2 text-xs text-red-400">
+                                                <p class="pl-2 text-red-400 text-xs">
                                                     {{ form.errors['sales_items.' + index + '.batch_id'] }}
                                                 </p>
                                             </td>
@@ -211,112 +167,87 @@
                                 </tbody>
                                 <tfoot>
                                     <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                    >
-                                        <th colspan="5" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Sub Total</div>
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        <th colspan="5" class="border-gray-100 border-x">
+                                            <div class="flex justify-end items-center pr-5">Sub Total</div>
                                         </th>
-                                        <th colspan="1" class="w-12 border-r border-gray-100">
-                                            <input
-                                                disabled
-                                                type="text"
-                                                v-model="form.sub_total"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                            />
+                                        <th colspan="1" class="border-gray-100 border-r w-12">
+                                            <input disabled type="text" v-model="form.sub_total"
+                                                class="text-right bg-orange-50 pr-3 border-0 focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600" />
                                         </th>
-                                        <th class="w-12 text-xs font-light">BDT</th>
+                                        <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                    >
-                                        <th colspan="5" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Invoice Discount</div>
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        <th colspan="5" class="border-gray-100 border-x">
+                                            <div class="flex justify-end items-center pr-5">Invoice Discount</div>
                                         </th>
-                                        <th colspan="1" class="w-12 border-r border-gray-100">
-                                            <input
-                                                @focus="$event.target.select()"
-                                                type="text"
+                                        <th colspan="1" class="border-gray-100 border-r w-12">
+                                            <input @focus="$event.target.select()" type="text"
                                                 v-model="form.invoice_discount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                            />
+                                                class="text-right bg-orange-50 pr-3 border-0 focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600" />
                                         </th>
-                                        <th class="w-12 text-xs font-light">BDT</th>
+                                        <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <!-- <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in"
                                     >
-                                        <th colspan="5" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">VAT</div>
+                                        <th colspan="5" class="border-gray-100 border-x">
+                                            <div class="flex justify-end items-center pr-5">VAT</div>
                                         </th>
-                                        <th colspan="1" class="w-12 border-r border-gray-100">
+                                        <th colspan="1" class="border-gray-100 border-r w-12">
                                             <input
                                                 disabled
                                                 type="text"
                                                 v-model="form.vat"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
+                                                class="text-right bg-orange-50 pr-3 border-0 focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600"
                                             />
                                         </th>
-                                        <th class="w-12 text-xs font-light">%</th>
+                                        <th class="w-12 font-light text-xs">%</th>
                                     </tr> -->
                                     <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                    >
-                                        <th colspan="5" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Grand Total</div>
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        <th colspan="5" class="border-gray-100 border-x">
+                                            <div class="flex justify-end items-center pr-5">Grand Total</div>
                                         </th>
-                                        <th colspan="1" class="w-12 border-r border-gray-100">
-                                            <input
-                                                disabled
-                                                type="text"
-                                                v-model="form.grand_total"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                            />
+                                        <th colspan="1" class="border-gray-100 border-r w-12">
+                                            <input disabled type="text" v-model="form.grand_total"
+                                                class="text-right bg-orange-50 pr-3 border-0 focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600" />
                                         </th>
-                                        <th class="w-12 text-xs font-light">BDT</th>
+                                        <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                    >
-                                        <th colspan="5" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Paid Total</div>
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        <th colspan="5" class="border-gray-100 border-x">
+                                            <div class="flex justify-end items-center pr-5">Paid Total</div>
                                         </th>
-                                        <th colspan="1" class="w-12 border-r border-gray-100">
-                                            <input
-                                                @focus="$event.target.select()"
-                                                type="text"
+                                        <th colspan="1" class="border-gray-100 border-r w-12">
+                                            <input @focus="$event.target.select()" type="text"
                                                 v-model="form.paid_amount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                            />
+                                                class="text-right bg-orange-50 pr-3 border-0 focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600" />
                                         </th>
-                                        <th class="w-12 text-xs font-light">BDT</th>
+                                        <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                     <tr
-                                        class="group h-10 rounded border border-gray-100 bg-gray-50 transition-colors duration-200 ease-in hover:bg-gray-300"
-                                    >
-                                        <th colspan="5" class="border-x border-gray-100">
-                                            <div class="flex items-center justify-end pr-5">Exchange Total</div>
+                                        class="group bg-gray-50 hover:bg-gray-300 border border-gray-100 rounded h-10 transition-colors duration-200 ease-in">
+                                        <th colspan="5" class="border-gray-100 border-x">
+                                            <div class="flex justify-end items-center pr-5">Exchange Total</div>
                                         </th>
-                                        <th colspan="1" class="w-12 border-r border-gray-100">
-                                            <input
-                                                type="text"
-                                                v-model="form.exchange_amount"
-                                                class="h-full w-full border-0 bg-orange-50 pr-3 text-right focus:border focus:border-orange-400 focus:ring-orange-600"
-                                            />
+                                        <th colspan="1" class="border-gray-100 border-r w-12">
+                                            <input type="text" v-model="form.exchange_amount"
+                                                class="text-right bg-orange-50 pr-3 border-0 focus:border focus:border-orange-400 w-full h-full focus:ring-orange-600" />
                                         </th>
-                                        <th class="w-12 text-xs font-light">BDT</th>
+                                        <th class="w-12 font-light text-xs">BDT</th>
                                     </tr>
                                 </tfoot>
                             </table>
 
                             <!-- Form actions -->
-                            <div class="mt-5 flex flex-row-reverse items-center justify-start gap-x-5">
-                                <button type="submit" class="rounded-md bg-orange-500 px-8 py-2 text-white" :disabled="form.processing">Save</button>
-                                <button
-                                    type="button"
-                                    :disabled="form.processing"
-                                    @click="saveItem"
-                                    class="rounded-md bg-slate-400 px-8 py-2 text-white"
-                                >
+                            <div class="flex flex-row-reverse justify-start items-center gap-x-5 mt-5">
+                                <button type="submit" class="bg-orange-500 px-8 py-2 rounded-md text-white"
+                                    :disabled="form.processing">Save</button>
+                                <button type="button" :disabled="form.processing" @click="saveItem"
+                                    class="bg-slate-400 px-8 py-2 rounded-md text-white">
                                     Save & Print
                                 </button>
                             </div>
@@ -328,8 +259,8 @@
     </AuthLayout>
 </template>
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
-import { Inertia } from '@inertiajs/inertia';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+import { router } from '@inertiajs/vue3';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
 import BaseInput from '@/Shared/BaseInput.vue';
 import Icon from '@/Shared/Icon.vue';

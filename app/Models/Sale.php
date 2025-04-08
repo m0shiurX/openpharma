@@ -42,7 +42,7 @@ class Sale extends Model
     {
         parent::boot();
 
-        static::creating(function ($model) {
+        static::creating(function ($model): void {
             $latest_invoice = \App\Models\Sale::withTrashed()->latest()->max('id') + 1;
             $model->invoice_no = 'SL-' . str_pad((int)$latest_invoice, 6, '0', STR_PAD_LEFT);
         });
@@ -51,10 +51,10 @@ class Sale extends Model
     // Scopes
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->whereHas('customer', function ($query) use ($search) {
+        $query->when($filters['search'] ?? null, function ($query, $search): void {
+            $query->whereHas('customer', function ($query) use ($search): void {
                 $query->where('name', 'like', '%' . $search . '%');
-            })->orWhere(function ($query) use ($search) {
+            })->orWhere(function ($query) use ($search): void {
                 $query->where('invoice_no', 'like', '%' . $search . '%');
             });
         });
